@@ -1,0 +1,1600 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#DC2626">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="CRM Atlas">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23DC2626%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27Arial%27 font-size=%2734%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3EA%3C/text%3E%3C/svg%3E">
+<title>CRM Comercial · Atlas Insper Jr.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F6F6F8;--card:#fff;--line:#EEEEF1;--line2:#F2F2F4;--ink:#18181B;--ink2:#3F3F46;--mut:#71717A;--mut2:#8A8A93;--red:#DC2626;--redd:#B91C1C;--reds:#FEF2F2;--redb:#FECACA;--green:#15803D;--greend:#166534;--greens:#F0FDF4;--greenb:#BBF7D0;--amber:#92400E;--ambers:#FFFBEB;--amberb:#FDE68A;--blue:#1D4ED8;--blues:#EFF6FF;--sh:0 1px 2px rgba(16,24,40,.04),0 8px 24px rgba(16,24,40,.05)}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:var(--redd)}
+button{font-family:inherit}
+.app{display:flex;min-height:100vh}
+aside{width:264px;flex:0 0 264px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;position:sticky;top:0;height:100vh;overflow-y:auto}
+.logo{height:84px;display:flex;align-items:center;gap:10px;padding:0 26px;font-weight:700;font-size:19px;letter-spacing:-.02em}
+.logo span{width:34px;height:34px;border-radius:10px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+.grp{font-size:11px;font-weight:600;letter-spacing:.1em;color:#A1A1AA;padding:18px 26px 8px}
+.nav a{display:flex;align-items:center;gap:12px;margin:2px 14px;padding:10px 12px;border-radius:12px;color:var(--ink2);text-decoration:none;font-size:14.5px;font-weight:500;cursor:pointer}
+.nav a:hover{background:#F7F7F9}
+.nav a.on{background:var(--reds);color:var(--red);font-weight:600}
+.nav svg{width:19px;height:19px;flex:0 0 19px}
+.badge{margin-left:auto;font-size:11px;font-weight:600;color:var(--redd);background:#FEE2E2;border-radius:99px;padding:2px 8px}
+.me{border-top:1px solid var(--line2);padding:16px 20px;display:flex;align-items:center;gap:10px;font-size:14px;color:#52525B}
+.me .av{background:var(--red);width:34px;height:34px;font-size:12px}
+.bell{margin-left:auto;position:relative;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:0;background:transparent}
+.bell:hover,.bell.on{background:var(--reds)}
+.bell i{position:absolute;top:1px;right:-2px;background:var(--red);color:#fff;font-size:10.5px;font-style:normal;font-weight:600;border-radius:99px;padding:1px 6px}
+main{flex:1;min-width:0;padding:44px 52px 72px;display:flex;flex-direction:column;gap:28px}
+h1{margin:0;font-size:32px;letter-spacing:-.025em;line-height:1.15}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;color:var(--red);margin-bottom:8px}
+.sub{margin:8px 0 0;color:var(--mut);font-size:15.5px}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px}
+.crumb{font-size:13px;color:var(--mut)}
+.crumb a{color:var(--mut);text-decoration:none;cursor:pointer}
+.crumb a:hover{color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh);padding:26px 28px;min-width:0}
+.card h2{margin:0 0 4px;font-size:17px;letter-spacing:-.01em}
+.card .hint{margin:0 0 16px;font-size:13px;color:var(--mut)}
+.card.flat{box-shadow:none}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.kpi .l{font-size:13px;color:var(--mut)}
+.kpi .v{font-size:30px;font-weight:700;letter-spacing:-.02em;margin-top:8px}
+.kpi .s{font-size:13px;color:var(--mut);margin-top:3px}
+.kpi.red{background:var(--reds);border-color:var(--redb)} .kpi.red .l,.kpi.red .s{color:#991B1B} .kpi.red .v{color:var(--redd)}
+.kpi.grn{background:var(--greens);border-color:var(--greenb)} .kpi.grn .l,.kpi.grn .s{color:var(--greend)} .kpi.grn .v{color:var(--green)}
+.btn{font-size:14px;font-weight:500;padding:10px 16px;border-radius:12px;border:1px solid #E4E4E9;background:#fff;cursor:pointer;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.btn:hover{background:#F7F7F9}
+.btn.p{background:var(--red);border-color:var(--red);color:#fff;font-weight:600} .btn.p:hover{background:var(--redd)}
+.btn.g{background:var(--green);border-color:var(--green);color:#fff;font-weight:600} .btn.g:hover{background:var(--greend)}
+.btn.d{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.btn.o{border-color:#FCA5A5;color:var(--redd)}
+.btn.s{font-size:13px;padding:7px 12px;border-radius:10px}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--mut)}
+.seg{display:flex;background:#EDEDF1;border-radius:12px;padding:4px;gap:2px}
+.seg button{border:0;background:transparent;font-size:14px;font-weight:500;padding:8px 14px;border-radius:9px;color:var(--mut);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{border:0;background:transparent;font-size:14.5px;color:var(--mut);padding:12px 14px;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;white-space:nowrap;display:flex;gap:8px;align-items:center}
+.tabs button.on{color:var(--ink);font-weight:600;border-color:var(--red)}
+.cnt{font-size:12px;font-weight:600;padding:2px 8px;border-radius:99px;background:#F1F1F3;color:#52525B}
+.tabs button.on .cnt{background:#FEE2E2;color:var(--redd)}
+.cnt.hot{background:var(--red)!important;color:#fff!important}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.p-g{background:var(--greens);color:var(--greend)} .p-a{background:var(--ambers);color:var(--amber)} .p-r{background:var(--reds);color:var(--redd)} .p-b{background:var(--blues);color:var(--blue)} .p-n{background:#F4F4F5;color:var(--ink2)} .p-v{background:#F5F3FF;color:#5B21B6}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.tag{font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid #E4E4E7;background:#fff;color:var(--ink2);white-space:nowrap}
+.av{width:28px;height:28px;border-radius:50%;background:#27272F;color:#fff;font-size:10.5px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.tblw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--mut2);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+.tbl td{padding:14px 12px;border-bottom:1px solid var(--line2);vertical-align:middle}
+.tbl tr.click{cursor:pointer}
+.tbl tr.click:hover td{background:#FAFAFB}
+.tbl .who{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.muted{color:var(--mut)} .small{font-size:12.5px} .b6{font-weight:600}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sp{justify-content:space-between}
+.stack{display:flex;flex-direction:column;gap:12px}
+.note{display:flex;gap:10px;align-items:center;font-size:13.5px;color:#52525B;background:#EFEFF3;border-radius:14px;padding:12px 16px;line-height:1.5}
+.note.g{background:var(--greens);color:var(--greend);border:1px solid var(--greenb)}
+.note.a{background:var(--ambers);color:var(--amber);border:1px solid var(--amberb)}
+.note svg{flex:0 0 16px;width:16px;height:16px}
+.kan{display:flex;gap:16px;overflow-x:auto;padding-bottom:14px;align-items:flex-start}
+.col{width:276px;flex:0 0 276px;background:#EFEFF3;border-radius:18px;padding:14px;min-height:460px;transition:background .15s,outline-color .15s;outline:2px dashed transparent;outline-offset:-2px}
+.col.over{background:var(--reds);outline-color:#FCA5A5}
+.colh{display:flex;justify-content:space-between;align-items:center}
+.colt{font-size:12px;color:var(--mut);padding:6px 4px 12px}
+.empty{font-size:13px;color:#A1A1AA;text-align:center;padding:22px 0}
+.dc{background:#fff;border:1px solid #E7E7EA;border-radius:14px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 2px rgba(16,24,40,.06);cursor:grab;transition:box-shadow .15s,transform .15s;user-select:none}
+.dc:hover{box-shadow:0 8px 20px rgba(16,24,40,.10);transform:translateY(-1px)}
+.dc.dragging{opacity:.4}
+.dc.am{background:var(--ambers);border-color:#FCD34D} .dc.vm{background:var(--reds);border-color:#FCA5A5} .dc.nw{border-color:#86EFAC;background:#FBFFFC}
+.dc .t{display:flex;justify-content:space-between;gap:8px;font-size:15px;font-weight:600;line-height:1.3}
+.dc .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dc .b{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:12px;color:#52525B}
+.st-ok{color:#52525B} .st-am{color:var(--amber);font-weight:600} .st-vm{color:var(--redd);font-weight:600} .st-nw{color:var(--greend);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:18px;font-size:13px;color:#52525B}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{width:14px;height:14px;border-radius:4px;display:inline-block;border:1px solid}
+.bar{height:8px;background:#F1F1F3;border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);border-radius:99px}
+.steps{display:flex;gap:4px;overflow-x:auto}
+.steps div{flex:1 0 120px;text-align:center;font-size:12px;font-weight:500;padding:9px 6px;border-radius:9px;background:#F4F4F5;color:#A1A1AA}
+.steps div.done{background:#E4E4E7;color:#27272A}
+.steps div.cur{background:var(--red);color:#fff;font-weight:600}
+.steps div.cur.am{background:#F59E0B}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line2);font-size:14px}
+.kv span:first-child{color:var(--mut)} .kv span:last-child{text-align:right}
+.item{display:block;padding:13px 15px;border-radius:12px;border:1px solid var(--line);margin-bottom:8px;text-decoration:none;color:inherit;cursor:pointer;background:#fff}
+.item:hover{box-shadow:0 4px 14px rgba(16,24,40,.07)}
+.item.am{background:var(--ambers);border-color:var(--amberb)} .item.vm{background:var(--reds);border-color:var(--redb)} .item.gr{background:var(--greens);border-color:var(--greenb)}
+.item .t{font-size:14px;font-weight:600} .item .s{font-size:13px;color:var(--mut);margin-top:3px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:6px 12px;border-radius:10px;background:#F7F7F9;border:1px solid var(--line2)}
+.fbtn{font-size:13px;font-weight:500;padding:8px 14px;border-radius:99px;border:1px solid #E4E4E7;background:#fff;color:var(--ink2);cursor:pointer}
+.fbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+label.f{display:block;font-size:13px;color:#52525B}
+.in{display:block;width:100%;margin-top:6px;font:inherit;font-size:14px;padding:10px 12px;border-radius:12px;border:1px solid #E4E4E9;background:#fff;color:var(--ink)}
+.in:focus{outline:2px solid #FCA5A5;border-color:#FCA5A5}
+select.in{appearance:auto}
+.opt{display:flex;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;font-size:14px;cursor:pointer;margin-bottom:6px}
+.opt.on{background:var(--reds);border-color:#FCA5A5}
+.opt input{accent-color:var(--red)}
+.chk{display:flex;align-items:center;gap:10px;font-size:14px;margin:6px 0}
+.chk input{width:18px;height:18px;accent-color:var(--red)}
+.ov{position:fixed;inset:0;background:rgba(24,24,27,.45);display:flex;align-items:center;justify-content:center;padding:24px;z-index:50;animation:fade .15s}
+.mb{background:#fff;border-radius:22px;max-width:580px;width:100%;padding:28px 30px;max-height:90vh;overflow:auto;box-shadow:0 24px 70px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:16px;animation:pop .2s ease-out}
+.mb h2{margin:0;font-size:21px;letter-spacing:-.015em}
+.mb .acts{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.info{font-size:13px;color:#52525B;background:#F4F4F5;border-radius:12px;padding:10px 12px;line-height:1.5}
+.info.b{background:var(--blues);color:#1E40AF}
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:80;display:flex;flex-direction:column;gap:8px;align-items:center;pointer-events:none}
+.ts{padding:12px 18px;border-radius:14px;font-size:14px;font-weight:500;box-shadow:0 10px 30px rgba(16,24,40,.15);border:1px solid;animation:pop .2s ease-out;max-width:620px;text-align:center}
+.ts.ok{background:var(--greens);color:var(--greend);border-color:var(--greenb)} .ts.er{background:var(--reds);color:var(--redd);border-color:var(--redb)} .ts.in{background:#fff;color:var(--ink);border-color:var(--line)}
+.fx{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}
+.cf{position:absolute;top:-24px;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(760deg)}}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.party{background:#18181B;color:#fff;text-align:center;align-items:center}
+.party .big{font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.party .lbl{font-size:12.5px;font-weight:600;letter-spacing:.12em;color:#FCA5A5}
+.lock{border:1px dashed #D4D4D8;border-radius:12px;padding:24px;text-align:center;font-size:14px;color:var(--mut);line-height:1.6}
+.cal{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.calday{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;min-height:380px;box-shadow:var(--sh)}
+.calday h3{margin:0 0 12px;font-size:14px;display:flex;justify-content:space-between}
+.calday h3 span{color:var(--mut);font-weight:500}
+.calday.today{border-color:#FCA5A5}
+.ev{border-radius:12px;padding:10px 12px;margin-bottom:8px;font-size:13px;border-left:4px solid;cursor:pointer}
+.ev b{display:block;font-size:13.5px;margin:2px 0}
+.ev.e1{background:var(--blues);border-color:#3B82F6} .ev.e2{background:#F5F3FF;border-color:#8B5CF6} .ev.e3{background:var(--greens);border-color:#22C55E} .ev.e4{background:var(--ambers);border-color:#F59E0B}
+.rk{display:grid;grid-template-columns:34px 34px minmax(0,1fr) 110px;gap:12px;align-items:center;padding:13px 0;border-top:1px solid var(--line2);font-size:15px}
+.rk.n3{grid-template-columns:34px minmax(0,1fr) 110px}
+.md{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#F1F1F3;color:#52525B}
+.md.m1{background:var(--red);color:#fff} .md.m2,.md.m3{background:#27272F;color:#fff}
+.team{border-radius:18px;padding:22px 24px;border:1px solid var(--line);background:#fff;box-shadow:var(--sh);display:flex;flex-direction:column;gap:5px}
+.team.lead{background:var(--red);border-color:var(--red);color:#fff}
+.team .pos{font-size:13px;font-weight:600;color:var(--red)} .team.lead .pos{color:#fff}
+.team .nm{font-size:19px;font-weight:700} .team .vl{font-size:25px;font-weight:700;letter-spacing:-.02em} .team .ss{font-size:13px;color:var(--mut)} .team.lead .ss{color:#FECACA}
+.mural{background:#18181B;color:#fff;border-radius:18px;padding:26px 28px}
+.mural h2{margin:0 0 12px;font-size:17px}
+.mural .m{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid #2E2E35;font-size:14px;line-height:1.5}
+.mural .m .av{background:var(--red);width:32px;height:32px}
+.mural .m small{margin-left:auto;color:#A1A1AA;font-size:12px;white-space:nowrap}
+.pts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.pts i{height:13px;border-radius:4px;background:#F1F1F3;display:block}
+.pts i.on{background:#F59E0B} .pts i.on.hi{background:var(--red)}
+.side{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr);gap:24px;align-items:start}
+.mb.reu{max-width:660px;gap:14px}
+.gtitle{border:0;border-bottom:2px solid #1A73E8;font:inherit;font-size:24px;padding:6px 2px;outline:none;width:100%;color:var(--ink)}
+.gtitle::placeholder{color:#5F6368}
+.gtab{border:0;background:transparent;font-size:14px;padding:8px 12px;border-radius:8px;cursor:pointer;color:#3C4043}
+.gtab:hover{background:#F1F3F4}.gtab.on{background:#D3E3FD;color:#041E49;font-weight:500}
+.grow{display:flex;gap:16px;align-items:flex-start;padding:6px 0}
+.gic{width:24px;flex:0 0 24px;display:flex;justify-content:center;padding-top:8px}
+.gin{font:inherit;font-size:14px;padding:9px 10px;border-radius:8px;border:1px solid transparent;background:#F1F3F4;color:var(--ink)}
+.gin:focus{outline:none;border-color:#1A73E8;background:#fff}
+.gsug{font-size:12.5px;border:1px solid #DADCE0;background:#fff;border-radius:99px;padding:5px 10px;cursor:pointer;color:#3C4043}
+.gsug:hover{background:#F1F3F4}
+.gguest{display:flex;align-items:center;gap:10px;padding:6px 4px;border-radius:8px}
+.gguest:hover{background:#F8F9FA}
+.gx{border:0;background:transparent;font-size:20px;line-height:1;color:#5F6368;cursor:pointer;width:30px;height:30px;border-radius:50%}
+.gx:hover{background:#F1F3F4}
+.glink{border:0;background:transparent;color:#1A73E8;font-size:14px;font-weight:500;cursor:pointer;padding:8px 0}
+.dc .atr{margin-top:12px;width:100%;justify-content:center}
+.pz{border-top:1px solid var(--line);padding:18px 0 6px}
+.pzh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:15px;font-weight:600;margin-bottom:12px;color:var(--redd)}
+.pq{margin-bottom:12px}.pq b{font-size:13px;color:#52525B;font-weight:600}.pq p{margin:4px 0 0;font-size:14px;line-height:1.55}
+.pc{display:flex;gap:14px;padding:12px 0;position:relative}
+.pcd{width:12px;height:12px;border-radius:50%;margin-top:4px;flex:0 0 12px;background:#E4E4E7;border:2px solid #fff;box-shadow:0 0 0 2px #E4E4E7}
+.pc.feito .pcd{background:#22C55E;box-shadow:0 0 0 2px #BBF7D0}.pc.atual .pcd{background:#F59E0B;box-shadow:0 0 0 2px #FDE68A}
+.dc.fz{cursor:pointer}
+.lbl{display:inline-block;color:#fff;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:4px;line-height:1.35;white-space:nowrap}
+.lbl.big{font-size:10.5px;padding:2px 8px}
+.dc .lbls{display:flex;flex-wrap:wrap;gap:4px;margin:-4px 0 10px}.lbar{display:block;width:34px;height:4px;border-radius:99px}
+.etq-wrap{position:relative}
+.etq-pop{position:absolute;top:36px;left:0;z-index:30;width:360px;max-width:90vw;background:#fff;border:1px solid #DADCE0;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.18);overflow:hidden}
+.etq-search{display:flex;align-items:center;gap:10px;margin:12px;padding:9px 12px;border:2px solid #1A73E8;border-radius:10px}
+.etq-search input{border:0;outline:none;font:inherit;font-size:15px;flex:1}
+.etq-list{max-height:300px;overflow-y:auto;padding:0 6px 6px;border-top:1px solid #EEE}
+.etq-h{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5F6368;padding:12px 8px 6px}
+.etq-op{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:transparent;padding:6px 8px;border-radius:8px;cursor:pointer;text-align:left}
+.etq-op:hover{background:#F1F3F4}
+.etq-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid #EEE;background:#FAFAFA}
+.vbox{background:#F7F7F9;border:1px solid var(--line2);border-radius:14px;padding:14px 16px}.vbox b{display:block;font-size:22px;margin-top:4px;letter-spacing:-.01em}
+details.fr{border-top:1px solid var(--line2);padding:4px 0}
+details.fr summary{display:flex;justify-content:space-between;align-items:center;gap:10px;cursor:pointer;list-style:none;padding:10px 0;font-size:14px}
+details.fr summary::-webkit-details-marker{display:none}
+.rkf{display:grid;grid-template-columns:28px 30px minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 0;border-top:1px solid var(--line2);font-size:14px}
+.rkf .md{width:26px;height:26px;font-size:12px}
+.frc{border:1px solid var(--line);border-radius:16px;padding:16px 18px 8px;background:#fff;min-width:0}
+.frc .frh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}
+.frc .frt{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.mob,.mob-only{display:none!important}
+.g-cont{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+.illus{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:56px 32px;border:1px dashed #D4D4D8;border-radius:18px;background:#fff}
+@media (max-width:1180px){.g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}.side{grid-template-columns:1fr}}
+@media (max-width:900px){.g2,.g3,.g-cont{grid-template-columns:1fr}.cal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* ===== Celular ===== */
+@media (max-width:760px){
+  html{-webkit-text-size-adjust:100%}
+  .app{flex-direction:column}
+  aside{width:100%;flex:none;height:auto;position:sticky;top:0;z-index:40;border-right:0;border-bottom:1px solid var(--line);overflow:visible;padding-top:env(safe-area-inset-top)}
+  .logo{height:58px;padding:0 12px 0 16px;font-size:17px}
+  .logo span{width:30px;height:30px;font-size:14px}
+  .mob{display:flex!important;margin-left:auto;align-items:center;gap:4px}
+  .mob-only{display:inline-flex!important}
+  .note.mob-only{display:flex!important}
+  .mbtn{width:42px;height:42px;border-radius:12px;border:0;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink2)}
+  aside.open .mbtn.menu{background:var(--reds);color:var(--red)}
+  #sbnav{display:none;max-height:calc(100vh - 58px);overflow-y:auto;padding-bottom:12px;border-top:1px solid var(--line2)}
+  aside.open #sbnav{display:block}
+  .grp{padding:14px 20px 6px}
+  .nav a{margin:2px 10px;padding:12px}
+  .me{display:none}
+  main{padding:20px 16px calc(48px + env(safe-area-inset-bottom));gap:20px}
+  h1{font-size:24px!important}
+  .sub{font-size:14px}
+  .head{align-items:stretch}
+  .head>.card{min-width:0!important;flex:1 1 100%!important}
+  .card{padding:18px 16px;border-radius:16px}
+  .grid{gap:14px}
+  .g4,.g5{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi .v{font-size:20px}
+  .kpi .l,.kpi .s{font-size:12px}
+  .team{padding:16px}
+  .team .nm{font-size:15px}.team .vl{font-size:19px}
+  .rk{grid-template-columns:26px 30px minmax(0,1fr) auto;gap:10px;font-size:14px}
+  .rk.n3{grid-template-columns:26px minmax(0,1fr) auto}
+  .mural{padding:18px 16px}
+  .mural .m{align-items:flex-start}
+  .mural .m>div{flex:1;min-width:0}
+  .mural .m small{margin-top:3px}
+  .kan{scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 14px}
+  .col{width:82vw;flex:0 0 82vw;max-width:300px;min-height:300px;scroll-snap-align:start}
+  .dc{cursor:pointer}
+  .cal{grid-template-columns:1fr}
+  .calday{min-height:0}
+  .tbl{font-size:13px}
+  .tbl td{padding:12px 10px}
+  .tbl th{padding:10px}
+  .ov{padding:10px;align-items:flex-end}
+  .mb{padding:22px 18px calc(22px + env(safe-area-inset-bottom));border-radius:20px;max-height:92vh}
+  .mb .acts{position:sticky;bottom:-22px;background:#fff;padding:10px 0 0}
+  .mb .acts .btn{flex:1 1 auto;justify-content:center}
+  .party .big{font-size:28px}
+  .in,.gin,.etq-search input{font-size:16px}
+  .btn{padding:11px 14px}
+  .ts{max-width:calc(100vw - 32px)}
+  #toast{bottom:calc(16px + env(safe-area-inset-bottom));width:calc(100vw - 32px)}
+  .etq-pop{max-width:calc(100vw - 48px)}
+  .steps div{flex:1 0 110px}
+  .legend{gap:10px 14px}
+  .frc .frt{font-size:20px}
+}
+@media (max-width:380px){.g4,.g5{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app"><aside id="sb"></aside><main id="main"></main></div>
+<div id="modal"></div><div id="toast"></div><div class="fx" id="fx"></div>
+<script>
+// ================= DADOS (fictícios) =================
+const ETAPAS = ['Caixa de entrada', 'Qualificados', 'Entendimento', 'Proposta elaborada', 'Necessidade de ajuste', 'Proposta validada', 'Negociação'];
+const PILLS = [['#F4F4F5', '#3F3F46', '#A1A1AA'], ['#EEF2FF', '#3730A3', '#6366F1'], ['#EFF6FF', '#1E40AF', '#3B82F6'], ['#F5F3FF', '#5B21B6', '#8B5CF6'], ['#FFF7ED', '#9A3412', '#F97316'], ['#F0FDFA', '#115E59', '#14B8A6'], ['#F0FDF4', '#166534', '#22C55E']];
+const PESSOAS = {
+  MC: { nome: 'Marcella Canozo', equipe: 'Equipe 2', papel: 'Coordenadora' },
+  AL: { nome: 'Ana Lima', equipe: 'Equipe 2', papel: 'BDR', pontos: 1, entrada: 'fev/2026' },
+  CM: { nome: 'Carla Mendes', equipe: 'Equipe 1', papel: 'BDR', pontos: 2, entrada: 'fev/2026' },
+  LF: { nome: 'Luiza Faria', equipe: 'Equipe 3', papel: 'BDR', pontos: 1, entrada: 'ago/2026' },
+  BS: { nome: 'Bruno Sato', equipe: 'Equipe 4', papel: 'BDR', pontos: 3, entrada: 'ago/2025' },
+  DR: { nome: 'Diego Rocha', equipe: 'Equipe 1', papel: 'BDR', pontos: 2, entrada: 'ago/2026' },
+  TP: { nome: 'Theo Prado', equipe: 'Equipe 2', papel: 'BDR', pontos: 0, entrada: 'ago/2026' },
+  RV: { nome: 'Rafael Viana', equipe: 'Equipe 3', papel: 'BDR', pontos: 0, entrada: 'ago/2026' },
+  JS: { nome: 'Júlia Souza', equipe: 'Equipe 4', papel: 'BDR', pontos: 1, entrada: 'fev/2026' },
+  // Coordenadores não têm contador de pontos por CRM: o ponto deles vem só da meta mensal da equipe (DB.metaCoord).
+  C1: { nome: 'Coordenação Equipe 1', equipe: 'Equipe 1', papel: 'Coordenador' },
+  C2: { nome: 'Coordenação Equipe 2', equipe: 'Equipe 2', papel: 'Coordenador' },
+  C3: { nome: 'Coordenação Equipe 3', equipe: 'Equipe 3', papel: 'Coordenador' },
+  C4: { nome: 'Coordenação Equipe 4', equipe: 'Equipe 4', papel: 'Coordenador' }
+};
+const BDRS = ['AL', 'CM', 'LF', 'BS', 'DR', 'TP', 'RV', 'JS'];
+const COORDS = ['C1', 'C2', 'C3', 'C4'];
+const coordDe = (eq) => { const n = String(eq || '').replace(/\D/g, ''); return n ? 'C' + n : 'C1'; };
+const isCoord = (ini) => /^Coordenador/.test((PESSOAS[ini] || {}).papel || '');
+// Histórico de pontos de cada BDR (1 ponto por card vermelho sem justificativa válida em 24 h)
+const PTS_HIST = {
+  AL: [['Grupo Solaris', 'Qualificados', 'Vermelho sem justificativa', '2 out', 'fim']],
+  CM: [['Casa Brava Arquitetura', 'Proposta elaborada', 'Vermelho sem justificativa', '13 out', 'aberta'], ['Studio Pena', 'Qualificados', '“Outro motivo” rejeitado', '29 set', 'recusada']],
+  LF: [['Vinícola Serra Alta', 'Fidelização · contato de 45 dias', 'Vermelho sem justificativa', '5 set', 'fim']],
+  BS: [['Grão Fino Cafés', 'Qualificados', 'Vermelho sem justificativa', '13 out', 'enviada'], ['Mecânica Irmãos Prado', 'Entendimento', 'Vermelho sem justificativa', '22 set', 'fim'], ['Grupo Solaris', 'Prontuário', 'Prontuário sem registro em 24 h', '1 set', 'fim']],
+  DR: [['Bistrô Alecrim', 'Proposta elaborada', 'Vermelho sem justificativa', '6 out', 'fim'], ['Lumen Odontologia', 'Qualificados', '“Outro motivo” rejeitado', '19 set', 'recusada']],
+  JS: [['Escola Pequeno Saber', 'Qualificados', 'Vermelho sem justificativa', '30 set', 'fim']]
+};
+// Capacitação: provas (mínimo = média dos coordenadores, nunca abaixo de 7), proposta pela rubrica e 3 entendimentos acompanhados
+const MIN_PROVA = { processo: 8.2, escopos: 7.6 };
+const CHECK = ['A empresa', 'A dor', 'O que é sucesso', 'Quem decide', 'Outras necessidades'];
+const CAP = {
+  AL: { proc: 8.8, esc: 8.0, prop: 1, ent: [[5, 'C3'], [5, 'C1'], [5, 'C4']], lib: '23 set' },
+  CM: { proc: 8.5, esc: 7.8, prop: 1, ent: [[5, 'C2'], [5, 'C3'], [5, 'C4']], lib: '25 set' },
+  LF: { proc: 9.0, esc: 8.4, prop: 1, ent: [[5, 'C1'], [5, 'C2'], [5, 'C4']], lib: '30 set' },
+  BS: { proc: 8.4, esc: 7.7, prop: 1, ent: [[5, 'C1'], [5, 'C2'], [5, 'C3']], lib: '26 set' },
+  JS: { proc: 8.3, esc: 7.9, prop: 1, ent: [[5, 'C2'], [5, 'C1'], [5, 'C3']], lib: '2 out' },
+  DR: { proc: 8.3, esc: 7.9, prop: 1, ent: [[5, 'C2'], [4, 'C3'], [5, 'C4']] },
+  RV: { proc: 8.2, esc: 7.6, prop: 1, ent: [[5, 'C1']] },
+  TP: { proc: 8.6, esc: 7.2, prop: 1, ent: [] }
+};
+const LEADS_ENT = ['Ótica Visão Clara', 'Pet Feliz', 'Ponto Fit Academias'];
+const META_MES = 20000, PISO_MES = 10000;
+let uid = 100;
+const D = (canal, etapa, empresa, ini, frente, valor, st, prazo, x) => Object.assign({ id: 'd' + (uid++), canal, etapa, empresa, ini, frente, valor, st, prazo, base: false, sem: false, reat: '', recompra: false, atividades: [], historico: [] }, x || {});
+
+const DB = {
+  rota: 'placar', param: null, role: 'diretora',
+  vendido: { AL: 46200, CM: 38900, LF: 31500, BS: 18000, DR: 12400, TP: 0, RV: 6800, JS: 9200 },
+  metaSemestre: 480000,
+  // Vendas nas frentes novas (Tech, Processos e Direito) por vendedor no semestre: { v: valor, n: vendas }
+  vendidoFrente: {
+    Tech: { BS: { v: 9800, n: 2 }, LF: { v: 6500, n: 1 }, JS: { v: 4400, n: 2 }, AL: { v: 3000, n: 1 } },
+    Processos: { RV: { v: 3500, n: 1 }, BS: { v: 2800, n: 1 } },
+    Direito: { AL: { v: 8000, n: 1 }, CM: { v: 3000, n: 1 }, DR: { v: 1600, n: 1 } }
+  },
+  deals: [
+    D('passiva', 0, 'Andrade Metais', 'C2', 'Business', 0, 'am', 'há 20 h', { base: true, baseTxt: 'perdido em mar/2026 por preço' }),
+    D('passiva', 0, 'Kora Cosméticos', 'C2', 'Business', 0, 'ok', 'há 3 h'),
+    D('passiva', 1, 'Grupo Solaris', 'AL', 'Business', 0, 'am', 'há 3 dias'),
+    D('passiva', 1, 'Nexo Logística', 'BS', 'Processos', 0, 'vm', 'há 6 dias', { sem: true }),
+    D('passiva', 2, 'Studio Pena', 'CM', 'Direito', 0, 'ok', 'há 2 dias'),
+    D('passiva', 2, 'Lumen Odontologia', 'DR', 'Business', 0, 'vm', 'há 11 dias'),
+    D('passiva', 3, 'Andrade Metais (financeiro)', 'AL', 'Business', 22000, 'vm', 'há 8 dias'),
+    D('passiva', 3, 'Casa Brava Arquitetura', 'CM', 'Direito', 9000, 'am', 'há 4 dias'),
+    D('passiva', 5, 'Rota Sul Transportes', 'TP', 'Processos', 18500, 'ok', 'há 4 dias'),
+    D('passiva', 6, 'Vinícola Serra Alta', 'LF', 'Business', 31500, 'ok', 'há 6 dias', { base: true, baseTxt: 'já foi cliente em 2025' }),
+    D('passiva', 6, 'Clínica Horizonte', 'AL', 'Tech', 12000, 'am', 'há 11 dias'),
+    D('desafio', 1, 'Ponto Fit Academias', 'CM', 'Business', 0, 'ok', 'há 1 dia', { sem: true }),
+    D('desafio', 1, 'Doce Lar Confeitaria', 'TP', 'Business', 0, 'am', 'há 8 dias'),
+    D('desafio', 1, 'Ótica Visão Clara', 'AL', 'Business', 0, 'ok', 'há 1 dia'),
+    D('desafio', 2, 'Mecânica Irmãos Prado', 'BS', 'Processos', 0, 'ok', 'hoje'),
+    D('desafio', 2, 'Pet Feliz', 'RV', 'Business', 0, 'ok', 'há 1 dia'),
+    D('desafio', 3, 'Bistrô Alecrim', 'DR', 'Business', 8400, 'ok', 'há 2 dias'),
+    D('desafio', 4, 'Escola Pequeno Saber', 'JS', 'Direito', 6000, 'ok', 'há 1 dia'),
+    D('desafio', 6, 'Floricultura Jasmim', 'TP', 'Business', 7800, 'ok', 'há 5 dias'),
+    D('reativados', 1, 'Mirante Contabilidade', 'C3', 'Direito', 0, 'vm', 'há 3 dias', { reat: 'parou de responder (abr)' }),
+    D('reativados', 2, 'Lótus Estética', 'C1', 'Business', 0, 'ok', 'há 3 dias', { reat: 'achou caro (jul)' }),
+    D('reativados', 3, 'Doce Lar Imóveis', 'C4', 'Tech', 14000, 'ok', 'há 2 dias', { reat: 'fechou com outra (mai)' }),
+    D('reativados', 6, 'Clínica Alvorada', 'AL', 'Business', 16500, 'ok', 'há 5 dias', { reat: 'sem orçamento (jun)' })
+  ],
+  validacoes: [
+    { id: 1, tipo: 'Justificativa', empresa: 'Lumen Odontologia', etapa: 'Entendimento', ini: 'DR', texto: 'Cliente pediu para remarcar o entendimento porque o sócio estava viajando. Nova data já combinada para quinta.' },
+    { id: 2, tipo: 'Justificativa', empresa: 'Casa Brava Arquitetura', etapa: 'Proposta elaborada', ini: 'CM', texto: 'Esperando a frente de Direito responder sobre o escopo trabalhista.' },
+    { id: 3, tipo: 'Contestação de ponto', empresa: 'Grão Fino Cafés', etapa: 'Qualificados', ini: 'BS', texto: 'Registrei a ligação no dia, mas a atividade não salvou. Anexei o print do histórico de chamadas.' }
+  ],
+  perdidos: {
+    resp: [
+      { id: 'p1', empresa: 'Vale Verde Alimentos', frente: 'Business', motivo: 'Sem orçamento no momento', etapa: 'Negociação', ini: 'AL', resposta: 'Clicou em “Quero conversar”', quando: 'há 3 horas', tent: 1, prazo: 'Assumir em até 21 h', st: 'ok' },
+      { id: 'p2', empresa: 'Sabor da Serra', frente: 'Business', motivo: 'Achou caro', etapa: 'Proposta validada', ini: 'CM', resposta: 'Clicou em “Quero conversar” e escreveu: “Agora temos verba para o segundo semestre, podemos falar semana que vem?”', quando: 'há 20 horas', tent: 2, prazo: 'Amarelo · vermelho em 4 h', st: 'am' }
+    ],
+    agend: [
+      { id: 'p3', empresa: 'Ateliê Ponto Cruz', frente: 'Business', motivo: 'Sem orçamento no momento', etapa: 'Proposta validada', pri: 'Alta', data: 'qui, 16 out', grupo: 'Esta semana', ini: 'CM' },
+      { id: 'p4', empresa: 'Ferragens Bom Preço', frente: 'Business', motivo: 'Achou caro', etapa: 'Proposta elaborada', pri: 'Alta', data: 'sex, 17 out', grupo: 'Esta semana', ini: 'BS' },
+      { id: 'p5', empresa: 'Hidro Max Bombas', frente: 'Processos', motivo: 'Pediu para retomar depois', etapa: 'Entendimento', pri: 'Média', data: 'sex, 17 out', grupo: 'Esta semana', ini: 'AL' },
+      { id: 'p6', empresa: 'Quadra Engenharia', frente: 'Processos', motivo: 'Fechou com outra empresa', etapa: 'Negociação', pri: 'Alta', data: '24 out', grupo: 'Este mês', ini: 'LF' },
+      { id: 'p7', empresa: 'Sabor & Cia', frente: 'Business', motivo: 'Vai fazer internamente', etapa: 'Entendimento', pri: 'Média', data: '29 out', grupo: 'Este mês', ini: 'BS' },
+      { id: 'p8', empresa: 'Kora Make', frente: 'Business', motivo: 'Parou de responder', etapa: 'Qualificados', pri: 'Baixa', data: '30 out', grupo: 'Este mês', ini: 'TP' },
+      { id: 'p9', empresa: 'Padaria Trigo Bom', frente: 'Business', motivo: 'Não fidelizado', etapa: 'Fidelização · 90 dias', pri: 'Média', data: 'mar 2027', grupo: 'Depois', ini: 'AL' },
+      { id: 'p10', empresa: 'Nexo Cargas', frente: 'Processos', motivo: 'Parou de responder', etapa: 'Qualificados', pri: 'Baixa', data: 'fev 2027', grupo: 'Depois', ini: 'BS' }
+    ],
+    contato: [
+      { id: 'p11', empresa: 'Mirante Imóveis', frente: 'Direito', motivo: 'Sem orçamento no momento', tent: 1, enviada: '10 out', prox: '2ª tentativa em 9 nov', ini: 'AL' },
+      { id: 'p12', empresa: 'Rota Norte Fretes', frente: 'Processos', motivo: 'Parou de responder', tent: 2, enviada: '2 out', prox: '3ª tentativa em 1 nov', ini: 'BS' },
+      { id: 'p13', empresa: 'Lar Doce Lar Decor', frente: 'Tech', motivo: 'Fechou com outra empresa', tent: 3, enviada: '28 set', prox: 'Encerra em 28 out', ini: 'CM' }
+    ],
+    enc: [
+      { id: 'p14', empresa: 'Gráfica Ponto Final', frente: 'Business', motivo: 'Achou caro', saida: 'Não tenho interesse', cls: 'p-n', data: '8 out' },
+      { id: 'p15', empresa: 'Studio Nuvem', frente: 'Tech', motivo: 'Parou de responder', saida: 'Sem resposta após 3 tentativas', cls: 'p-a', data: '1 out' },
+      { id: 'p16', empresa: 'Teste Silva', frente: 'Business', motivo: 'Lead inválido', saida: 'Não volta (lead inválido)', cls: 'p-n', data: '27 set' },
+      { id: 'p17', empresa: 'Auto Peças Centro', frente: 'Processos', motivo: 'Fora do que a Insper Jr. faz', saida: 'Não volta (fora do escopo)', cls: 'p-n', data: '22 set' }
+    ]
+  },
+  fidel: [
+    { id: 'f1', col: 0, cliente: 'Grupo Aurora', projeto: 'BALANÇO I', frente: 'Business', ini: 'AL', apres: '14 out', st: 'ok', prazo: 'registrar hoje', news: false },
+    { id: 'f2', col: 1, cliente: 'Clínica Horizonte', projeto: 'ORION I', frente: 'Tech', ini: 'AL', apres: '2 out', st: 'am', prazo: 'vence em 2 dias', nps: 9, news: true },
+    { id: 'f3', col: 1, cliente: 'Rota Sul Transportes', projeto: 'VETOR I', frente: 'Processos', ini: 'TP', apres: '6 out', st: 'ok', prazo: 'em 8 dias', nps: 10, news: true },
+    { id: 'f4', col: 1, cliente: 'Studio Pena', projeto: 'MOLDURA I', frente: 'Direito', ini: 'CM', apres: '24 set', st: 'vm', prazo: 'atrasado 2 dias', nps: 7, news: false },
+    { id: 'f5', col: 2, cliente: 'Padaria Trigal', projeto: 'FERMENTO I', frente: 'Business', ini: 'AL', apres: '29 ago', st: 'am', prazo: 'vence quarta', nps: 9, news: true },
+    { id: 'f6', col: 2, cliente: 'Lumen Odontologia', projeto: 'SORRISO I', frente: 'Business', ini: 'DR', apres: '4 set', st: 'ok', prazo: 'em 10 dias', nps: 8, news: true },
+    { id: 'f7', col: 3, cliente: 'Vinícola Serra Alta', projeto: 'TERROIR I', frente: 'Business', ini: 'LF', apres: '20 jul', st: 'ok', prazo: 'em 6 dias', nps: 10, news: true },
+    { id: 'f8', col: 3, cliente: 'Grupo Solaris', projeto: 'ALVORADA I', frente: 'Tech', ini: 'BS', apres: '15 jul', st: 'ok', prazo: 'em 2 dias', nps: 8, news: false },
+    { id: 'f9', col: 4, cliente: 'Casa Brava Arquitetura', projeto: 'ESBOÇO I', frente: 'Direito', ini: 'CM', apres: '30 jun', st: 'ok', prazo: 'decidir', nps: 9, news: true },
+    { id: 'f10', col: 4, cliente: 'Doce Lar Confeitaria', projeto: 'CONFEITO I', frente: 'Business', ini: 'TP', apres: '26 jun', st: 'ok', prazo: 'decidir', nps: 9, news: true }
+  ],
+  mural: [
+    { ini: 'LF', cliente: 'Hotel Mar Azul', frente: 'Business', valor: 12000, quando: 'ontem' },
+    { ini: 'DR', cliente: 'Café Grão Nobre', frente: 'Business', valor: 8400, quando: '10 out' },
+    { ini: 'AL', cliente: 'Estúdio Trama', frente: 'Direito', valor: 8000, quando: '9 out' },
+    { ini: 'JS', cliente: 'Papelaria Ponto Azul', frente: 'Tech', valor: 2400, quando: '2 out' }
+  ],
+  // Meta mensal dos coordenadores: vendas da equipe no mês × R$ 20 mil (soma = vendido da equipe no semestre)
+  metaCoord: {
+    'Equipe 1': { ago: 22400, set: 20500, out: 8400 },
+    'Equipe 2': { ago: 16500, set: 21700, out: 8000 },
+    'Equipe 3': { ago: 14000, set: 12300, out: 12000 },
+    'Equipe 4': { ago: 18000, set: 6800, out: 2400 }
+  },
+  parciais: [
+    { cliente: 'Clínica Vita', projeto: 'PULSO I', frente: 'Tech', ini: 'LF', inicio: '15 set', banca: '13 nov', data: '14 out', st: 'am', sit: 'hoje · falar antes com o coordenador do projeto' },
+    { cliente: 'Mercado Bom Dia', projeto: 'VITRINE I', frente: 'Business', ini: 'BS', inicio: '22 set', banca: '1 dez', data: '27 out', st: 'ok', sit: 'em 13 dias' },
+    { cliente: 'Construtora Pilar', projeto: 'ALICERCE I', frente: 'Direito', ini: 'CM', inicio: '1 out', banca: '10 dez', data: '5 nov', st: 'ok', sit: 'em 22 dias' }
+  ],
+  eventos: [
+    { dia: 0, hora: '10:00', empresa: 'Andrade Metais (financeiro)', tipo: 'Apresentação de proposta', cls: 'e2', ini: 'AL' },
+    { dia: 0, hora: '15:00', empresa: 'Clínica Horizonte', tipo: 'Fidelização · 15 dias', cls: 'e3', ini: 'AL' },
+    { dia: 1, hora: '11:00', empresa: 'Clínica Vita', tipo: 'Contato parcial', cls: 'e3', ini: 'LF' },
+    { dia: 1, hora: '14:30', empresa: 'Studio Pena', tipo: 'Entendimento', cls: 'e1', ini: 'CM' },
+    { dia: 2, hora: '09:00', empresa: 'Rota Sul Transportes', tipo: 'Negociação', cls: 'e4', ini: 'TP' },
+    { dia: 2, hora: '11:00', empresa: 'Mecânica Irmãos Prado', tipo: 'Entendimento', cls: 'e1', ini: 'BS' },
+    { dia: 3, hora: '16:00', empresa: 'Lumen Odontologia', tipo: 'Entendimento remarcado', cls: 'e1', ini: 'DR' },
+    { dia: 4, hora: '10:30', empresa: 'Padaria Trigal', tipo: 'Fidelização · 45 dias', cls: 'e3', ini: 'AL' },
+    { dia: 4, hora: '16:00', empresa: 'Vale Verde Alimentos', tipo: 'Novo entendimento (reativado)', cls: 'e1', ini: 'C2' }
+  ],
+  notifs: [
+    { id: 1, g: 'HOJE', cat: 'prazos', t: 'Card vermelho:', x: 'Nexo Logística está em Qualificados há 6 dias. Bruno Sato tem 24 horas para justificar.', q: '9h00', email: true, ac: ['Abrir card', 'funil'] },
+    { id: 9, g: 'HOJE', cat: 'prazos', t: 'Card vermelho de coordenador:', x: 'Mirante Contabilidade (Reativados) passou do prazo com a Coordenação Equipe 3. Não gera ponto: a Diretoria de Vendas chama o coordenador para uma conversa individual.', q: '9h05', ac: ['Ver vermelhos', 'inicio'] },
+    { id: 10, g: 'HOJE', cat: 'fidelizacao', t: 'Entrou na fidelização:', x: 'o projeto BALANÇO I (Grupo Aurora) foi para “Envio do TEP” em Meus projetos. Os contatos de 15, 45 e 90 dias contam a partir de hoje.', q: '8h20', ac: ['Abrir', 'fidelizacao'] },
+    { id: 11, g: 'HOJE', cat: 'fidelizacao', t: 'Contato parcial hoje:', x: 'Clínica Vita (PULSO I) está na metade do caminho até a banca. Luiza Faria conversa antes com o coordenador do projeto.', q: '8h00', ac: ['Abrir', 'fidelizacao'] },
+    { id: 2, g: 'HOJE', cat: 'validacoes', t: 'Justificativa para validar:', x: 'Diego Rocha escolheu “outro motivo” em Lumen Odontologia.', q: '8h41', ac: ['Validar', 'inicio'] },
+    { id: 3, g: 'HOJE', cat: 'chatbot', t: 'Lead respondeu ao chatbot:', x: 'Vale Verde Alimentos clicou em “Quero conversar” e está no canal dos coordenadores.', q: '9h12', ac: ['Assumir', 'perdidos'] },
+    { id: 4, g: 'HOJE', cat: 'leads', t: 'Lead novo na passiva:', x: 'Andrade Metais chegou pelo site com a palavra-chave “consultoria financeira pme”.', q: '7h55', ac: ['Distribuir', 'funil'] },
+    { id: 5, g: 'ONTEM', cat: 'vendas', t: 'Venda fechada:', x: 'Luiza Faria fechou com o Hotel Mar Azul · Business · R$ 12.000. Mensagem de parabéns enviada para toda a Insper Jr.', q: 'ontem, 17h10', ac: ['Ver placar', 'placar'] },
+    { id: 6, g: 'ONTEM', cat: 'pontos', t: 'Ponto gerado:', x: 'Bruno Sato recebeu 1 ponto por Grão Fino Cafés (vermelho sem justificativa em 24 h). Total: 3 de 6. Aviso enviado a ele e ao coordenador: hora da conversa.', q: 'ontem, 18h00', email: true, ac: ['Ver página', 'pessoa:BS'] },
+    { id: 12, g: 'ESTA SEMANA', cat: 'pontos', t: 'Meta dos coordenadores:', x: 'a Equipe 4 soma R$ 2.400 em outubro. Setembro fechou abaixo de R$ 10 mil (1 ponto); se outubro também fechar abaixo, são mais 2 pontos (total 3).', q: 'seg, 9h00', ac: ['Ver meta', 'inicio'] },
+    { id: 7, g: 'ESTA SEMANA', cat: 'fidelizacao', t: 'Fidelização chegando:', x: 'Contato de 45 dias com Padaria Trigal vence em 3 dias.', q: 'sex, 10h00', ac: ['Abrir', 'fidelizacao'] },
+    { id: 8, g: 'ESTA SEMANA', cat: 'whatsapp', t: 'WhatsApp da Júnior:', x: 'o aplicativo não é aberto no celular há 12 dias. Abra antes de 14 dias para o chatbot continuar conectado.', q: 'sex, 9h00', email: true, ac: ['Configurações', 'config'] }
+  ],
+  lidas: {},
+  contatoSel: 0
+};
+
+// ================= HELPERS =================
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = (v) => v ? 'R$ ' + Number(v).toLocaleString('pt-BR') : 'Sem valor';
+const P = (ini) => PESSOAS[ini] || { nome: ini, equipe: '—', papel: '' };
+const av = (ini, extra) => `<span class="av" title="${esc(P(ini).nome)}" ${extra || ''}>${esc(ini)}</span>`;
+const IC = {
+  inicio: 'M3 11l9-8 9 8 M5 9v12h14V9', funil: 'M3 5h18l-7 8v6l-4 2v-8z', agenda: 'M4 6h16v15H4z M4 10h16 M8 3v4 M16 3v4 M8 14h2 M14 14h2 M8 17h2',
+  perdidos: 'M4 12a8 8 0 1 0 3-6.2 M4 4v5h5', fidelizacao: 'M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z',
+  painel: 'M4 20V10 M10 20V4 M16 20v-7 M3 20h18', contatos: 'M4 21V5l8-2v18 M12 9h8v12 M8 8v1 M8 12v1 M8 16v1 M16 13v1 M16 17v1',
+  config: 'M4 6h10 M18 6h2 M4 12h4 M12 12h8 M4 18h12 M16 4v4 M10 10v4 M18 16v4', projetos: 'M4 5h16v14H4z M9 5v14 M15 5v9',
+  contratos: 'M14 3H6v18h12V7z M14 3v4h4 M9 13h6 M9 17h4', bancas: 'M9 3h6v3H9z M7 5H5v16h14V5h-2 M9 12h6 M9 16h6',
+  calendario: 'M4 6h16v15H4z M4 10h16 M8 3v4 M16 3v4', placar: 'M8 21h8 M12 17v4 M7 4h10v5a5 5 0 0 1-10 0z M7 6H4v2a3 3 0 0 0 3 3 M17 6h3v2a3 3 0 0 1-3 3',
+  bell: 'M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8 M10 20a2 2 0 0 0 4 0', info: 'M12 8v5 M12 16v1 M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z',
+  warn: 'M12 3l9 16H3z M12 10v4 M12 17v1', check: 'M5 13l4 4L19 7', mic: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3z M5 11a7 7 0 0 0 14 0 M12 18v3',
+  chat: 'M4 5h16v11H8l-4 4z', plus: 'M12 5v14 M5 12h14', down: 'M12 4v11 M7 10l5 5 5-5 M4 20h16'
+};
+const icon = (n, c, w) => `<svg viewBox="0 0 24 24" width="${w || 18}" height="${w || 18}" fill="none" stroke="${c || 'currentColor'}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${IC[n]}"></path></svg>`;
+const stCls = { ok: '', am: 'am', vm: 'vm', nw: 'nw' };
+
+function toast(msg, tipo) {
+  const el = document.createElement('div');
+  el.className = 'ts ' + (tipo || 'ok');
+  el.textContent = msg;
+  const box = $('#toast'); box.appendChild(el); while (box.children.length > 3) box.firstChild.remove();
+  setTimeout(() => el.remove(), 3800);
+}
+function modal(html, cls) { $('#modal').innerHTML = `<div class="ov" onclick="if(event.target===this)fecharModal()"><div class="mb ${cls || ''}" role="dialog" aria-modal="true">${html}</div></div>`; }
+function fecharModal() { $('#modal').innerHTML = ''; }
+function confete() {
+  const fx = $('#fx'); const cores = ['#DC2626', '#FACC15', '#22C55E', '#60A5FA', '#F472B6', '#18181B'];
+  for (let i = 0; i < 140; i++) {
+    const c = document.createElement('i'); c.className = 'cf';
+    const w = 6 + Math.random() * 7;
+    c.style.cssText = `left:${Math.random() * 100}%;width:${w}px;height:${w * 1.6}px;background:${cores[i % cores.length]};animation-duration:${2.2 + Math.random() * 2.2}s;animation-delay:${Math.random() * .6}s`;
+    fx.appendChild(c); setTimeout(() => c.remove(), 5200);
+  }
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fecharModal(); });
+
+// ================= NAVEGAÇÃO =================
+function go(rota, param) { if (typeof ETQ !== 'undefined') ETQ = false; MENU_ABERTO = false; DB.rota = rota; DB.param = param == null ? null : param; render(); window.scrollTo(0, 0); }
+function navItem(id, label, badge) {
+  const on = DB.rota === id || (id === 'funil' && DB.rota === 'ficha') || (id === 'inicio' && DB.rota === 'pessoa') || (id === 'fidelizacao' && DB.rota === 'cliente');
+  return `<a class="${on ? 'on' : ''}" onclick="go('${id}')">${icon(id === 'agenda' ? 'agenda' : id, null, 19)}<span>${label}</span>${badge ? `<span class="badge">${badge}</span>` : ''}</a>`;
+}
+function sidebar() {
+  const naoLidas = DB.notifs.filter((n) => !DB.lidas[n.id]).length;
+  const resp = DB.perdidos.resp.length;
+  const verm = DB.deals.filter((d) => d.st === 'vm').length;
+  $('#sb').innerHTML = `
+  <div>
+    <div class="logo"><span>A</span>Atlas
+      <div class="mob"><button class="mbtn bell ${DB.rota === 'notificacoes' ? 'on' : ''}" aria-label="Notificações" onclick="go('notificacoes')">${icon('bell', '#52525B', 21)}${naoLidas ? `<i>${naoLidas}</i>` : ''}</button>
+      <button class="mbtn menu" aria-label="Abrir menu" onclick="toggleMenu()"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${MENU_ABERTO ? '<path d="M6 6l12 12 M18 6L6 18"/>' : '<path d="M4 7h16 M4 12h16 M4 17h16"/>'}</svg></button></div></div>
+    <div id="sbnav">
+    <div class="grp">TRABALHO</div>
+    <nav class="nav">
+      <a onclick="toast('Meus projetos é uma área do Atlas fora deste protótipo.','in')">${icon('projetos', null, 19)}<span>Meus projetos</span></a>
+      <a onclick="toast('Contratos é uma área do Atlas fora deste protótipo.','in')">${icon('contratos', null, 19)}<span>Contratos</span></a>
+      <a onclick="toast('Bancas é uma área do Atlas fora deste protótipo.','in')">${icon('bancas', null, 19)}<span>Bancas</span></a>
+      ${navItem('placar', 'Placar do comercial')}
+    </nav>
+    <div class="grp">COMERCIAL</div>
+    <nav class="nav">
+      ${navItem('inicio', 'Início', verm || '')}
+      ${navItem('funil', 'Funil')}
+      ${navItem('agenda', 'Calendário comercial')}
+      ${navItem('perdidos', 'Perdidos', resp || '')}
+      ${navItem('fidelizacao', 'Fidelização')}
+      ${navItem('painel', 'Painel')}
+      ${navItem('contatos', 'Contatos')}
+      ${navItem('config', 'Configurações')}
+    </nav>
+    </div>
+  </div>
+  <div class="me"><span class="av">MC</span><span>Marcella Canozo</span>
+    <button class="bell ${DB.rota === 'notificacoes' ? 'on' : ''}" aria-label="Notificações" onclick="go('notificacoes')">${icon('bell', '#52525B', 20)}${naoLidas ? `<i>${naoLidas}</i>` : ''}</button>
+  </div>`;
+  $('#sb').classList.toggle('open', MENU_ABERTO);
+}
+let MENU_ABERTO = false;
+function toggleMenu() { MENU_ABERTO = !MENU_ABERTO; sidebar(); }
+const VIEWS = {};
+function render() {
+  sidebar();
+  const v = VIEWS[DB.rota] || VIEWS.placar;
+  $('#main').innerHTML = v(DB.param);
+  if (VIEWS[DB.rota + '_after']) VIEWS[DB.rota + '_after']();
+}
+
+// ================= PLACAR =================
+function equipes() {
+  const eq = {};
+  BDRS.forEach((b) => { const e = P(b).equipe; eq[e] = eq[e] || { nome: e, valor: 0, vendas: 0, bdrs: 0 }; eq[e].valor += DB.vendido[b]; eq[e].bdrs++; if (DB.vendido[b]) eq[e].vendas += Math.max(1, Math.round(DB.vendido[b] / 9000)); });
+  return Object.values(eq).sort((a, b) => b.valor - a.valor);
+}
+function negociacao() {
+  const m = {};
+  DB.deals.filter((d) => !d.ganho && d.etapa >= 5 && BDRS.includes(d.ini)).forEach((d) => { m[d.ini] = m[d.ini] || { ini: d.ini, valor: 0, n: 0, fr: new Set() }; m[d.ini].valor += (d.valorNeg || d.valor); m[d.ini].n++; m[d.ini].fr.add(d.frente); });
+  return Object.values(m).sort((a, b) => b.n - a.n || b.valor - a.valor);
+}
+// ---- Ranking das frentes novas (Tech, Processos e Direito) ----
+const FRENTES_NOVAS = ['Tech', 'Processos', 'Direito'];
+function frentesNovasHtml() {
+  const total = BDRS.reduce((s, b) => s + DB.vendido[b], 0) || 1;
+  const somaFr = (f) => Object.values(DB.vendidoFrente[f] || {}).reduce((s, x) => s + x.v, 0);
+  const dp = (somaFr('Direito') + somaFr('Processos')) / total * 100;
+  const cols = FRENTES_NOVAS.map((f) => {
+    const c = FRENTES[f];
+    const lista = Object.entries(DB.vendidoFrente[f] || {}).filter(([, x]) => x.v > 0).sort((a, b) => b[1].v - a[1].v);
+    const mx = lista.length ? lista[0][1].v : 1;
+    const nVendas = lista.reduce((s, [, x]) => s + x.n, 0);
+    return `<div class="frc" style="border-top:4px solid ${c.cor}">
+      <div class="frh"><span class="row" style="gap:8px"><span class="dot" style="background:${c.cor};width:10px;height:10px"></span><b style="font-size:15px">${f === 'Processos' ? 'Engenharia de Processos' : f}</b></span><span class="small muted">${nVendas} venda${nVendas === 1 ? '' : 's'}</span></div>
+      <div class="frt" style="color:${c.fg}">${fmt(somaFr(f)).replace('Sem valor', 'R$ 0')}</div>
+      <div class="small muted" style="margin:2px 0 10px">${(somaFr(f) / total * 100).toFixed(1).replace('.', ',')}% do vendido no semestre</div>
+      ${lista.length ? lista.map(([b, x], i) => `<div class="rkf"><span class="md ${i === 0 ? '' : i < 3 ? 'm2' : ''}" ${i === 0 ? `style="background:${c.cor};color:#fff"` : ''}>${i + 1}</span>${av(b, 'style="width:30px;height:30px"')}
+        <div style="min-width:0"><div style="font-weight:500;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" onclick="go('pessoa','${b}')">${P(b).nome}</div><div class="bar" style="height:5px;margin-top:5px"><i style="width:${(x.v / mx * 100).toFixed(0)}%;background:${c.cor}"></i></div></div>
+        <span style="text-align:right"><b style="font-weight:600;white-space:nowrap">${fmt(x.v)}</b><br><span class="small muted">${x.n} venda${x.n > 1 ? 's' : ''}</span></span></div>`).join('') : '<div class="empty" style="border-top:1px solid var(--line2)">Ninguém vendeu esta frente ainda. A primeira venda abre o ranking.</div>'}
+    </div>`;
+  }).join('');
+  return `<div class="card"><div class="row sp" style="align-items:flex-start"><div><h2>Ranking das frentes novas</h2><p class="hint" style="margin-bottom:0">Quem mais vendeu Tech, Engenharia de Processos e Direito no semestre</p></div>
+      <span class="pill ${dp >= 15 ? 'p-g' : 'p-a'}" style="padding:6px 12px">Direito + Processos: ${dp.toFixed(1).replace('.', ',')}% do vendido · meta 15%</span></div>
+    <div class="grid g3" style="gap:16px;margin-top:18px">${cols}</div>
+    <p class="small muted" style="margin:14px 0 0">Conta a frente marcada no ganho. Vender uma frente nova também soma no Ranking de vendas e na meta da equipe.</p></div>`;
+}
+// ---- Meta mensal dos coordenadores (Anexo 4, seções 10 a 12) ----
+const MESES = [['ago', 'Agosto'], ['set', 'Setembro'], ['out', 'Outubro']];
+const MES_ATUAL = 'out';
+function metaEq(eq) {
+  const m = DB.metaCoord[eq] || {}; let seq = 0, tot = 0; const linhas = [];
+  MESES.forEach(([k, n]) => {
+    const v = m[k] || 0; const aberto = k === MES_ATUAL; let pts = 0;
+    if (!aberto) { if (v < PISO_MES) { seq++; pts = seq; tot += seq; } else seq = 0; }
+    linhas.push({ k, n, v, aberto, pts });
+  });
+  return { linhas, tot, seq, prox: seq + 1 };
+}
+const ptsDe = (ini) => isCoord(ini) ? metaEq(P(ini).equipe).tot : (P(ini).pontos || 0);
+function faixaMes(v, aberto, prox) {
+  if (v >= META_MES) return ['Meta batida', 'p-g'];
+  if (aberto) return v >= PISO_MES ? ['Sem ponto até agora', 'p-n'] : [`Abaixo de R$ 10 mil até agora · +${prox} se fechar assim`, 'p-a'];
+  return v >= PISO_MES ? ['Meta não batida · sem ponto', 'p-n'] : ['Abaixo de R$ 10 mil', 'p-r'];
+}
+function metaCoordHtml(eqs) {
+  eqs = eqs || Object.keys(DB.metaCoord);
+  return `<div class="tblw"><table class="tbl"><thead><tr><th>Equipe</th>${MESES.map(([k, n]) => `<th>${n}${k === MES_ATUAL ? ' (até hoje)' : ''}</th>`).join('')}<th>Pontos</th></tr></thead><tbody>
+  ${eqs.map((eq) => { const r = metaEq(eq); const c = coordDe(eq); return `<tr class="click" onclick="go('pessoa','${c}')"><td><span class="who">${av(c)}<span>${eq}<br><span class="small muted">${P(c).nome}</span></span></span></td>${r.linhas.map((l) => { const f = faixaMes(l.v, l.aberto, r.prox); return `<td><b style="font-weight:600">${fmt(l.v).replace('Sem valor', 'R$ 0')}</b><div class="bar" style="height:5px;margin:6px 0;max-width:130px"><i style="width:${Math.min(100, l.v / META_MES * 100)}%;background:${l.v >= META_MES ? '#16A34A' : l.v >= PISO_MES ? '#A1A1AA' : '#DC2626'}"></i></div><span class="pill ${f[1]}" style="font-size:11px">${f[0]}${l.pts ? ` · ${l.pts} ponto${l.pts > 1 ? 's' : ''}` : ''}</span></td>`; }).join('')}<td class="b6" style="color:${r.tot ? 'var(--redd)' : 'var(--ink)'}">${r.tot}/6</td></tr>`; }).join('')}
+  </tbody></table></div>`;
+}
+const META_REGRA = 'Meta de R$ 20 mil por mês, somando as vendas da equipe. Entre R$ 10 e 20 mil: meta não batida, sem ponto. Abaixo de R$ 10 mil em meses seguidos: 1, 2 e 3 pontos (total 1, 3 e 6); um mês com R$ 10 mil ou mais recomeça a contagem. 6 pontos: saída do núcleo comercial, não da Insper Jr. Card vermelho de coordenador não gera ponto: a Diretoria de Vendas chama para uma conversa individual.';
+function funilResumo() {
+  const ds = DB.deals.filter((d) => !d.ganho);
+  const por = ETAPAS.map((n, i) => [n, ds.filter((d) => d.etapa === i).length]);
+  const mx = Math.max(...por.map((x) => x[1]), 1);
+  const ganhos = equipes().reduce((s, e) => s + e.vendas, 0);
+  return por.map(([n, v], i) => `<div style="display:grid;grid-template-columns:150px minmax(0,1fr) 28px;gap:10px;align-items:center;margin-bottom:8px;font-size:13px"><span class="muted">${n}</span><div style="height:16px;background:#F4F4F5;border-radius:5px"><div style="height:16px;width:${v / mx * 100}%;background:${PILLS[i][2]};border-radius:5px"></div></div><b style="text-align:right">${v}</b></div>`).join('')
+    + `<div class="row sp small" style="border-top:1px solid var(--line2);padding-top:10px;margin-top:4px"><span class="muted">${ds.length} negócios em andamento · todos os canais</span><b>${ganhos} vendas no semestre</b></div>`;
+}
+VIEWS.placar = () => {
+  const total = BDRS.reduce((s, b) => s + DB.vendido[b], 0);
+  const rv = BDRS.slice().sort((a, b) => DB.vendido[b] - DB.vendido[a]);
+  const top = DB.vendido[rv[0]] || 1;
+  const eq = equipes();
+  const ng = negociacao();
+  const md = (i) => `md ${i === 0 ? 'm1' : i < 3 ? 'm2' : ''}`;
+  return `
+  <div class="head">
+    <div><div class="eyebrow">ABERTO PARA TODA A INSPER JR.</div><h1>Placar do comercial</h1><p class="sub">Semestre 2026.2 · atualizado a cada venda</p></div>
+    <div class="card" style="min-width:300px;flex:0 1 380px;padding:18px 22px">
+      <div class="row sp small muted"><span>Vendido no semestre</span><span>meta ${fmt(DB.metaSemestre)}</span></div>
+      <div style="font-size:28px;font-weight:700;letter-spacing:-.02em;margin:4px 0 10px">${fmt(total)}</div>
+      <div class="bar"><i style="width:${Math.min(100, total / DB.metaSemestre * 100).toFixed(1)}%"></i></div>
+    </div>
+  </div>
+  <div class="grid g4">${eq.map((e, i) => `
+    <div class="team ${i === 0 ? 'lead' : ''}"><div class="row sp"><span class="pos">${i + 1}º lugar</span><span class="ss">${e.bdrs} BDRs</span></div>
+    <div class="nm">${e.nome}</div><div class="vl">${fmt(e.valor)}</div><div class="ss">${e.vendas} vendas no semestre</div></div>`).join('')}
+  </div>
+  <p class="small muted" style="margin:-14px 0 0">A equipe campeã do semestre é premiada no evento de encerramento.</p>
+  <div class="grid g2" style="align-items:start">
+    <div class="card"><h2>Ranking de vendas</h2><p class="hint">Valor vendido por vendedor, acumulado no semestre</p>
+      ${rv.map((b, i) => `<div class="rk"><span class="${md(i)}">${i + 1}</span>${av(b, `style="width:32px;height:32px"`)}
+      <div style="min-width:0"><div class="row sp"><span style="font-weight:500;cursor:pointer" onclick="go('pessoa','${b}')">${P(b).nome}</span><span class="small muted">${P(b).equipe}</span></div><div class="bar" style="height:6px;margin-top:6px"><i style="width:${(DB.vendido[b] / top * 100).toFixed(0)}%"></i></div></div>
+      <span style="text-align:right;font-weight:600">${fmt(DB.vendido[b]).replace('Sem valor', 'R$ 0')}</span></div>`).join('')}
+    </div>
+    <div class="card"><h2>Ranking de negociação</h2><p class="hint">Quem tem mais propostas em aberto, e de quais frentes</p>
+      ${ng.length ? ng.map((r, i) => `<div class="rk n3"><span class="${md(i)}">${i + 1}</span><div><div style="font-weight:500;cursor:pointer" onclick="go('pessoa','${r.ini}')">${P(r.ini).nome}</div><div class="row" style="gap:6px;margin-top:5px"><span class="small muted">${r.n} proposta${r.n > 1 ? 's' : ''} em aberto</span>${[...r.fr].map(frTag).join('')}</div></div><span style="text-align:right;font-weight:600">${fmt(r.valor)}</span></div>`).join('') : '<div class="empty">Nenhuma proposta em aberto</div>'}
+      <p class="small muted" style="margin:12px 0 0">Conta as propostas validadas e em negociação. Quem ainda não fechou já aparece aqui.</p>
+    </div>
+  </div>
+  ${frentesNovasHtml()}
+  <div class="grid g2" style="align-items:start">
+    <div class="card"><div class="row sp"><h2>Funil do comercial</h2><a class="small" style="cursor:pointer;font-weight:600" onclick="go('painel')">Ver no Painel →</a></div><p class="hint">Negócios em andamento por etapa, de toda a área</p>
+      ${funilResumo()}</div>
+    <div class="mural"><h2>Últimas vendas</h2><p class="small" style="margin:-4px 0 8px;color:#A1A1AA">Cada venda dispara uma mensagem de parabéns para toda a Insper Jr. no Atlas</p>
+      ${DB.mural.slice(0, 6).map((m) => `<div class="m">${av(m.ini)}<div><b>${P(m.ini).nome}</b> fechou com <b>${esc(m.cliente)}</b> <span style="color:#A1A1AA;white-space:nowrap">· ${m.frente} · ${fmt(m.valor)}</span></div><small>${m.quando}</small></div>`).join('')}
+    </div>
+  </div>`;
+};
+
+// ================= INÍCIO =================
+function setRole(r) { DB.role = r; render(); }
+function decidir(id, ok) {
+  const v = DB.validacoes.find((x) => x.id === id); v.dec = ok ? 'ok' : 'no';
+  const h = PTS_HIST[v.ini] = PTS_HIST[v.ini] || []; const hi = h.find((x) => x[0] === v.empresa && (x[4] === 'enviada' || x[4] === 'aberta'));
+  if (v.tipo === 'Contestação de ponto') { if (ok && hi) h.splice(h.indexOf(hi), 1); else if (hi) hi[4] = 'recusada'; }
+  else if (!ok && !isCoord(v.ini)) h.unshift([v.empresa, v.etapa, '“Outro motivo” rejeitado', '14 out', 'aberta']);
+  if (!ok && v.tipo === 'Contestação de ponto') toast(`Contestação recusada: o ponto de ${P(v.ini).nome} continua no contador. A decisão é final.`, 'in');
+  else if (!ok && isCoord(v.ini)) toast(`Rejeitada. Card de coordenador não gera ponto: conversa individual com ${P(v.ini).nome}.`, 'in');
+  else if (!ok) { P(v.ini).pontos = (P(v.ini).pontos || 0) + 1; toast(`Rejeitada: 1 ponto aplicado a ${P(v.ini).nome}.`, 'er'); }
+  else toast(v.tipo === 'Contestação de ponto' ? `Contestação aceita: o ponto saiu do contador de ${P(v.ini).nome}.` : 'Justificativa validada. Card fora do vermelho, sem ponto.', 'ok');
+  if (ok && v.tipo === 'Contestação de ponto' && !isCoord(v.ini)) P(v.ini).pontos = Math.max(0, (P(v.ini).pontos || 0) - 1);
+  render();
+}
+VIEWS.inicio = () => {
+  const r = DB.role;
+  const seg = `<div class="row"><span class="small muted">Ver como</span><div class="seg">${[['bdr', 'BDR'], ['coord', 'Coordenador'], ['diretora', 'Diretora']].map(([k, l]) => `<button class="${r === k ? 'on' : ''}" onclick="setRole('${k}')">${l}</button>`).join('')}</div></div>`;
+  const head = `<div class="head"><div><h1>Início</h1><p class="sub">Terça-feira, 14 de outubro · Comercial</p></div>${seg}</div>`;
+  const verm = DB.deals.filter((d) => d.st === 'vm' && !d.ganho);
+  if (r === 'diretora') {
+    const porPessoa = {}; verm.forEach((d) => { porPessoa[d.ini] = (porPessoa[d.ini] || 0) + 1; });
+    const pend = DB.validacoes.filter((v) => !v.dec);
+    const ativos = BDRS.map((b) => [b, DB.deals.filter((d) => d.ini === b).length]);
+    const ptsB = BDRS.reduce((s, b) => s + ptsDe(b), 0), ptsC = COORDS.reduce((s, c) => s + ptsDe(c), 0);
+    const eq = equipes();
+    return head + `
+    <div class="grid g4">
+      <div class="card kpi red"><div class="l">Cards vermelhos na área</div><div class="v">${verm.length}</div><div class="s">justificar em até 24 h</div></div>
+      <div class="card kpi"><div class="l">Aguardando sua validação</div><div class="v">${pend.length}</div><div class="s">justificativas e contestações</div></div>
+      <div class="card kpi"><div class="l">Vendido no semestre</div><div class="v">${fmt(BDRS.reduce((s, b) => s + DB.vendido[b], 0))}</div><div class="s">meta ${fmt(DB.metaSemestre)}</div></div>
+      <div class="card kpi"><div class="l">Pontos no semestre</div><div class="v">${ptsB + ptsC}</div><div class="s">BDRs ${ptsB} · coordenadores (meta) ${ptsC} · maior ${Math.max(...BDRS.concat(COORDS).map(ptsDe))} de 6</div></div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="card"><h2>Vermelhos da área</h2><p class="hint">Por pessoa · BDR sem justificativa em 24 h recebe ponto; coordenador vai para conversa individual</p>
+        <div class="tblw"><table class="tbl"><thead><tr><th>Pessoa</th><th>Vermelhos</th><th>Consequência</th></tr></thead><tbody>
+        ${Object.entries(porPessoa).map(([i, n]) => `<tr class="click" onclick="go('pessoa','${i}')"><td><span class="who">${av(i)}<span>${P(i).nome}<br><span class="small muted">${P(i).equipe}</span></span></span></td><td class="b6" style="color:var(--redd)">${n}</td><td style="white-space:nowrap">${isCoord(i) ? '<span class="pill p-v">Conversa individual</span>' : `${ptsDe(i)}/6 pontos`}</td></tr>`).join('') || '<tr><td colspan="3" class="empty">Nenhum card vermelho</td></tr>'}
+        </tbody></table></div>
+      </div>
+      <div class="card"><h2>Caixa de validação</h2><p class="hint">“Outro motivo” e contestações de ponto</p>
+        ${DB.validacoes.map((v) => `<div class="item" style="cursor:default"><div class="row sp small muted"><span><b style="color:var(--ink)">${esc(v.empresa)}</b> · ${v.etapa}</span><span class="pill ${v.tipo === 'Justificativa' ? 'p-n' : 'p-v'}">${v.tipo}</span></div>
+          <p style="margin:8px 0 12px;font-size:14px;line-height:1.5">“${esc(v.texto)}” <span class="muted small">— ${P(v.ini).nome}</span></p>
+          ${v.dec ? `<span class="pill ${v.dec === 'ok' ? 'p-g' : 'p-r'}">${v.dec === 'ok' ? 'Validada · sem ponto' : isCoord(v.ini) ? 'Rejeitada · conversa individual' : 'Rejeitada · 1 ponto'}</span>` : `<div class="row"><button class="btn s" style="color:var(--greend);border-color:var(--greenb);background:var(--greens)" onclick="decidir(${v.id},true)">${v.tipo === 'Justificativa' ? 'Validar' : 'Aceitar contestação'}</button><button class="btn s o" onclick="decidir(${v.id},false)">${v.tipo === 'Justificativa' ? (isCoord(v.ini) ? 'Rejeitar · conversa individual' : 'Rejeitar e aplicar ponto ao BDR') : 'Manter o ponto'}</button></div>`}
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="card"><h2>Leads ativos por BDR</h2><p class="hint">Quantos leads cada pessoa está trabalhando agora</p>
+        <div class="chips">${ativos.map(([b, n]) => `<span class="chip">${P(b).nome} <b>${n}</b></span>`).join('')}</div></div>
+      <div class="card"><div class="row sp"><h2>Equipes no semestre</h2><a class="small" style="cursor:pointer;font-weight:600" onclick="go('placar')">Abrir placar →</a></div>
+        ${eq.map((e) => `<div style="margin-top:14px"><div class="row sp" style="font-size:14px"><b style="font-weight:500">${e.nome}</b><span class="muted">${fmt(e.valor)} / R$ 120.000</span></div><div class="bar" style="margin-top:8px"><i style="width:${Math.min(100, e.valor / 120000 * 100)}%;background:${e.valor / 120000 > .35 ? '#16A34A' : '#F59E0B'}"></i></div></div>`).join('')}
+      </div>
+    </div>
+    <div class="card"><div class="row sp"><h2>Meta mensal dos coordenadores</h2><span class="small muted">Os coordenadores são cobrados pelo resultado, não pelo CRM</span></div><p class="hint">Vendas de cada equipe no mês × meta de R$ 20 mil · clique para abrir a página da coordenação</p>
+      ${metaCoordHtml()}
+      <div class="info" style="margin-top:14px">${META_REGRA}</div></div>`;
+  }
+  if (r === 'coord') {
+    const eqIni = ['AL', 'TP'];
+    const am = DB.deals.filter((d) => d.st === 'am' && (eqIni.includes(d.ini) || d.ini === 'C2'));
+    return head + `
+    <div class="card"><div class="row sp"><h2>Minha equipe · Equipe 2</h2><span class="small muted">Clique no nome para abrir a página do BDR</span></div>
+      <div class="tblw" style="margin-top:10px"><table class="tbl"><thead><tr><th>BDR</th><th>Ativos</th><th>Amarelos</th><th>Vermelhos</th><th>Pontos</th><th>Vendido</th><th>1:1 do mês</th></tr></thead><tbody>
+      ${eqIni.map((b) => { const ds = DB.deals.filter((d) => d.ini === b); const v = ds.filter((d) => d.st === 'vm').length; return `<tr class="click" onclick="go('pessoa','${b}')"><td><span class="who">${av(b)}${P(b).nome}</span></td><td>${ds.length}</td><td class="st-am">${ds.filter((d) => d.st === 'am').length}</td><td style="color:${v ? 'var(--redd)' : 'var(--green)'};font-weight:600">${v}</td><td>${ptsDe(b)}/6</td><td>${fmt(DB.vendido[b]).replace('Sem valor', 'R$ 0')}</td><td><span class="pill ${b === 'AL' ? 'p-g' : 'p-r'}">${b === 'AL' ? 'Feito' : 'Pendente'}</span></td></tr>`; }).join('')}
+      </tbody></table></div></div>
+    <div class="card"><div class="row sp"><h2>Meta mensal da equipe</h2><span class="pill ${metaEq('Equipe 2').tot ? 'p-r' : 'p-g'}">Seus pontos: ${metaEq('Equipe 2').tot} de 6</span></div><p class="hint">Vendas da Equipe 2 no mês (BDRs e coordenação) × meta de R$ 20 mil. É só por aqui que o coordenador recebe ponto.</p>
+      ${metaCoordHtml(['Equipe 2'])}
+      <div class="info" style="margin-top:14px">${META_REGRA}</div></div>
+    <div class="grid g3" style="align-items:start">
+      <div class="card" style="border-color:var(--redb)"><h2>Responderam ao chatbot</h2><p class="hint">Canal dos coordenadores · assumir em até 24 h · vencido não gera ponto, vira conversa individual</p>
+        ${DB.perdidos.resp.map((p) => `<a class="item ${p.st === 'am' ? 'am' : 'gr'}" onclick="go('perdidos','resp')"><div class="t">${esc(p.empresa)}</div><div class="s">${p.motivo}</div><div class="small b6" style="margin-top:6px;color:${p.st === 'am' ? 'var(--amber)' : 'var(--greend)'}">${p.prazo}</div></a>`).join('') || '<div class="empty">Nenhum lead esperando</div>'}
+      </div>
+      <div class="card" style="background:var(--ambers);border-color:var(--amberb)"><h2 style="color:#78350F">Amarelos da equipe</h2><p class="hint" style="color:var(--amber)">Aja antes de virar vermelho (ponto para o BDR)</p>
+        ${am.map((d) => `<a class="item" onclick="go('ficha','${d.id}')"><div class="t">${esc(d.empresa)}</div><div class="s">${ETAPAS[d.etapa]} · ${P(d.ini).nome}</div><div class="small st-am" style="margin-top:6px">${d.prazo} na etapa</div></a>`).join('') || '<div class="empty">Nenhum amarelo</div>'}
+      </div>
+      <div class="card"><h2>Reuniões da equipe na semana</h2><p class="hint">Escolha em quais entrar</p>
+        ${DB.eventos.filter((e) => ['AL', 'TP', 'C2'].includes(e.ini)).map((e) => `<div class="row" style="padding:10px 0;border-top:1px solid var(--line2);flex-wrap:nowrap"><div style="width:54px;text-align:center;background:#F4F4F5;border-radius:10px;padding:6px 0"><div class="small muted">${['SEG', 'TER', 'QUA', 'QUI', 'SEX'][e.dia]}</div><b style="font-size:14px">${e.hora}</b></div><div><div style="font-size:14px;font-weight:500">${esc(e.empresa)}</div><div class="small muted">${e.tipo} · ${P(e.ini).nome}</div></div></div>`).join('')}
+      </div>
+    </div>`;
+  }
+  const meus = DB.deals.filter((d) => d.ini === 'AL' && !d.ganho);
+  const acao = meus.filter((d) => d.st !== 'ok' && d.st !== 'nw');
+  const v = meus.filter((d) => d.st === 'vm').length;
+  return head + `
+  <div class="grid g4">
+    <div class="card kpi ${v ? 'red' : 'grn'}"><div class="l">Meus cards vermelhos</div><div class="v">${v}</div><div class="s">${v ? 'justifique em até 24 h' : 'Nenhum card atrasado. Siga assim.'}</div></div>
+    <div class="card kpi"><div class="l">Leads ativos</div><div class="v">${meus.length}</div><div class="s">em todos os canais</div></div>
+    <div class="card kpi"><div class="l">Vendido no semestre</div><div class="v">${fmt(DB.vendido.AL)}</div><div class="s">${BDRS.slice().sort((a, b) => DB.vendido[b] - DB.vendido[a]).indexOf('AL') + 1}º no ranking</div></div>
+    <div class="card kpi"><div class="l">Meus pontos</div><div class="v">${P('AL').pontos} <span style="font-size:16px;color:var(--mut)">/ 6</span></div><div class="s">zeram no fim do semestre</div></div>
+  </div>
+  <div class="grid g3" style="align-items:start">
+    <div class="card"><h2>Precisa de ação</h2><p class="hint">Do mais atrasado para o menos</p>
+      ${acao.sort((a, b) => (b.st === 'vm') - (a.st === 'vm')).map((d) => `<a class="item ${d.st}" onclick="go('ficha','${d.id}')"><div class="row sp"><span class="t">${esc(d.empresa)}</span><span class="small st-${d.st}">${d.st === 'vm' ? 'Vermelho' : 'Amarelo'}</span></div><div class="s">${ETAPAS[d.etapa]} · ${d.prazo}</div></a>`).join('') || '<div class="empty">Nada atrasado</div>'}
+    </div>
+    <div class="card"><h2>Meus pontos</h2><p class="hint">Semestre 2026.2 · limite de 6</p>
+      <div class="pts">${[0, 1, 2, 3, 4, 5].map((i) => `<i class="${i < P('AL').pontos ? 'on' : ''}"></i>`).join('')}</div>
+      <p style="font-size:14px;margin:14px 0">1 ponto · Grupo Solaris, Qualificados, 2 out</p>
+      <a class="small b6" style="cursor:pointer" onclick="go('pessoa','AL')">Ver minha página →</a>
+    </div>
+    <div class="card"><h2>Fidelização da semana</h2><p class="hint">Contatos que vencem nos próximos 7 dias</p>
+      ${DB.fidel.filter((f) => f.ini === 'AL' && f.col > 0 && f.col < 4).map((f) => `<a class="item ${f.st === 'am' ? 'am' : ''}" onclick="go('fidelizacao')"><div class="t">${esc(f.cliente)}</div><div class="s">${FCOLS[f.col].nome} · ${f.prazo}</div></a>`).join('') || '<div class="empty">Nenhum contato esta semana</div>'}
+    </div>
+  </div>`;
+};
+
+// ================= FUNIL =================
+let CANAL = 'passiva';
+let DRAG = null;
+const EXIGE = { 2: [['setor', 'Setor', 'Ex.: metalurgia'], ['escopo', 'Escopo', 'Ex.: financeiro · fluxo de caixa']], 3: [['porte', 'Porte', 'Micro, pequeno, médio ou grande'], ['dias', 'Dias úteis estimados', 'Ex.: 25']], 6: [['valor', 'Valor da proposta (R$)', 'Ex.: 22000']] };
+function setCanal(c) { CANAL = c; render(); }
+function dealCard(d) {
+  const tags = (d.escopos || []).length ? [] : [frTag(d.frente)];
+  if (d.reat) tags.push(`<span class="pill p-g">Reativado · ${esc(d.reat)}</span>`);
+  if (d.recompra) tags.push(`<span class="pill p-v">Recompra</span>`);
+  if (d.base) tags.push(`<span class="pill p-b">Já está na base</span>`);
+  const es = d.escopos || [];
+  return `<div class="dc ${stCls[d.st]}" draggable="true" data-id="${d.id}" onclick="go('ficha','${d.id}')">
+    ${es.length ? `<div class="lbls">${es.map((e) => barra(e)).join('')}</div>` : ''}
+    <div class="t"><span>${esc(d.empresa)}</span>${av(d.ini)}</div>
+    ${tags.length ? `<div class="tags">${tags.join('')}</div>` : ''}
+    <div class="b"><span>${d.valorNeg ? `<b style="color:#1E3A8A">${fmt(d.valorNeg)}</b> negociado` : fmt(d.valor)}</span><span class="row" style="gap:6px">${d.sem ? `<span title="Sem próxima atividade">${icon('warn', '#B45309', 14)}</span>` : ''}<span class="st-${d.st}">${d.prazo}</span></span></div>
+    ${d.canal === 'passiva' && d.etapa === 0 ? `<button class="btn s p atr" onclick="event.stopPropagation();abrirAtribuir('${d.id}')">Assumir lead</button>` : ''}
+  </div>`;
+}
+VIEWS.funil = () => {
+  const canais = [['passiva', 'Passiva'], ['desafio', 'Desafio da Prospecção'], ['reativados', 'Reativados'], ['apollo', 'Apollo · a definir']];
+  const ds = DB.deals.filter((d) => d.canal === CANAL && !d.ganho);
+  const notas = {
+    passiva: ['', 'Os leads do site chegam na caixa de entrada, com origem e palavra-chave. Clique em “Assumir lead” (ou arraste para Qualificados) para passá-lo para o seu nome ou para um BDR. A caixa de entrada é dos coordenadores: tem prazo, mas não gera ponto (card vencido leva a uma conversa individual com a Diretoria de Vendas).'],
+    desafio: ['', 'Os leads do Desafio da Prospecção entram sozinhos pela planilha de cada BDR, já atribuídos a ele. Não passam pela caixa de entrada.'],
+    reativados: ['g', 'Leads perdidos que clicaram em “Quero conversar” no chatbot e foram assumidos por um coordenador em até 24 horas. As etapas são as mesmas; a etiqueta mostra o motivo original da perda.']
+  };
+  let corpo;
+  if (CANAL === 'apollo') {
+    corpo = `<div class="illus">
+      <svg width="132" height="104" viewBox="0 0 132 104" fill="none" aria-hidden="true"><rect x="10" y="22" width="112" height="72" rx="10" fill="#FAFAFA" stroke="#D4D4D8" stroke-width="2"/><rect x="24" y="38" width="22" height="42" rx="5" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/><rect x="55" y="38" width="22" height="30" rx="5" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/><rect x="86" y="38" width="22" height="20" rx="5" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/><circle cx="98" cy="22" r="17" fill="#FEF2F2" stroke="#DC2626" stroke-width="2"/><path d="M93 17a5 5 0 1 1 6 5v3 M99 29v1" stroke="#DC2626" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <span class="pill p-r" style="letter-spacing:.06em;font-weight:600">A DEFINIR</span>
+      <div style="font-size:19px;font-weight:600">Canal Apollo</div>
+      <p class="muted" style="margin:0;max-width:460px;line-height:1.6;font-size:14px">Este espaço já está reservado no funil. O funcionamento do canal Apollo será definido pela Diretoria de Vendas e entra em uma próxima entrega.</p></div>`;
+  } else {
+    corpo = `<div class="note ${notas[CANAL][0]}">${icon('info')}${notas[CANAL][1]}</div>
+    <div class="note mob-only" style="display:none">${icon('info')}No celular, deslize para o lado para ver as etapas. Toque no card e use “Avançar etapa” para movê-lo.</div>
+    <div class="kan">${ETAPAS.map((n, i) => { const cs = ds.filter((d) => d.etapa === i); const tot = cs.reduce((s, d) => s + d.valor, 0); return `
+      <div class="col" data-col="${i}">
+        <div class="colh"><span class="pill" style="background:${PILLS[i][0]};color:${PILLS[i][1]};font-size:13px"><span class="dot" style="background:${PILLS[i][2]}"></span>${n}</span><span class="small muted">${cs.length}</span></div>
+        <div class="colt">${tot ? fmt(tot) : cs.length ? cs.length + (cs.length > 1 ? ' negócios' : ' negócio') : '—'}</div>
+        ${i === 0 && CANAL === 'desafio' ? '<div class="empty" style="line-height:1.5">Entrada automática pela planilha do Desafio. Os leads já chegam em Qualificados, com o BDR dono da planilha.</div>' : (cs.map(dealCard).join('') || '<div class="empty">Nenhum lead nesta etapa</div>')}
+      </div>`; }).join('')}</div>
+    <div class="legend"><span><i style="background:#fff;border-color:#E4E4E7"></i>No prazo</span><span><i style="background:var(--ambers);border-color:#FCD34D"></i>Prazo se aproximando</span><span><i style="background:var(--reds);border-color:#FCA5A5"></i>Prazo estourado: justificar em 24 h</span><span><i style="background:#FBFFFC;border-color:#86EFAC"></i>Movido agora</span></div>`;
+  }
+  const total = ds.length;
+  return `<div class="head"><div><h1>Funil</h1><p class="sub">${CANAL === 'apollo' ? 'Canal a definir' : total + ' negócios em andamento · arraste os cards entre as etapas'}</p></div>
+    <div class="row"><select class="in" style="width:auto;margin:0" aria-label="Ver"><option>Todos</option><option>Meus leads</option><option>Minha equipe</option></select><select class="in" style="width:auto;margin:0" aria-label="Frente"><option>Todas as frentes</option><option>Business</option><option>Direito</option><option>Tech</option><option>Processos</option></select></div></div>
+    <div class="tabs">${canais.map(([k, l]) => `<button class="${CANAL === k ? 'on' : ''}" onclick="setCanal('${k}')">${l}${k !== 'apollo' ? `<span class="cnt">${DB.deals.filter((d) => d.canal === k && !d.ganho).length}</span>` : ''}</button>`).join('')}</div>
+    ${corpo}`;
+};
+function moverDeal(id, para, campos) {
+  const d = DB.deals.find((x) => x.id === id);
+  const de = d.etapa;
+  d.etapa = para; d.st = 'nw'; d.prazo = 'agora';
+  if (campos) { Object.assign(d, campos); if (campos.valor) d.valor = Number(String(campos.valor).replace(/\D/g, '')) || d.valor; }
+  d.historico.unshift({ t: `Etapa: ${ETAPAS[de]} → ${ETAPAS[para]}`, q: 'agora · arrastado no funil', c: '#22C55E' });
+  render();
+  toast(`${d.empresa} foi para ${ETAPAS[para]}. O prazo da nova etapa começou a contar.`, 'ok');
+}
+function pedirCampos(id, para) {
+  const d = DB.deals.find((x) => x.id === id);
+  modal(`<h2>Para mover ${esc(d.empresa)} para ${ETAPAS[para]}, preencha:</h2>
+    <div class="grid g2" style="gap:12px">${EXIGE[para].map(([k, l, ph]) => `<label class="f">${l}<input class="in" data-k="${k}" placeholder="${ph}"></label>`).join('')}</div>
+    <div class="info">O CRM pede cada dado na etapa em que o vendedor já o tem.</div>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn p" onclick="confirmarCampos('${id}',${para})">Salvar e mover</button></div>`);
+  setTimeout(() => { const i = document.querySelector('.mb .in'); if (i) i.focus(); }, 50);
+}
+function confirmarCampos(id, para) {
+  const campos = {}; let falta = false;
+  document.querySelectorAll('.mb .in[data-k]').forEach((i) => { if (!i.value.trim()) { falta = true; i.style.borderColor = '#FCA5A5'; } campos[i.dataset.k] = i.value.trim(); });
+  if (falta) { toast('Preencha todos os campos para mover o card.', 'er'); return; }
+  fecharModal(); moverDeal(id, para, campos);
+}
+VIEWS.funil_after = () => {
+  document.querySelectorAll('.dc[draggable]').forEach((el) => {
+    el.addEventListener('dragstart', (e) => { DRAG = el.dataset.id; el.classList.add('dragging'); try { e.dataTransfer.setData('text/plain', DRAG); e.dataTransfer.effectAllowed = 'move'; } catch (er) {} });
+    el.addEventListener('dragend', () => { el.classList.remove('dragging'); document.querySelectorAll('.col.over').forEach((c) => c.classList.remove('over')); });
+  });
+  document.querySelectorAll('.col').forEach((col) => {
+    col.addEventListener('dragover', (e) => { e.preventDefault(); col.classList.add('over'); });
+    col.addEventListener('dragleave', (e) => { if (!col.contains(e.relatedTarget)) col.classList.remove('over'); });
+    col.addEventListener('drop', (e) => {
+      e.preventDefault(); col.classList.remove('over');
+      const id = DRAG; DRAG = null; if (!id) return;
+      const d = DB.deals.find((x) => x.id === id); const para = Number(col.dataset.col); const de = d.etapa;
+      if (para === de) return;
+      if (Math.abs(para - de) > 1) { toast(`Só dá para mover uma etapa por vez: de ${ETAPAS[de]} para ${ETAPAS[de + (para > de ? 1 : -1)]}.`, 'er'); return; }
+      if (CANAL === 'passiva' && de === 0) { abrirAtribuir(id); return; }
+      if (CANAL === 'desafio' && para === 0) { toast('No Desafio, os leads entram sozinhos pela planilha e não voltam para a caixa de entrada.', 'er'); return; }
+      if (para > de && EXIGE[para]) { pedirCampos(id, para); return; }
+      moverDeal(id, para);
+    });
+  });
+};
+
+// ================= FICHA =================
+let ABA = 'atividades';
+function setAba(a) { ABA = a; render(); }
+const MOTIVOS = [['Sem orçamento no momento', 'Volta pelo chatbot em 60 dias.', '60 dias'], ['Achou caro', 'Volta pelo chatbot em 60 dias.', '60 dias'], ['Fechou com outra empresa', 'Volta pelo chatbot em 5 meses.', '5 meses'], ['Vai fazer internamente', 'Volta pelo chatbot em 5 meses.', '5 meses'], ['Parou de responder', 'Volta pelo chatbot em 6 meses.', '6 meses'], ['Pediu para retomar depois', 'Volta na data indicada pelo cliente ou, sem data, em 10 dias.', '10 dias'], ['Fora do que a Insper Jr. faz', 'Não volta. Fica só na base.', null], ['Lead inválido', 'Não volta. Fica só na base.', null]];
+const JUSTS = ['Cliente pediu retorno em data específica', 'Aguardando resposta do cliente (registre a tentativa; vale até 4)', 'Reunião remarcada', 'Aguardando material ou dados do cliente', 'Outro motivo'];
+VIEWS.ficha = (id) => {
+  const d = DB.deals.find((x) => x.id === id) || DB.deals[6];
+  const verm = d.st === 'vm';
+  const ganho = !!d.ganho;
+  const abas = [['atividades', 'Atividades'], ['anotacoes', 'Anotações'], ['valores', 'Valor negociado'], ['arquivos', 'Arquivos'], ['transcricoes', 'Transcrições'], ['prontuario', 'Prontuário'], ['historico', 'Histórico']];
+  const prazoTxt = ganho ? 'Venda fechada' : d.st === 'vm' ? (isCoord(d.ini) ? 'Prazo estourado · card de coordenador: conversa individual' : 'Prazo estourado · justificar em 24 h') : d.st === 'am' ? 'Fica vermelho em breve' : d.st === 'nw' ? 'Prazo da etapa começou agora' : 'Dentro do prazo';
+  const prazoCls = ganho ? 'p-g' : d.st === 'vm' ? 'p-r' : d.st === 'am' ? 'p-a' : 'p-g';
+  const etapas = ETAPAS.map((n, i) => `<div class="${i < d.etapa ? 'done' : i === d.etapa ? 'cur ' + (d.st === 'am' ? 'am' : '') : ''}">${n}</div>`).join('');
+  const contato = d.contato || { nome: 'Roberto ' + d.empresa.split(' ')[0], cargo: 'Diretor', tel: '+55 11 90000-0000', email: 'contato@' + d.empresa.toLowerCase().normalize('NFD').replace(/[^a-z]/g, '').slice(0, 14) + '.com.br' };
+  const blocos = [
+    ['Empresa', [['Setor', d.setor || 'Metalurgia'], ['Porte', d.porte || 'Médio'], ['CNPJ', '00.000.000/0001-00']]],
+    ['Contato', [['Nome', contato.nome], ['Cargo', contato.cargo], ['Telefone', contato.tel], ['E-mail', contato.email], ['Autoriza WhatsApp', 'Sim (formulário do site)']]],
+    ['Origem', [['Canal', { passiva: 'Passiva · site', desafio: 'Desafio da Prospecção', reativados: 'Reativado pelo chatbot' }[d.canal]], ['Palavra-chave', d.canal === 'passiva' ? 'consultoria financeira pme' : '—']]],
+    ['Negócio', [['Frente', d.frente], ['Escopo', d.escopo || (d.etapa >= 2 ? 'Financeiro · fluxo de caixa e DRE' : 'pedido em Entendimento')], ['Dias úteis estimados', d.dias || (d.etapa >= 3 ? '25' : 'pedido em Proposta elaborada')], ['Valor', fmt(d.valor)]]]
+  ];
+  let conteudo = '';
+  if (ABA === 'atividades') conteudo = `<div class="row" style="margin-bottom:12px"><button class="btn" onclick="abrirReuniao('${d.id}')">${icon('plus', null, 16)}Agendar reunião</button><button class="btn" onclick="toast('Ligação agendada para amanhã, 10h.','ok')">${icon('plus', null, 16)}Agendar ligação</button></div>
+    ${d.atividades.map((a) => `<div class="item"><div class="t">${esc(a.t)}</div><div class="s">${esc(a.s)}</div></div>`).join('')}
+    ${d.st === 'vm' ? `<div class="item vm"><div class="t">Ligação de follow-up</div><div class="s" style="color:var(--redd)">Vencida há 1 dia</div></div>` : ''}
+    <div class="item" style="opacity:.7"><div class="t">Primeiro contato</div><div class="s">Concluída · ${d.canal === 'desafio' ? 'pelo Desafio' : 'por telefone'}</div></div>`;
+  if (ABA === 'anotacoes') conteudo = `<label class="f">Nova anotação<textarea class="in" rows="3" placeholder="O cliente pediu a versão com o escopo de RH separado"></textarea></label><div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--line2);font-size:14px;line-height:1.55"><b>${P(d.ini).nome}</b> <span class="muted">· 8 out</span><br>Diretor financeiro pediu para a proposta separar diagnóstico e implementação.</div>`;
+  if (ABA === 'arquivos') conteudo = `${d.etapa >= 3 ? `<div class="item"><div class="row sp"><span class="t">Proposta ${esc(d.empresa)} v2.pdf</span><span class="small muted">8 out · ${P(d.ini).nome}</span></div></div>` : ''}<button class="btn" onclick="toast('Arquivo anexado.','ok')">${icon('plus', null, 16)}Anexar arquivo</button>`;
+  if (ABA === 'transcricoes') conteudo = `<p class="small muted" style="margin:0 0 10px">Anexo obrigatório: a transcrição de cada reunião com o cliente.</p>${d.etapa >= 2 ? `<div class="item"><div class="row sp"><span class="t">Transcrição · Entendimento · 28 set</span><span class="pill p-g">anexada</span></div></div>` : ''}${d.etapa >= 5 ? `<div class="item"><div class="row sp"><span class="t">Transcrição · Apresentação da proposta</span><span class="pill p-r">pendente</span></div></div>` : ''}<button class="btn" onclick="toast('Transcrição anexada.','ok')">${icon('plus', null, 16)}Anexar transcrição</button>`;
+  if (ABA === 'prontuario') conteudo = !ganho ? `<div class="lock">O prontuário é aberto só para clientes que fecharam.<br>Ele aparece aqui quando o negócio for marcado como ganho.</div>` : `<div class="row sp" style="margin-bottom:12px"><span class="pill p-a">Preencher até amanhã, mesmo horário</span><span class="small muted">Cabeçalho preenchido automaticamente</span></div>
+    <div class="grid g2" style="gap:8px;background:#F7F7F9;border-radius:14px;padding:12px 14px;font-size:13px;color:#52525B;margin-bottom:14px"><span style="grid-column:1/-1">Escopos: ${(d.escopos || []).map((e) => lbl(e)).join(' ') || '—'}</span><span>Cliente: <b style="color:var(--ink)">${esc(d.empresa)}</b></span><span>Vendedor: <b style="color:var(--ink)">${P(d.ini).nome}</b></span><span>Frente: <b style="color:var(--ink)">${d.frente}</b></span><span>Valor: <b style="color:var(--ink)">${fmt(d.valor)}</b></span></div>
+    ${[['Venda', 'O que foi prometido ao cliente (entregas, prazos, condições)?'], ['Projeto', 'Quem é o decisor e o que ele considera sucesso?'], ['Pós-venda', 'Que oportunidades futuras apareceram na negociação?']].map(([p, q]) => `<label class="f" style="margin-bottom:12px"><b style="color:var(--redd)">${p}</b> · ${q}<textarea class="in" rows="2"></textarea></label>`).join('')}
+    <div class="row"><button class="btn p" onclick="toast('Prontuário salvo dentro do prazo.','ok')">Salvar prontuário</button><button class="btn">${icon('mic', null, 16)}Responder por áudio</button></div>`;
+  if (ABA === 'valores') conteudo = valoresHtml(d);
+  if (ABA === 'historico') conteudo = [...d.historico, { t: `Etapa atual: ${ETAPAS[d.etapa]}`, q: d.prazo, c: '#A1A1AA' }, { t: 'Lead criado ' + (d.canal === 'desafio' ? 'pela planilha do Desafio' : d.canal === 'reativados' ? 'pela resposta ao chatbot' : 'pelo formulário do site'), q: 'automático', c: '#A1A1AA' }].map((h) => `<div class="row" style="padding:10px 0;border-bottom:1px solid var(--line2);flex-wrap:nowrap;align-items:flex-start"><span class="dot" style="background:${h.c};margin-top:6px"></span><div><div style="font-size:14px">${esc(h.t)}</div><div class="small muted">${esc(h.q)}</div></div></div>`).join('') + '<p class="small muted">Histórico automático, somente leitura.</p>';
+  return `<div class="crumb"><a onclick="go('funil')">Funil</a> › ${{ passiva: 'Passiva', desafio: 'Desafio', reativados: 'Reativados' }[d.canal]} › <span style="color:var(--ink)">${esc(d.empresa)}</span></div>
+  <div class="card" style="display:flex;flex-direction:column;gap:20px">
+    <div class="row sp" style="align-items:flex-start">
+      <div><div class="row"><h1 style="font-size:28px">${esc(d.empresa)}</h1>${frTag(d.frente)}${d.base ? `<span class="pill p-b">Já está na base · ${esc(d.baseTxt || '')}</span>` : ''}${d.reat ? `<span class="pill p-g">Reativado · ${esc(d.reat)}</span>` : ''}</div>
+      <div style="margin-top:12px">${etiquetasHtml(d)}</div>
+      <div class="row" style="margin-top:12px;font-size:14px;color:#52525B">${av(d.ini)}${P(d.ini).nome} · ${P(d.ini).papel || 'vendedor'}<span style="margin-left:12px">${av(coordDe(P(d.ini).equipe))} Coordenação · ${P(d.ini).equipe}</span></div></div>
+      <div class="row"><span class="pill ${prazoCls}" style="padding:8px 12px;font-size:13px">${prazoTxt}</span>
+        ${verm && !ganho ? `<button class="btn o" onclick="abrirJust('${d.id}')">Justificar atraso</button>` : ''}
+        ${ganho || d.etapa >= 6 ? '' : `<button class="btn mob-only" onclick="avancarEtapa('${d.id}')">Avançar etapa →</button>`}
+        ${ganho ? '' : `<button class="btn g" onclick="abrirGanho('${d.id}')">Ganho</button><button class="btn p" onclick="abrirPerda('${d.id}')">Perdido</button>`}</div>
+    </div>
+    <div class="steps">${etapas}</div>
+  </div>
+  <div class="side">
+    <div class="stack" style="gap:16px">${blocos.map(([t, ls]) => `<div class="card" style="padding:20px 22px"><h2 style="font-size:15px;margin-bottom:8px">${t}</h2>${ls.map(([k, v]) => `<div class="kv"><span>${k}</span><span>${esc(v)}</span></div>`).join('')}</div>`).join('')}</div>
+    <div class="card" style="padding-top:8px"><div class="tabs" style="margin-bottom:18px">${abas.map(([k, l]) => `<button class="${ABA === k ? 'on' : ''}" onclick="setAba('${k}')">${l}</button>`).join('')}</div>${conteudo}</div>
+  </div>`;
+};
+function avancarEtapa(id) {
+  const d = DB.deals.find((x) => x.id === id); if (!d) return;
+  if (d.canal === 'passiva' && d.etapa === 0) { abrirAtribuir(id); return; }
+  const para = d.etapa + 1; if (para >= ETAPAS.length) return;
+  if (EXIGE[para]) { pedirCampos(id, para); return; }
+  moverDeal(id, para);
+}
+function abrirGanho(id) {
+  const d = DB.deals.find((x) => x.id === id);
+  modal(`<h2>Marcar como ganho</h2>
+    <div class="grid g2" style="gap:12px">
+      <label class="f">Valor final<input class="in" id="gv" value="${d.valorNeg || d.valor || 15000}"></label>
+      <label class="f">Dias úteis vendidos<input class="in" value="${d.dias || 25}"></label>
+      <label class="f">Frentes envolvidas<input class="in" value="${d.frente}"></label>
+      <label class="f">Início previsto<input class="in" type="date" value="2026-11-03"></label>
+    </div>
+    <label class="f">Proposta comercial (obrigatória)<div class="row sp" style="margin-top:6px;border:1px solid var(--greenb);background:var(--greens);border-radius:12px;padding:10px 12px;font-size:14px;color:var(--greend)"><span>Proposta ${esc(d.empresa)} v2.pdf</span><span class="small">anexada</span></div></label>
+    <div class="info">Ao confirmar: o projeto é criado em Meus projetos, na etapa “Vendido”; toda a Insper Jr. recebe no Atlas uma mensagem de parabéns com o vendedor, o cliente, a frente e o valor; o valor entra no Placar (e no ranking das frentes novas, se for Tech, Processos ou Direito) e na meta mensal da coordenação. O prontuário abre com prazo de 24 horas.</div>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn g" onclick="confirmarGanho('${id}')">Confirmar ganho</button></div>`);
+}
+function confirmarGanho(id) {
+  const d = DB.deals.find((x) => x.id === id);
+  const v = Number(String($('#gv').value).replace(/\D/g, '')) || d.valor || 15000;
+  d.valor = v; d.ganho = true; d.st = 'ok'; d.prazo = 'ganho';
+  const vend = d.ini;
+  if (BDRS.includes(vend)) DB.vendido[vend] += v;
+  if (BDRS.includes(vend) && FRENTES_NOVAS.includes(d.frente)) { const fr = DB.vendidoFrente[d.frente] = DB.vendidoFrente[d.frente] || {}; fr[vend] = fr[vend] || { v: 0, n: 0 }; fr[vend].v += v; fr[vend].n++; }
+  const eqV = P(vend).equipe; if (DB.metaCoord[eqV]) DB.metaCoord[eqV][MES_ATUAL] += v;
+  DB.mural.unshift({ ini: vend, cliente: d.empresa, frente: d.frente, valor: v, quando: 'agora' });
+  DB.notifs.unshift({ id: Date.now(), g: 'HOJE', cat: 'vendas', t: 'Venda fechada:', x: `${P(vend).nome} fechou com ${d.empresa} · ${d.frente} · ${fmt(v)}. Projeto criado em Meus projetos › Vendido e mensagem de parabéns enviada para toda a Insper Jr.`, q: 'agora', ac: ['Ver placar', 'placar'] });
+  d.historico.unshift({ t: 'Negócio ganho · ' + fmt(v), q: 'agora · ' + P(vend).nome, c: '#22C55E' });
+  DB.deals = DB.deals.filter((x) => x.id !== id); DB.deals.push(d);
+  fecharModal(); render(); confete(); toast(`Projeto ${d.empresa} criado em Meus projetos, na etapa “Vendido”.`, 'ok');
+  modal(`<div class="lbl">VENDA FECHADA · MENSAGEM PARA TODA A INSPER JR.</div><div class="big">Parabéns, ${P(vend).nome.split(' ')[0]}!</div>
+    <div style="font-size:18px;color:#E4E4E7">${P(vend).nome} fechou com ${esc(d.empresa)} · ${d.frente} · ${fmt(v)}</div>
+    <div style="font-size:14px;color:#A1A1AA;max-width:460px;line-height:1.6">Todos os membros veem esta mensagem no Atlas. O projeto foi criado em Meus projetos › Vendido e o valor entrou no Placar do comercial e na meta mensal da ${P(coordDe(P(vend).equipe)).nome}.</div>
+    <div class="row" style="justify-content:center"><button class="btn p" onclick="fecharModal();ABA='prontuario';go('ficha','${id}')">Escrever o prontuário (prazo: 24 h)</button><button class="btn" style="background:transparent;color:#fff;border-color:#52525B" onclick="fecharModal();go('placar')">Ver placar</button></div>`, 'party');
+}
+let MOT = 0;
+function abrirPerda(id) {
+  MOT = 0;
+  const html = () => `<h2>Marcar como perdido</h2><p class="muted" style="margin:0;font-size:14px">Escolha 1 dos 8 motivos (obrigatório). É o motivo que define quando o lead volta a ser procurado pelo chatbot.</p>
+    <div>${MOTIVOS.map(([m], i) => `<label class="opt ${MOT === i ? 'on' : ''}"><input type="radio" name="mot" ${MOT === i ? 'checked' : ''} onchange="MOT=${i};abrirPerdaRe('${id}')"> ${m}</label>`).join('')}</div>
+    <div class="grid g2" style="gap:12px"><label class="f">Data indicada pelo cliente (opcional)<input class="in" type="date"></label><label class="f">Observação (opcional)<input class="in"></label></div>
+    <div class="info b">${MOTIVOS[MOT][1]} A data indicada pelo cliente sempre vale no lugar do padrão.</div>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn p" onclick="confirmarPerda('${id}')">Confirmar perda</button></div>`;
+  window.abrirPerdaRe = () => { document.querySelector('.mb').innerHTML = html(); };
+  modal(html());
+}
+function confirmarPerda(id) {
+  const d = DB.deals.find((x) => x.id === id);
+  DB.deals = DB.deals.filter((x) => x.id !== id);
+  const [mot, txt, quando] = MOTIVOS[MOT];
+  if (quando) DB.perdidos.agend.unshift({ id: 'p' + Date.now(), empresa: d.empresa, frente: d.frente, motivo: mot, etapa: ETAPAS[d.etapa], pri: d.etapa >= 3 ? 'Alta' : d.etapa >= 2 ? 'Média' : 'Baixa', data: 'em ' + quando, grupo: quando === '10 dias' ? 'Este mês' : 'Depois', ini: d.ini });
+  else DB.perdidos.enc.unshift({ id: 'p' + Date.now(), empresa: d.empresa, frente: d.frente, motivo: mot, saida: 'Não volta', cls: 'p-n', data: 'hoje' });
+  fecharModal(); go('funil'); toast(`${d.empresa} registrado como perdido. ${txt}`, 'in');
+}
+let JUS = 1;
+function abrirJust(id) {
+  JUS = 1;
+  const co = isCoord((DB.deals.find((x) => x.id === id) || {}).ini);
+  const html = () => `<h2>Justificar atraso</h2><p class="muted" style="margin:0;font-size:14px">${co ? 'Prazo estourado. Card de coordenador não gera ponto; sem justificativa em 24 horas, a Diretoria de Vendas chama para uma conversa individual.' : 'Prazo estourado. Justifique em até 24 horas para não gerar ponto.'}</p>
+    <div>${JUSTS.map((m, i) => `<label class="opt ${JUS === i ? 'on' : ''}"><input type="radio" name="jus" ${JUS === i ? 'checked' : ''} onchange="JUS=${i};abrirJustRe()"> ${m}</label>`).join('')}</div>
+    ${JUS === 4 ? '<label class="f">Explique o motivo (vai para a diretora validar)<textarea class="in" rows="3"></textarea></label>' : ''}
+    ${JUS === 0 || JUS === 2 ? '<label class="f">Nova data<input class="in" type="date"></label>' : ''}
+    <div class="info">${JUS === 4 ? (co ? '“Outro motivo” vai para a caixa de validação da diretora. Se for rejeitado, vira conversa individual (coordenador não recebe ponto pelo CRM).' : '“Outro motivo” vai para a caixa de validação da diretora. Se for rejeitado, gera 1 ponto.') : 'Motivos da lista tiram o card do vermelho na hora, sem ponto.'}</div>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn d" onclick="confirmarJust('${id}')">Enviar justificativa</button></div>`;
+  window.abrirJustRe = () => { document.querySelector('.mb').innerHTML = html(); };
+  modal(html());
+}
+function confirmarJust(id) {
+  const d = DB.deals.find((x) => x.id === id);
+  if (JUS === 4) { DB.validacoes.unshift({ id: Date.now(), tipo: 'Justificativa', empresa: d.empresa, etapa: ETAPAS[d.etapa], ini: d.ini, texto: (document.querySelector('.mb textarea') || {}).value || 'Motivo descrito pelo vendedor.' }); d.st = 'am'; d.prazo = 'aguardando a diretora'; toast('Justificativa enviada para a diretora validar.', 'in'); }
+  else { d.st = 'ok'; d.prazo = 'justificado'; toast('Justificativa registrada. O card saiu do vermelho, sem ponto.', 'ok'); }
+  d.historico.unshift({ t: 'Justificativa: ' + JUSTS[JUS].split(' (')[0], q: 'agora', c: '#A1A1AA' });
+  fecharModal(); render();
+}
+
+// ================= PERDIDOS =================
+let PTAB = 'resp';
+function setPtab(t) { PTAB = t; render(); }
+const priCor = { Alta: '#DC2626', 'Média': '#F59E0B', Baixa: '#A1A1AA' };
+function assumir(id) {
+  const p = DB.perdidos.resp.find((x) => x.id === id);
+  const sel = document.getElementById('at-' + id); const para = sel ? sel.value : 'C2';
+  DB.perdidos.resp = DB.perdidos.resp.filter((x) => x.id !== id);
+  DB.deals.push(D('reativados', 1, p.empresa, para, p.frente, 0, 'nw', 'agora', { reat: p.motivo.toLowerCase() }));
+  DB.notifs = DB.notifs.filter((n) => !(n.cat === 'chatbot' && n.x.includes(p.empresa)));
+  render(); toast(`${p.empresa} foi para Qualificados na aba Reativados do funil, com ${P(para).nome}.`, 'ok');
+}
+function antecipar(id) {
+  const p = DB.perdidos.agend.find((x) => x.id === id);
+  DB.perdidos.agend = DB.perdidos.agend.filter((x) => x.id !== id);
+  DB.perdidos.contato.unshift({ id: p.id, empresa: p.empresa, frente: p.frente, motivo: p.motivo, tent: 1, enviada: 'hoje', prox: '2ª tentativa em 30 dias', ini: p.ini });
+  render(); toast(`Mensagem enviada agora para ${p.empresa} pelo WhatsApp da Júnior.`, 'ok');
+}
+function tirar(id) {
+  const p = DB.perdidos.agend.find((x) => x.id === id);
+  DB.perdidos.agend = DB.perdidos.agend.filter((x) => x.id !== id);
+  DB.perdidos.enc.unshift({ id: p.id, empresa: p.empresa, frente: p.frente, motivo: p.motivo, saida: 'Tirado da fila pela diretora', cls: 'p-n', data: 'hoje' });
+  render(); toast(`${p.empresa} saiu da fila.`, 'in');
+}
+function simularResposta(id) {
+  const p = DB.perdidos.contato.find((x) => x.id === id);
+  DB.perdidos.contato = DB.perdidos.contato.filter((x) => x.id !== id);
+  DB.perdidos.resp.unshift({ id: p.id, empresa: p.empresa, frente: p.frente, motivo: p.motivo, etapa: '—', ini: p.ini, resposta: 'Clicou em “Quero conversar”', quando: 'agora', tent: p.tent, prazo: 'Assumir em até 24 h', st: 'ok' });
+  DB.notifs.unshift({ id: Date.now(), g: 'HOJE', cat: 'chatbot', t: 'Lead respondeu ao chatbot:', x: `${p.empresa} clicou em “Quero conversar” e está no canal dos coordenadores.`, q: 'agora', ac: ['Assumir', 'perdidos'] });
+  PTAB = 'resp'; render(); toast(`${p.empresa} respondeu “Quero conversar”. Os coordenadores foram avisados.`, 'ok');
+}
+VIEWS.perdidos = (t) => {
+  if (t) { PTAB = t; DB.param = null; }
+  const L = DB.perdidos;
+  const defs = [['resp', 'Responderam', L.resp.length, 'Leads que clicaram em “Quero conversar”. Os coordenadores têm 24 horas para assumir; card vencido não gera ponto, mas leva a uma conversa individual com a Diretoria de Vendas. Ao assumir, o card vai para Qualificados na aba Reativados do funil, com todo o histórico.'],
+    ['agend', 'Agendados', L.agend.length, 'A fila: na data de retorno, o chatbot envia a mensagem pelo WhatsApp Business da Insper Jr., em nome do vendedor que atendeu, com três opções: “Quero conversar”, “Agora não” e “Não tenho interesse”. Dentro de cada grupo, quem recebeu proposta vem primeiro.'],
+    ['contato', 'Em contato', L.contato.length, 'Mensagem enviada, aguardando resposta. Sem resposta, até 2 novas tentativas, espaçadas em 30 dias (3 no total). “Agora não” devolve o lead para Agendados com nova mensagem em 3 meses; “Não tenho interesse” tira o lead da fila.'],
+    ['enc', 'Encerrados', L.enc.length, 'Leads que saíram da fila: sem interesse, sem resposta após 3 tentativas, fora do escopo ou lead inválido. Continuam na base de Contatos.']];
+  let corpo = '';
+  if (PTAB === 'resp') corpo = L.resp.map((p) => `<div class="row sp" style="padding:20px 26px;border-top:1px solid var(--line2);border-left:4px solid ${p.st === 'am' ? '#F59E0B' : '#22C55E'};align-items:center">
+      <div style="flex:1 1 380px;min-width:0" class="stack"><div class="row"><b style="font-size:15px">${esc(p.empresa)}</b><span class="tag">${p.frente}</span><span class="small muted">${p.motivo} · perdido em ${p.etapa} · vendedor original ${P(p.ini).nome}</span></div>
+      <div style="font-size:14px;background:var(--greens);border:1px solid #DCFCE7;border-radius:12px;padding:9px 13px;max-width:560px">${esc(p.resposta)}</div>
+      <div class="small muted">Respondeu ${p.quando} · ${p.tent}ª tentativa</div></div>
+      <div class="row"><span class="pill ${p.st === 'am' ? 'p-a' : 'p-g'}" style="padding:6px 10px">${p.prazo}</span>
+      <label class="small muted row" style="gap:6px">Atribuir a<select class="in" id="at-${p.id}" style="width:auto;margin:0;padding:7px 10px"><option value="C2">Mim (coordenador)</option><option value="AL">Ana Lima</option><option value="TP">Theo Prado</option></select></label>
+      <button class="btn p" onclick="assumir('${p.id}')">Assumir</button></div></div>`).join('') || '<div class="empty" style="padding:40px">Nenhum lead esperando. Quando alguém responder ao chatbot, aparece aqui.</div>';
+  if (PTAB === 'agend') corpo = `<div>
+      <div>${['Esta semana', 'Este mês', 'Depois'].map((g) => { const ls = L.agend.filter((x) => x.grupo === g).sort((a, b) => ['Alta', 'Média', 'Baixa'].indexOf(a.pri) - ['Alta', 'Média', 'Baixa'].indexOf(b.pri)); return ls.length ? `<div class="row sp" style="padding:12px 26px;background:#FAFAFB;border-top:1px solid var(--line);font-size:13px"><b>${g}</b><span class="muted">${ls.length} mensage${ls.length > 1 ? 'ns' : 'm'}</span></div>
+        <div class="tblw"><table class="tbl"><thead><tr><th style="padding-left:26px">Empresa</th><th>Motivo da perda</th><th>Perdido em</th><th>Prioridade</th><th>Mensagem sai</th><th></th></tr></thead><tbody>
+        ${ls.map((p) => `<tr><td style="padding-left:26px"><span class="who">${av(p.ini)}<span><b style="font-weight:500">${esc(p.empresa)}</b> <span class="small muted">· ${p.frente}</span></span></span></td><td>${p.motivo}</td><td class="muted">${p.etapa}</td><td><span class="row" style="gap:7px"><span class="dot" style="background:${priCor[p.pri]}"></span>${p.pri}</span></td><td>${p.data}</td><td><span class="row" style="flex-wrap:nowrap"><button class="btn s" onclick="antecipar('${p.id}')">Antecipar</button><button class="btn s ghost" onclick="tirar('${p.id}')">Tirar</button></span></td></tr>`).join('')}
+        </tbody></table></div>` : ''; }).join('')}</div>
+      <div class="grid g2" style="border-top:1px solid var(--line);padding:22px 26px;gap:32px"><div>
+        <div class="row sp"><b style="font-size:15px">Mensagens por semana</b><span class="small muted">só a diretora</span></div>
+        <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:130px;margin-top:14px">${[['13/10', 6], ['20/10', 4], ['27/10', 5], ['3/11', 9], ['10/11', 3], ['17/11', 4]].map(([l, n]) => `<div style="display:flex;flex-direction:column;align-items:center;gap:6px;justify-content:flex-end;height:130px"><span class="small b6">${n}</span><div style="width:100%;max-width:30px;height:${n * 10}px;background:${n >= 8 ? '#F59E0B' : '#D4D4D8'};border-radius:6px 6px 2px 2px"></div><span class="small muted">${l}</span></div>`).join('')}</div>
+        </div><div class="stack small" style="gap:7px;color:#52525B"><b style="color:var(--ink);font-size:13px">Quando cada motivo volta</b><span>Sem orçamento / achou caro · 60 dias</span><span>Fechou com outra / internamente · 5 meses</span><span>Parou de responder · 6 meses</span><span>Pediu para retomar · data do cliente ou 10 dias</span><span>Não fidelizado · 6 meses</span></div>
+      </div></div>`;
+  if (PTAB === 'contato') corpo = `<div class="tblw"><table class="tbl"><thead><tr><th style="padding-left:26px">Empresa</th><th>Motivo da perda</th><th>Tentativa</th><th>Enviada em</th><th>Se não responder</th><th>Demo</th></tr></thead><tbody>
+      ${L.contato.map((p) => `<tr><td style="padding-left:26px"><b style="font-weight:500">${esc(p.empresa)}</b> <span class="small muted">· ${p.frente}</span></td><td>${p.motivo}</td><td><span style="letter-spacing:3px;color:var(--red)">${'●'.repeat(p.tent)}${'○'.repeat(3 - p.tent)}</span> <span class="small muted">${p.tent}/3</span></td><td class="muted">${p.enviada}</td><td class="muted">${p.prox}</td><td><button class="btn s" onclick="simularResposta('${p.id}')">Simular resposta</button></td></tr>`).join('')}
+      </tbody></table></div>`;
+  if (PTAB === 'enc') corpo = `<div class="tblw"><table class="tbl"><thead><tr><th style="padding-left:26px">Empresa</th><th>Motivo da perda</th><th>Por que saiu da fila</th><th>Data</th></tr></thead><tbody>
+      ${L.enc.map((p) => `<tr><td style="padding-left:26px"><b style="font-weight:500">${esc(p.empresa)}</b> <span class="small muted">· ${p.frente}</span></td><td>${p.motivo}</td><td><span class="pill ${p.cls}">${p.saida}</span></td><td class="muted">${p.data}</td></tr>`).join('')}
+      </tbody></table></div>`;
+  const d = defs.find((x) => x[0] === PTAB);
+  return `<div class="head"><div><h1>Perdidos</h1><p class="sub">Leads que voltam a ser procurados pelo WhatsApp Business da Insper Jr. · cerca de R$ 0,35 por mensagem</p></div>
+    <div class="row"><select class="in" style="width:auto;margin:0" aria-label="Motivo"><option>Todos os motivos</option>${MOTIVOS.slice(0, 6).map((m) => `<option>${m[0]}</option>`).join('')}<option>Não fidelizado</option></select><select class="in" style="width:auto;margin:0" aria-label="Prioridade"><option>Todas as prioridades</option><option>Alta · recebeu proposta</option><option>Média · fez entendimento</option><option>Baixa · demais</option></select></div></div>
+  <div class="grid g4">
+    <div class="card kpi" style="border-color:var(--redb)"><div class="l">Responderam</div><div class="v" style="color:var(--red)">${L.resp.length}</div><div class="s">aguardando um coordenador</div></div>
+    <div class="card kpi"><div class="l">Mensagens esta semana</div><div class="v">${L.agend.filter((x) => x.grupo === 'Esta semana').length}</div><div class="s">por ordem de prioridade</div></div>
+    <div class="card kpi"><div class="l">Na fila</div><div class="v">${L.agend.length}</div><div class="s">aguardando a data de retorno</div></div>
+    <div class="card kpi"><div class="l">Reativados no semestre</div><div class="v" style="color:var(--green)">${DB.deals.filter((x) => x.canal === 'reativados').length}</div><div class="s">estão na aba Reativados do funil</div></div>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div class="tabs" style="padding:8px 14px 0">${defs.map(([k, l, n]) => `<button class="${PTAB === k ? 'on' : ''}" onclick="setPtab('${k}')">${l}<span class="cnt ${k === 'resp' && n ? 'hot' : ''}">${n}</span></button>`).join('')}</div>
+    <div style="padding:14px 26px;background:#FCFCFD;border-bottom:1px solid var(--line);font-size:13px;color:#52525B">${d[3]}</div>
+    ${corpo}
+  </div>`;
+};
+
+// ================= FIDELIZAÇÃO =================
+const FCOLS = [{ nome: 'Envio do TEP', sub: 'Entrou no canal · entregue × prometido, NPS e newsletter', c: ['#FEF2F2', '#991B1B', '#DC2626'] }, { nome: 'Contato de 15 dias', sub: 'Feedback geral, sem intenção de venda', c: ['#EEF2FF', '#3730A3', '#6366F1'] }, { nome: 'Contato de 45 dias', sub: 'Pesquisa de impacto e depoimento', c: ['#F5F3FF', '#5B21B6', '#8B5CF6'] }, { nome: 'Contato de 90 dias', sub: 'Segundo entendimento e indicação a parceiros', c: ['#FFF7ED', '#9A3412', '#F97316'] }, { nome: 'Decisão', sub: 'Gerou nova oportunidade?', c: ['#F0FDF4', '#166534', '#22C55E'] }];
+const FMSG = ['', 'Entregue × prometido, NPS e newsletter registrados. O contato de 15 dias conta a partir do Envio do TEP.', 'Contato de 15 dias registrado. Preencha o prontuário em até 24 h.', 'Contato de 45 dias registrado. Preencha o prontuário em até 24 h.', 'Contato de 90 dias registrado. Hora de decidir: nova oportunidade ou não fidelizado.'];
+let FDRAG = null;
+function avancarF(id) { const f = DB.fidel.find((x) => x.id === id); if (f.col >= 4) return; f.col++; f.st = 'nw'; f.prazo = 'registrado agora'; if (f.col === 1 && !f.nps) f.nps = 9; render(); toast(`${f.cliente}: ${FMSG[f.col]}`, 'ok'); }
+function registrarF(id) {
+  const f = DB.fidel.find((x) => x.id === id);
+  modal(`<h2>${f.col === 0 ? 'Registrar apresentação final' : 'Registrar ' + FCOLS[f.col].nome.toLowerCase()}</h2><p class="muted" style="margin:0;font-size:14px">${esc(f.cliente)} · ${f.projeto}</p>
+    ${f.col === 0 ? '<label class="f">O que foi entregue × o que foi prometido<textarea class="in" rows="3"></textarea></label><label class="f">NPS da apresentação (0 a 10)<input class="in" id="fNps" type="number" min="0" max="10" value="9"></label><label class="chk"><input type="checkbox" id="fNews" checked> Cliente autorizou receber a newsletter</label>' : '<label class="f">Data do contato<input class="in" type="date" value="2026-10-14"></label><label class="f">Como foi (vai para o prontuário)<textarea class="in" rows="3"></textarea></label>'}
+    ${f.col === 2 ? '<div class="grid g2" style="gap:12px"><label class="f">Pesquisa de impacto (o que o cliente aplicou)<input class="in"></label><label class="f">Depoimento pedido ao cliente<input class="in"></label></div>' : ''}
+    ${f.col === 3 ? '<label class="f">Indicação a empresa parceira da Insper Jr. (opcional)<input class="in" placeholder="Ex.: escritório parceiro para a demanda de RH"></label>' : ''}
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn d" onclick="salvarF('${id}')">Salvar e avançar</button></div>`);
+}
+function salvarF(id) {
+  const f = DB.fidel.find((x) => x.id === id); const n = document.getElementById('fNews'); const p = document.getElementById('fNps');
+  if (n) f.news = n.checked; if (p && p.value !== '') f.nps = Number(p.value);
+  fecharModal(); avancarF(id);
+}
+function decisaoF(id, nova) {
+  const f = DB.fidel.find((x) => x.id === id);
+  DB.fidel = DB.fidel.filter((x) => x.id !== id);
+  if (nova) { DB.deals.push(D('passiva', 1, f.cliente + ' (recompra)', f.ini, f.frente, 0, 'nw', 'agora', { recompra: true, base: true, baseTxt: 'cliente do projeto ' + f.projeto })); toast(`Nova oportunidade criada em Qualificados, com origem “recompra”.`, 'ok'); }
+  else { DB.perdidos.agend.push({ id: 'p' + Date.now(), empresa: f.cliente, frente: f.frente, motivo: 'Não fidelizado', etapa: 'Fidelização · 90 dias', pri: 'Média', data: 'em 6 meses', grupo: 'Depois', ini: f.ini }); toast(`${f.cliente} segue recebendo a newsletter e recebe um novo contato em 6 meses (fila de Perdidos).`, 'in'); }
+  render();
+}
+VIEWS.fidelizacao = () => `<div class="head"><div><h1>Fidelização</h1><p class="sub">${DB.fidel.length} clientes em acompanhamento · arraste o card para registrar o próximo contato</p></div>
+  <div class="row"><div class="card kpi" style="padding:12px 18px"><div class="l">Contatos no prazo</div><div class="v" style="font-size:22px;margin-top:2px">92%</div></div><div class="card kpi" style="padding:12px 18px"><div class="l">NPS médio</div><div class="v" style="font-size:22px;margin-top:2px">9,1</div></div><div class="card kpi" style="padding:12px 18px"><div class="l">Recompra no semestre</div><div class="v" style="font-size:22px;margin-top:2px">2</div></div></div></div>
+  <div class="note">${icon('info')}Clique no card para abrir o prontuário completo do cliente. O cliente entra aqui sozinho quando o coordenador de projetos move o projeto para “Envio do TEP” em Meus projetos, o que só acontece depois da apresentação final: o vendedor registra o que foi entregue × o que foi prometido, o NPS e a autorização da newsletter, e os contatos de 15, 45 e 90 dias contam a partir dessa data. Nenhuma data é registrada à mão. Os contatos só avançam, um por vez, e o prontuário deve ser preenchido em até 24 horas depois de cada contato.</div>
+  <div class="card" style="padding:22px 26px"><div class="row sp"><h2>Contato parcial · projetos em andamento</h2><span class="small muted">antes da fidelização</span></div><p class="hint">Quando o projeto entra “Em andamento” em Meus projetos, o Atlas calcula a data do contato parcial: a metade do caminho entre o início e a banca. Antes do contato, o vendedor conversa com o coordenador do projeto.</p>
+    <div class="tblw"><table class="tbl"><thead><tr><th>Cliente</th><th>Vendedor</th><th>Em andamento desde</th><th>Banca</th><th>Contato parcial</th></tr></thead><tbody>
+    ${DB.parciais.map((x) => `<tr><td><b style="font-weight:500">${esc(x.cliente)}</b> <span class="small muted">· ${x.projeto}</span> ${frTag(x.frente)}</td><td><span class="who">${av(x.ini)}${P(x.ini).nome}</span></td><td class="muted">${x.inicio}</td><td class="muted">${x.banca}</td><td><b>${x.data}</b> <span class="pill ${x.st === 'am' ? 'p-a' : 'p-n'}">${x.sit}</span></td></tr>`).join('')}
+    </tbody></table></div></div>
+  <div class="kan">${FCOLS.map((c, i) => { const cs = DB.fidel.filter((f) => f.col === i); return `<div class="col fcol" data-col="${i}">
+    <div class="colh"><span class="pill" style="background:${c.c[0]};color:${c.c[1]};font-size:13px"><span class="dot" style="background:${c.c[2]}"></span>${c.nome}</span><span class="small muted">${cs.length}</span></div>
+    <div class="colt">${c.sub}</div>
+    ${cs.map((f) => `<div class="dc fz ${stCls[f.st]}" draggable="true" data-id="${f.id}" onclick="go('cliente','${f.id}')" title="Abrir prontuário do cliente">
+      <div class="lbls">${(f.escopos || []).map((e) => barra(e)).join('')}</div>
+      <div class="t"><span>${esc(f.cliente)}</span>${av(f.ini)}</div><div class="small muted" style="margin-top:3px">${f.projeto}</div>
+      <div class="tags">${frTag(f.frente)}${f.nps ? `<span class="pill p-g">NPS ${f.nps}</span>` : ''}${f.news ? '<span class="pill p-n">Newsletter</span>' : ''}</div>
+      <div class="b"><span>Envio do TEP ${f.apres}</span><span class="st-${f.st}">${f.prazo}</span></div>
+      ${i === 4 ? `<div class="row" style="margin-top:12px;flex-wrap:nowrap"><button class="btn s g" style="flex:1;justify-content:center" onclick="event.stopPropagation();decisaoF('${f.id}',true)">Nova oportunidade</button><button class="btn s" style="flex:1;justify-content:center" onclick="event.stopPropagation();decisaoF('${f.id}',false)">Não fidelizado</button></div>` : `<button class="btn s" style="width:100%;justify-content:center;margin-top:12px" onclick="event.stopPropagation();registrarF('${f.id}')">${i === 0 ? 'Registrar entregue × prometido' : 'Registrar contato'}</button>`}
+    </div>`).join('') || '<div class="empty">Nenhum cliente</div>'}</div>`; }).join('')}</div>`;
+VIEWS.fidelizacao_after = () => {
+  document.querySelectorAll('.fcol .dc').forEach((el) => {
+    el.addEventListener('dragstart', (e) => { FDRAG = el.dataset.id; el.classList.add('dragging'); try { e.dataTransfer.setData('text/plain', FDRAG); } catch (er) {} });
+    el.addEventListener('dragend', () => { el.classList.remove('dragging'); document.querySelectorAll('.col.over').forEach((c) => c.classList.remove('over')); });
+  });
+  document.querySelectorAll('.fcol').forEach((col) => {
+    col.addEventListener('dragover', (e) => { e.preventDefault(); col.classList.add('over'); });
+    col.addEventListener('dragleave', (e) => { if (!col.contains(e.relatedTarget)) col.classList.remove('over'); });
+    col.addEventListener('drop', (e) => {
+      e.preventDefault(); col.classList.remove('over');
+      const f = DB.fidel.find((x) => x.id === FDRAG); FDRAG = null; if (!f) return;
+      const para = Number(col.dataset.col);
+      if (para === f.col) return;
+      if (para < f.col) { toast('Os contatos de fidelização só avançam.', 'er'); return; }
+      if (para > f.col + 1) { toast(`Um contato por vez: registre o ${FCOLS[f.col + 1].nome.toLowerCase()} primeiro.`, 'er'); return; }
+      avancarF(f.id);
+    });
+  });
+};
+
+// ================= CALENDÁRIO =================
+VIEWS.agenda = () => `<div class="head"><div><h1>Calendário comercial</h1><p class="sub">Semana de 13 a 17 de outubro · separado do calendário geral do Atlas</p></div>
+  <div class="row"><select class="in" style="width:auto;margin:0"><option>Toda a área</option><option>Minha equipe</option><option>Só eu</option></select><button class="btn p" onclick="abrirReuniao()">${icon('plus', '#fff', 16)}Nova reunião</button></div></div>
+  <div class="legend"><span><i style="background:var(--blues);border-color:#3B82F6"></i>Entendimento</span><span><i style="background:#F5F3FF;border-color:#8B5CF6"></i>Apresentação de proposta</span><span><i style="background:var(--ambers);border-color:#F59E0B"></i>Negociação</span><span><i style="background:var(--greens);border-color:#22C55E"></i>Pós-venda (contato parcial e fidelização)</span></div>
+  <div class="cal">${['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'].map((n, i) => `<div class="calday ${i === 1 ? 'today' : ''}"><h3>${n}<span>${13 + i}/10</span></h3><button class="glink small" style="padding:0 0 10px" onclick="abrirReuniao(null,${i})">+ Adicionar</button>
+    ${DB.eventos.map((e, k) => [e, k]).filter(([e]) => e.dia === i).sort((a, b) => a[0].hora.localeCompare(b[0].hora)).map(([e, k]) => `<div class="ev ${e.cls}" onclick="verEvento(${k})"><span class="small muted">${e.hora}${e.fim ? '–' + e.fim : ''} · ${P(e.ini).nome}</span><b>${esc(e.titulo || e.empresa)}</b><span class="small">${esc(e.tipo)}${(e.guests || []).length ? ' · ' + e.guests.length + ' convidados' : ''}</span></div>`).join('') || '<div class="empty">Sem reuniões</div>'}</div>`).join('')}</div>
+  <div class="note">${icon('info')}Cada reunião marcada aqui gera o link do Google Meet e o convite por e-mail ao cliente, e a data da reunião define o prazo das etapas de Entendimento e Proposta validada. O contato parcial é marcado pelo Atlas na metade entre o início do projeto e a banca, e os contatos de fidelização contam a partir da data em que o projeto vai para “Envio do TEP” em Meus projetos.</div>`;
+
+// ================= PAINEL =================
+VIEWS.painel = () => {
+  const ds = DB.deals.filter((d) => !d.ganho);
+  const porEtapa = ETAPAS.map((n, i) => [n, ds.filter((d) => d.etapa === i).length]);
+  const mx = Math.max(...porEtapa.map((x) => x[1]), 1);
+  const eq = equipes();
+  return `<div class="head"><div><h1>Painel</h1><p class="sub">Semestre 2026.2 · toda a área comercial</p></div><button class="btn" onclick="toast('Exportado para Excel.','ok')">${icon('down', null, 16)}Exportar para Excel</button></div>
+  <a class="card row sp" style="text-decoration:none;color:inherit;cursor:pointer;padding:20px 26px" onclick="go('placar')"><span><b style="font-size:16px">Rankings e resultado das equipes</b><br><span class="small muted">Ficam no Placar do comercial, aberto para toda a Insper Jr.</span></span><span class="b6" style="color:var(--red)">Abrir placar →</span></a>
+  <div class="grid g2" style="align-items:start">
+    <div class="card"><h2>Resultados</h2><p class="hint">${fmt(BDRS.reduce((s, b) => s + DB.vendido[b], 0))} vendidos de ${fmt(DB.metaSemestre)} · meta de R$ 20 mil por equipe por mês</p>
+      ${eq.map((e) => `<div style="margin-bottom:14px"><div class="row sp small"><b style="font-weight:500">${e.nome}</b><span class="muted">${fmt(e.valor)} / R$ 120.000</span></div><div class="bar" style="height:10px;margin-top:6px"><i style="width:${Math.min(100, e.valor / 120000 * 100)}%;background:${e.valor / 120000 > .35 ? '#16A34A' : '#F59E0B'}"></i></div></div>`).join('')}</div>
+    <div class="card"><h2>Funil</h2><p class="hint">Negócios em andamento por etapa</p>
+      ${porEtapa.map(([n, v]) => `<div style="display:grid;grid-template-columns:160px minmax(0,1fr) 30px;gap:10px;align-items:center;margin-bottom:9px;font-size:13px"><span class="muted">${n}</span><div style="height:18px;background:#F4F4F5;border-radius:5px"><div style="height:18px;width:${v / mx * 100}%;background:#27272F;border-radius:5px"></div></div><b style="text-align:right">${v}</b></div>`).join('')}
+      <p class="small muted" style="margin:8px 0 0">Tempo médio até o fechamento: 31 dias</p></div>
+    <div class="card"><h2>Uso do CRM</h2><p class="hint">Disciplina de registro da área</p>
+      <div class="grid g3" style="gap:12px;margin-bottom:18px">${[['Atualizados no prazo', '87%'], ['Justificativas no mês', '23'], ['Rejeitadas', '2']].map(([l, v]) => `<div style="background:#F7F7F9;border-radius:14px;padding:12px 14px"><div class="small muted">${l}</div><div style="font-size:22px;font-weight:700;margin-top:4px">${v}</div></div>`).join('')}</div>
+      <div class="small muted" style="margin-bottom:8px">Leads ativos por BDR <span style="color:#A1A1AA">· visão da diretora</span></div>
+      <div class="chips" style="margin-bottom:18px">${BDRS.map((b) => `<span class="chip">${P(b).nome} <b>${ds.filter((d) => d.ini === b).length}</b></span>`).join('')}</div>
+      <div class="small muted" style="margin-bottom:8px">Pontos no semestre (limite: 6) · BDRs pelo registro no CRM, coordenadores pela meta mensal</div>
+      ${BDRS.concat(COORDS).filter((k) => ptsDe(k)).sort((a, b) => ptsDe(b) - ptsDe(a)).map((k) => { const n = ptsDe(k); return `<div style="display:grid;grid-template-columns:170px minmax(0,1fr) 30px;gap:10px;align-items:center;margin-bottom:7px;font-size:13px;cursor:pointer" onclick="go('pessoa','${k}')"><span>${P(k).nome}${isCoord(k) ? ' <span class="muted">· meta</span>' : ''}</span><div class="pts">${[0, 1, 2, 3, 4, 5].map((i) => `<i class="${i < n ? 'on ' + (n >= 5 ? 'hi' : '') : ''}"></i>`).join('')}</div><b style="text-align:right">${n}</b></div>`; }).join('')}</div>
+    <div class="card"><h2>Perdas e chatbot</h2><p class="hint">Por que perdemos e quanto o chatbot recupera · 64 mensagens × R$ 0,35 ≈ R$ 22,40</p>
+      <div class="grid g2" style="gap:20px"><div>${[['Sem orçamento', 7], ['Parou de responder', 5], ['Achou caro', 4], ['Fechou com outra', 3], ['Fora do escopo', 2]].map(([n, v]) => `<div style="margin-bottom:10px;font-size:13px"><div class="row sp"><span>${n}</span><b>${v}</b></div><div class="bar" style="height:6px;margin-top:4px"><i style="width:${v / 7 * 100}%"></i></div></div>`).join('')}</div>
+      <div>${[['100%', '#3F3F46', 64, 'mensagens enviadas'], ['55%', '#52525B', 21, 'responderam'], ['30%', '#DC2626', 9, 'voltaram a receber proposta'], ['18%', '#991B1B', 4, 'fecharam']].map(([w, c, n, l]) => `<div class="row" style="margin-bottom:8px;flex-wrap:nowrap"><div style="height:30px;width:${w};min-width:34px;background:${c};border-radius:7px;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;padding:0 10px">${n}</div><span class="small muted" style="white-space:nowrap">${l}</span></div>`).join('')}</div></div></div>
+    <div class="card"><h2>Canais</h2><p class="hint">De onde vêm os leads e quanto convertem</p>
+      <div class="tblw"><table class="tbl"><thead><tr><th>Canal</th><th>Leads</th><th>Ganhos</th><th>Conversão</th></tr></thead><tbody>${[['Desafio da Prospecção', 58, 9, '16%'], ['Passiva', 31, 4, '13%'], ['Reativados (chatbot)', 9, 4, '44%'], ['Recompra (fidelização)', 3, 2, '67%']].map((r) => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td class="b6">${r[3]}</td></tr>`).join('')}</tbody></table></div>
+      <div class="small muted" style="margin:14px 0 8px">Palavras-chave que mais trouxeram leads da passiva</div><div class="chips">${['consultoria financeira pme', 'planejamento estratégico', 'abrir empresa', 'pesquisa de mercado'].map((p) => `<span class="tag">${p}</span>`).join('')}</div></div>
+    <div class="card"><h2>Fidelização</h2><p class="hint">O pós-venda está acontecendo?</p>
+      <div class="grid g2" style="gap:12px">${[['Contatos no prazo', '92%', '24 de 26 contatos'], ['NPS médio', '9,1', '11 respostas'], ['Taxa de recompra', '22%', '2 de 9 clientes'], ['Não fidelizados', '3', 'na fila de perdidos']].map(([l, v, s]) => `<div style="background:#F7F7F9;border-radius:14px;padding:14px 16px"><div class="small muted">${l}</div><div style="font-size:24px;font-weight:700;margin-top:4px">${v}</div><div class="small muted">${s}</div></div>`).join('')}</div></div>
+  </div>
+  <div class="row sp" style="margin-top:8px"><h2 style="margin:0;font-size:22px;letter-spacing:-.02em">Frentes, preço, capacitação e campanhas</h2></div>
+  <div class="grid g2" style="align-items:start">
+    <div class="card"><h2>Vendas por frente e escopo</h2><p class="hint">Vendido no semestre e em negociação hoje · vem das etiquetas de escopo</p>
+      ${painelFrentes()}</div>
+    <div class="card"><h2>Negociação e preço</h2><p class="hint">Diferença entre o valor da proposta e o valor negociado</p>
+      ${painelPreco()}</div>
+    <div class="card"><h2>Capacitação da turma</h2><p class="hint">Provas, proposta pela rubrica e 3 entendimentos acompanhados · meta: todos liberados até a entrega intermediária do trainee</p>
+      ${painelCapacitacao()}</div>
+    <div class="card" style="grid-column:1/-1"><h2>Campanhas da passiva</h2><p class="hint">Custo e retorno de cada anúncio · depende da origem por campanha no lead</p>
+      ${painelCampanhas()}</div>
+  </div>
+  <p class="small muted" style="margin:0">Todos os números desta tela são fictícios, usados só para ilustrar o layout.</p>`;
+};
+
+// ================= CONTATOS =================
+const EMPRESAS = [
+  { nome: 'Andrade Metais', setor: 'Metalurgia', porte: 'Médio', sit: ['Em negociação', 'p-b'], pessoa: 'Roberto Andrade · diretor financeiro', news: 'sim', tl: [['Negócio atual: Proposta elaborada', 'Out/2026 · Ana Lima · R$ 22.000', '#3B82F6'], ['Perdido: achou caro', 'Mar/2026 · Bruno Sato · voltou pelo site em set/2026', '#DC2626'], ['Primeiro contato pelo Desafio da Prospecção', 'Fev/2026 · grupo 4', '#A1A1AA']] },
+  { nome: 'Vinícola Serra Alta', setor: 'Bebidas', porte: 'Pequeno', sit: ['Em fidelização', 'p-g'], pessoa: 'Helena Moraes · sócia', news: 'sim', tl: [['Fidelização: contato de 90 dias em 6 dias', 'NPS 10 · depoimento coletado', '#22C55E'], ['Projeto TERROIR I em Envio do TEP: entrou na fidelização', 'Jul/2026 · Business · 30 dias úteis', '#8B5CF6'], ['Ganho pela passiva', 'Abr/2026 · Luiza Faria · R$ 31.500', '#3B82F6']] },
+  { nome: 'Padaria Trigal', setor: 'Alimentação', porte: 'Micro', sit: ['Em fidelização', 'p-g'], pessoa: 'Márcia Lopes · proprietária', news: 'sim', tl: [['Fidelização: contato de 45 dias vence quarta', 'Pesquisa de impacto e depoimento', '#22C55E'], ['Projeto FERMENTO I em Envio do TEP: entrou na fidelização', 'Ago/2026 · Business', '#8B5CF6']] },
+  { nome: 'Kora Make', setor: 'Cosméticos', porte: 'Pequeno', sit: ['Perdido · na fila', 'p-r'], pessoa: 'Igor Teles · gerente comercial', news: 'não', tl: [['Chatbot: mensagem em 30 out', 'Prioridade baixa', '#F59E0B'], ['Perdido: parou de responder', 'Abr/2026 · Theo Prado', '#DC2626']] },
+  { nome: 'Casa Brava Arquitetura', setor: 'Arquitetura', porte: 'Pequeno', sit: ['Em projeto', 'p-v'], pessoa: 'Paula Rezende · sócia', news: 'sim', tl: [['Contato parcial em 3 nov', 'Data calculada pelo Atlas: metade do caminho entre o início do projeto e a banca', '#22C55E'], ['Projeto ESBOÇO II em andamento', 'Recompra gerada pela fidelização', '#8B5CF6']] },
+  { nome: 'Ótica Visão Clara', setor: 'Varejo', porte: 'Micro', sit: ['Lead', 'p-n'], pessoa: 'Sérgio Lima · proprietário', news: 'não', tl: [['Qualificado no Desafio da Prospecção', 'Out/2026 · grupo 2 · Ana Lima', '#A1A1AA']] }
+];
+function selContato(i) { DB.contatoSel = i; render(); }
+VIEWS.contatos = () => { const s = EMPRESAS[DB.contatoSel]; return `<div class="head"><div><h1>Contatos</h1><p class="sub">612 empresas · 874 pessoas · a memória de todos com quem a Júnior já falou</p></div>
+  <div class="row"><input class="in" style="width:260px;max-width:100%;margin:0" placeholder="Buscar por nome, CNPJ ou e-mail"><button class="btn d" onclick="toast('Empresa nova: o CRM confere o CNPJ antes de criar.','in')">+ Nova empresa</button></div></div>
+  <div class="note a row sp"><span><b>2 possíveis duplicatas</b> encontradas pelo mesmo e-mail ou telefone</span><button class="btn s" onclick="toast('Duplicatas juntadas. O histórico das duas foi mantido.','ok')">Revisar e juntar</button></div>
+  <div class="grid g-cont" style="align-items:start">
+    <div class="card" style="padding:0;overflow:hidden"><div class="tabs" style="padding:8px 14px 0"><button class="on">Empresas</button><button>Pessoas</button></div>
+      <div class="tblw"><table class="tbl"><thead><tr><th style="padding-left:24px">Empresa</th><th>Setor</th><th>Porte</th><th>Situação</th></tr></thead><tbody>
+      ${EMPRESAS.map((e, i) => `<tr class="click" onclick="selContato(${i})" style="${i === DB.contatoSel ? 'background:var(--reds)' : ''}"><td style="padding-left:24px;font-weight:500">${e.nome}</td><td class="muted">${e.setor}</td><td class="muted">${e.porte}</td><td><span class="pill ${e.sit[1]}">${e.sit[0]}</span></td></tr>`).join('')}
+      </tbody></table></div></div>
+    <div class="card"><div class="row sp" style="align-items:flex-start"><div><h2 style="font-size:20px">${s.nome}</h2><p class="small muted" style="margin:4px 0 0">CNPJ 00.000.000/0001-00 · ${s.setor} · porte ${s.porte}</p></div><span class="pill ${s.sit[1]}">${s.sit[0]}</span></div>
+      <div class="row" style="margin-top:14px"><span class="tag">${s.pessoa}</span><span class="tag">Newsletter: ${s.news}</span></div>
+      <h3 style="margin:22px 0 8px;font-size:14px">Linha do tempo com a Júnior</h3>
+      ${s.tl.map(([t, x, c]) => `<div class="row" style="padding:11px 0;border-top:1px solid var(--line2);flex-wrap:nowrap;align-items:flex-start"><span class="dot" style="background:${c};margin-top:6px;width:9px;height:9px"></span><div><div style="font-size:14px;font-weight:500">${t}</div><div class="small muted">${x}</div></div></div>`).join('')}</div>
+  </div>`; };
+
+// ================= CONFIGURAÇÕES =================
+function desligar(ini) {
+  modal(`<h2>Desligar ${P(ini).nome}</h2><div class="info">O acesso só é fechado depois que a carteira for distribuída. ${P(ini).nome.split(' ')[0]} tem ${DB.deals.filter((d) => d.ini === ini).length} negócios e ${DB.fidel.filter((f) => f.ini === ini).length} clientes em fidelização.</div>
+    <p style="margin:0;font-size:14px;line-height:1.6">O CRM divide os cards aleatoriamente entre os BDRs ativos. Depois, a diretora pode ajustar casos pontuais. Cada card recebido passa a contar prazo para o novo responsável.</p>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn p" onclick="distribuir('${ini}')">Distribuir carteira e desligar</button></div>`);
+}
+function distribuir(ini) {
+  const outros = BDRS.filter((b) => b !== ini); let n = 0;
+  DB.deals.filter((d) => d.ini === ini).forEach((d) => { d.ini = outros[Math.floor(Math.random() * outros.length)]; n++; });
+  DB.fidel.filter((f) => f.ini === ini).forEach((f) => { f.ini = outros[Math.floor(Math.random() * outros.length)]; n++; });
+  fecharModal(); toast(`${n} cards de ${P(ini).nome} distribuídos aleatoriamente. Acesso fechado.`, 'ok');
+}
+VIEWS.config = () => {
+  const inp = (v, bg) => `<input class="in" style="margin:0;padding:8px 10px;background:${bg || '#fff'}" value="${v}">`;
+  return `<div class="head"><div><h1>Configurações</h1><p class="sub">Regras do CRM comercial · só a diretora edita, exceto Equipes e Desafio</p></div><button class="btn p" onclick="toast('Configurações salvas. As cores dos cards mudam na próxima atualização.','ok')">Salvar alterações</button></div>
+  <div class="card"><h2>Prazos por etapa</h2><p class="hint">Quando o card fica amarelo e vermelho. Depois do vermelho, há 24 horas para justificar. Só card de BDR gera ponto; card vencido de coordenador leva a uma conversa individual com a Diretoria de Vendas.</p>
+    <div class="tblw"><table class="tbl"><thead><tr><th>Etapa</th><th>Amarelo</th><th>Vermelho</th><th>Responsável</th><th>Gera ponto</th></tr></thead><tbody>
+    ${[['Caixa de entrada (passiva)', '24 h', '48 h', 'Coordenadores', 0], ['Qualificados · 1º contato', '24 h', '48 h', 'Vendedor', 1], ['Qualificados · marcar entendimento', '7 dias', '10 dias', 'Vendedor', 1], ['Entendimento', 'Dia da reunião', '24 h depois', 'Vendedor', 1], ['Proposta elaborada', '3 dias úteis', '5 dias úteis', 'Vendedor', 1], ['Necessidade de ajuste', 'Sem prazo', 'Sem prazo', 'Gerente da frente', 2], ['Proposta validada', '—', 'Data da apresentação', 'Vendedor', 1], ['Negociação', '10 dias sem follow-up', '15 dias sem follow-up', 'Vendedor', 1], ['Prontuário (ganho e cada contato)', '—', '24 h', 'Vendedor', 1], ['Contato parcial', '—', 'Data calculada: metade entre Em andamento e a banca', 'Vendedor', 3], ['Fidelização 15/45/90', '—', 'Data do contato (conta do Envio do TEP)', 'Vendedor', 1], ['Responderam ao chatbot', '12 h', '24 h', 'Coordenadores', 0]].map((r) => `<tr><td>${r[0]}</td><td>${inp(r[1], '#FFFBEB')}</td><td>${inp(r[2], '#FEF2F2')}</td><td class="muted">${r[3]}</td><td>${['<span class="pill p-v">Não · conversa individual</span>', '<span class="pill p-r">Sim, se for de BDR</span>', '<span class="pill p-n">Não</span>', '<span class="pill p-n">Pelo prontuário em 24 h</span>'][r[4]]}</td></tr>`).join('')}
+    </tbody></table></div></div>
+  <div class="grid g2" style="align-items:start">
+    <div class="card"><h2>Perdidos e chatbot</h2><p class="hint">Usado quando o cliente não indicou uma data</p>
+      ${[['Sem orçamento / achou caro', '60 dias'], ['Fechou com outra / internamente', '5 meses'], ['Parou de responder', '6 meses'], ['Pediu para retomar (sem data)', '10 dias'], ['Não fidelizado', '6 meses'], ['Fora do escopo / lead inválido', 'Não volta']].map(([m, t]) => `<div class="row sp" style="padding:8px 0;border-top:1px solid var(--line2);flex-wrap:nowrap"><span style="font-size:14px">${m}</span><span style="width:130px">${inp(t)}</span></div>`).join('')}
+      <div class="grid g2" style="gap:12px;margin-top:14px"><label class="f">Resposta “Agora não”${inp('3 meses')}</label><label class="f">Novas tentativas sem resposta${inp('Até 2')}</label><label class="f">Intervalo entre tentativas${inp('30 dias')}</label><label class="f">Custo por mensagem${inp('≈ R$ 0,35')}</label></div>
+      <div class="info" style="margin-top:12px">Opções da mensagem: “Quero conversar” (vai para os coordenadores, 24 h para assumir, volta na aba Reativados), “Agora não” (nova mensagem em 3 meses) e “Não tenho interesse” (sai da fila).</div></div>
+    <div class="card"><div class="row sp"><h2>WhatsApp da Júnior</h2><span class="pill p-g">Conectado · Coexistência ativa</span></div>
+      <div class="grid g3" style="gap:10px;margin:16px 0"><div style="background:#F7F7F9;border-radius:14px;padding:12px"><div class="small muted">Número</div><b style="font-size:14px">+55 11 9 0000-0000</b><div class="small muted">chip com a diretora</div></div><div style="background:var(--ambers);border:1px solid var(--amberb);border-radius:14px;padding:12px"><div class="small" style="color:var(--amber)">App aberto há</div><b style="font-size:14px;color:var(--amber)">12 dias</b><div class="small" style="color:var(--amber)">abrir antes de 14</div></div><div style="background:#F7F7F9;border-radius:14px;padding:12px"><div class="small muted">Computadores</div><b style="font-size:14px">4 de 4</b><div class="small muted">WhatsApp Web</div></div></div>
+      <div class="small muted" style="margin-bottom:6px">Mensagens-modelo</div>
+      ${[['Pediu para retomar depois', 1], ['Sem orçamento / achou caro', 1], ['Fechou com outra / internamente', 1], ['Parou de responder', 0], ['Não fidelizado', 1]].map(([m, ok]) => `<div class="row sp" style="padding:9px 0;border-top:1px solid var(--line2);font-size:14px"><span>${m}</span><span class="pill ${ok ? 'p-g' : 'p-a'}">${ok ? 'Aprovada pela Meta' : 'Em análise'}</span></div>`).join('')}</div>
+    <div class="card"><h2>Ponto de desempenho comercial</h2><p class="hint">Contador separado do sistema de pontos da Insper Jr. · regras completas no Anexo 4</p>
+      <div class="grid g2" style="gap:12px"><label class="f">BDR · tempo para justificar${inp('24 horas')}</label><label class="f">Limite no semestre${inp('6 pontos')}</label><label class="f">Prazo de contestação${inp('48 horas')}</label><label class="f">Avisos ao BDR${inp('1º, 3º e 5º ponto')}</label></div>
+      <label class="chk" style="margin-top:12px"><input type="checkbox" checked> Zerar pontos no início de cada semestre</label><label class="chk"><input type="checkbox" checked> Card vermelho de coordenador: conversa individual com a Diretoria de Vendas, sem ponto</label><label class="chk"><input type="checkbox"> Migração do Pipedrive em andamento (ninguém acumula pontos)</label>
+      <div class="info" style="margin-top:10px">BDR é cobrado pelo processo: 1 ponto por card vermelho sem justificativa válida em 24 h, nunca pelo resultado. Coordenador é cobrado pelo resultado: o ponto vem só da meta mensal da equipe. Nos dois cargos, 6 pontos levam à saída do núcleo comercial, não da Insper Jr.</div></div>
+    <div class="card"><h2>Usuários</h2><p class="hint">Ao desligar alguém, a carteira é distribuída antes de fechar o acesso</p>
+      ${BDRS.slice(0, 5).map((b) => `<div class="row sp" style="padding:10px 0;border-top:1px solid var(--line2);flex-wrap:nowrap"><span class="who row" style="flex-wrap:nowrap">${av(b)}<span>${P(b).nome}</span></span><span class="small muted">BDR · ${P(b).equipe}</span><button class="btn s o" onclick="desligar('${b}')">Desligar</button></div>`).join('')}</div>
+    <div class="card" style="grid-column:1/-1"><h2>Meta mensal dos coordenadores</h2><p class="hint">O que gera ponto para o coordenador: as vendas da equipe no mês</p>
+      <div class="grid g4" style="gap:12px;margin-bottom:16px"><label class="f">Meta por mês${inp('R$ 20.000')}</label><label class="f">Sem ponto (meta não batida)${inp('R$ 10.000 a R$ 20.000')}</label><label class="f">Gera ponto abaixo de${inp('R$ 10.000', '#FEF2F2')}</label><label class="f">Pontos em meses seguidos${inp('1, 2 e 3 (total 1, 3 e 6)')}</label></div>
+      ${metaCoordHtml()}
+      <div class="info" style="margin-top:14px">${META_REGRA}</div></div>
+  </div>`;
+};
+
+// ================= NOTIFICAÇÕES =================
+let NF = 'todas';
+function setNf(f) { NF = f; render(); }
+function lerTodas() { DB.notifs.forEach((n) => { DB.lidas[n.id] = true; }); render(); }
+function abrirNotif(id) { const n = DB.notifs.find((x) => x.id === id); DB.lidas[id] = true; const [r, p] = n.ac[1].split(':'); go(r, p); }
+VIEWS.notificacoes = () => {
+  const cats = [['todas', 'Todas'], ['vendas', 'Vendas'], ['prazos', 'Prazos'], ['validacoes', 'Validações'], ['pontos', 'Pontos'], ['chatbot', 'Chatbot'], ['leads', 'Leads novos'], ['fidelizacao', 'Fidelização'], ['whatsapp', 'WhatsApp']];
+  const vis = DB.notifs.filter((n) => NF === 'todas' || n.cat === NF);
+  const cor = { vendas: ['#F0FDF4', '#15803D', 'check'], prazos: ['#FEF2F2', '#B91C1C', 'warn'], validacoes: ['#F4F4F5', '#3F3F46', 'check'], pontos: ['#FEF2F2', '#B91C1C', 'warn'], chatbot: ['#F0FDF4', '#15803D', 'chat'], leads: ['#EFF6FF', '#1D4ED8', 'plus'], fidelizacao: ['#F5F3FF', '#6D28D9', 'fidelizacao'], whatsapp: ['#FFFBEB', '#B45309', 'chat'] };
+  const nl = DB.notifs.filter((n) => !DB.lidas[n.id]).length;
+  return `<div class="head"><div><h1>Notificações</h1><p class="sub">${nl ? nl + ' não lidas' : 'Tudo em dia'} · visão da diretora</p></div><button class="btn" onclick="lerTodas()">Marcar todas como lidas</button></div>
+  <div class="row">${cats.map(([k, l]) => `<button class="fbtn ${NF === k ? 'on' : ''}" onclick="setNf('${k}')">${l}</button>`).join('')}</div>
+  ${['HOJE', 'ONTEM', 'ESTA SEMANA'].map((g) => { const ns = vis.filter((n) => n.g === g); return ns.length ? `<div><div class="small b6 muted" style="letter-spacing:.06em;margin:0 0 10px">${g}</div><div class="card" style="padding:0;overflow:hidden">${ns.map((n) => `<div class="row" style="padding:16px 22px;border-bottom:1px solid var(--line2);flex-wrap:nowrap;align-items:flex-start;background:${DB.lidas[n.id] ? '#FCFCFD' : '#fff'}">
+    <span style="flex:0 0 38px;width:38px;height:38px;border-radius:11px;background:${cor[n.cat][0]};display:flex;align-items:center;justify-content:center">${icon(cor[n.cat][2], cor[n.cat][1])}</span>
+    <div style="flex:1;min-width:0"><div style="font-size:14px;line-height:1.5"><b>${n.t}</b> ${esc(n.x)}</div><div class="row small muted" style="margin-top:5px"><span>${n.q}</span>${n.email ? '<span class="pill p-n">também por e-mail</span>' : ''}</div></div>
+    <button class="btn s" onclick="abrirNotif(${n.id})">${n.ac[0]}</button>${DB.lidas[n.id] ? '' : '<span class="dot" style="background:var(--red);margin-top:12px"></span>'}</div>`).join('')}</div></div>` : ''; }).join('')}`;
+};
+
+// ================= PÁGINA DO BDR =================
+let PAB = 'pontos';
+function setPab(a) { PAB = a; render(); }
+function contestar(ini, i) {
+  const h = PTS_HIST[ini][i]; h[4] = 'enviada';
+  DB.validacoes.unshift({ id: Date.now(), tipo: 'Contestação de ponto', empresa: h[0], etapa: h[1], ini, texto: 'O cliente remarcou e eu registrei no dia; o card não atualizou.' });
+  render(); toast('Contestação enviada. A diretora decide pelo histórico do card.', 'in');
+}
+function capHtml(ini) {
+  const p = P(ini); const k = CAP[ini] || { proc: 0, esc: 0, prop: 0, ent: [] };
+  const nOk = k.ent.filter((e) => e[0] === 5).length;
+  const n1 = (x) => String(x.toFixed(1)).replace('.', ',');
+  const provasOk = k.proc >= MIN_PROVA.processo && k.esc >= MIN_PROVA.escopos && k.prop;
+  const sit = k.lib ? ['Liberado para vender sozinho', 'grn', 'desde ' + k.lib + ' · 3 entendimentos com o checklist completo'] : provasOk ? ['Conduz entendimentos acompanhado', '', `${nOk} de 3 entendimentos válidos · meta: até a entrega intermediária do trainee`] : ['Ainda não conduz entendimentos', 'red', 'refaz a prova que ficou abaixo do mínimo'];
+  const res = (ok) => `<span class="pill ${ok ? 'p-g' : 'p-r'}">${ok ? 'Aprovado' : 'Abaixo do mínimo · refazer'}</span>`;
+  const ents = k.ent.map((e, i) => ({ lead: LEADS_ENT[i] || 'Lead do Desafio', ok: e[0] === 5, faltou: e[0] === 5 ? [] : ['Quem decide'], cruz: e[1] }));
+  for (let i = 0; i < 3 - nOk; i++) ents.push(null);
+  return `<div class="grid g3" style="gap:14px;margin-bottom:18px">
+      <div class="card kpi ${sit[1]}" style="box-shadow:none;${sit[1] ? '' : 'background:#F7F7F9'}"><div class="l">Situação</div><div class="v" style="font-size:20px">${sit[0]}</div><div class="s">${sit[2]}</div></div>
+      <div class="card kpi" style="box-shadow:none;background:#F7F7F9"><div class="l">Provas</div><div class="v" style="font-size:20px">${[k.proc >= MIN_PROVA.processo, k.esc >= MIN_PROVA.escopos, !!k.prop].filter(Boolean).length} de 3</div><div class="s">processo, escopos e proposta</div></div>
+      <div class="card kpi" style="box-shadow:none;background:#F7F7F9"><div class="l">Entendimentos avaliados</div><div class="v" style="font-size:20px">${nOk} de 3</div><div class="s">só contam com o checklist completo</div></div></div>
+    <table class="tbl"><thead><tr><th>Prova</th><th>Nota</th><th>Nota mínima</th><th>Resultado</th></tr></thead><tbody>
+      <tr><td>Processo comercial (fluxograma, CRM e playbook)</td><td class="b6">${n1(k.proc)}</td><td class="muted">${n1(MIN_PROVA.processo)} · média dos coordenadores</td><td>${res(k.proc >= MIN_PROVA.processo)}</td></tr>
+      <tr><td>Escopos (Business, Tech, Direito e Engenharia de Processos)</td><td class="b6">${n1(k.esc)}</td><td class="muted">${n1(MIN_PROVA.escopos)} · média dos coordenadores</td><td>${res(k.esc >= MIN_PROVA.escopos)}</td></tr>
+      <tr><td>Proposta a partir da transcrição de um entendimento real</td><td class="b6">Rubrica</td><td class="muted">dores com as palavras do cliente · objetivos e metodologia respondem às dores · informações consistentes</td><td>${res(!!k.prop)}</td></tr>
+    </tbody></table>
+    <h3 style="margin:22px 0 4px;font-size:14px">Entendimentos acompanhados</h3><p class="small muted" style="margin:0 0 6px">Conduzidos pelo BDR com a ${P(coordDe(p.equipe)).nome} acompanhando, começando pelos leads do Desafio. Avaliados pela transcrição e, de forma cruzada, por um coordenador de outra equipe, para feedback.</p>
+    <div class="tblw"><table class="tbl"><thead><tr><th>Lead</th><th>Checklist do entendimento</th><th>Avaliação cruzada</th><th>Conta?</th></tr></thead><tbody>
+    ${ents.map((e) => e ? `<tr><td class="b6">${esc(e.lead)}</td><td><div class="row" style="gap:4px">${CHECK.map((c) => `<span class="pill ${e.faltou.includes(c) ? 'p-r' : 'p-g'}" style="font-size:11px">${e.faltou.includes(c) ? '✕' : '✓'} ${c}</span>`).join('')}</div></td><td class="muted" style="white-space:nowrap">${P(e.cruz).nome}</td><td>${e.ok ? '<span class="pill p-g">Sim</span>' : '<span class="pill p-a">Não · faltou quem decide</span>'}</td></tr>` : `<tr><td class="muted" colspan="4">Próximo entendimento acompanhado · pendente</td></tr>`).join('')}
+    </tbody></table></div>
+    <p class="small muted" style="margin:14px 0 0">A nota mínima de cada prova é a média dos coordenadores na mesma prova, nunca abaixo de 7. Passar nas provas libera o BDR a conduzir entendimentos acompanhado; vender sozinho depende dos 3 entendimentos. O estilo de cada um continua livre.</p>`;
+}
+VIEWS.pessoa = (ini) => {
+  ini = ini || 'CM'; const p = P(ini); const co = isCoord(ini); const pts = ptsDe(ini);
+  const rank = BDRS.slice().sort((a, b) => DB.vendido[b] - DB.vendido[a]).indexOf(ini) + 1;
+  const marcos = ['1º · aviso', '2º', '3º · coordenador', '4º', '5º · diretora', '6º · saída'];
+  const abas = co ? [['numeros', 'Números'], ['pontos', 'Meta e pontos']] : [['numeros', 'Números'], ['pontos', 'Pontos'], ['feedback', 'Feedback 1:1'], ['capacitacao', 'Capacitação']];
+  if (!abas.find((a) => a[0] === PAB)) PAB = 'pontos';
+  let c = '';
+  if (PAB === 'numeros') { const ds = DB.deals.filter((d) => d.ini === ini && !d.ganho); const mes = (DB.metaCoord[p.equipe] || {})[MES_ATUAL] || 0; c = `<div class="grid g4" style="gap:14px">${[['Leads ativos', ds.length, 'em todos os canais'], ['Em negociação', ds.filter((d) => d.etapa >= 5).length, 'propostas validadas ou em negociação'], co ? ['Vendas da equipe no mês', fmt(mes).replace('Sem valor', 'R$ 0'), 'meta de R$ 20.000'] : ['Vendido no semestre', fmt(DB.vendido[ini] || 0).replace('Sem valor', 'R$ 0'), rank ? rank + 'º no ranking' : ''], ['Pontos', pts + ' de 6', co ? 'só pela meta mensal' : 'zeram no fim do semestre']].map(([l, v, s]) => `<div style="background:#F7F7F9;border-radius:14px;padding:16px 18px"><div class="small muted">${l}</div><div style="font-size:24px;font-weight:700;margin-top:4px">${v}</div><div class="small muted">${s}</div></div>`).join('')}</div>`; }
+  if (PAB === 'pontos' && co) { const vm = DB.deals.filter((d) => d.ini === ini && d.st === 'vm' && !d.ganho); c = `${metaCoordHtml([p.equipe])}
+    <div class="info" style="margin:16px 0">${META_REGRA}</div>
+    <div class="item" style="cursor:default"><div class="row sp"><span class="t">Cards vermelhos da coordenação</span><span class="pill ${vm.length ? 'p-v' : 'p-g'}">${vm.length ? vm.length + ' · conversa individual com a Diretoria de Vendas' : 'Nenhum'}</span></div><div class="s">${vm.length ? vm.map((d) => esc(d.empresa) + ' (' + ETAPAS[d.etapa] + ')').join(', ') + '. ' : ''}Atualizar o CRM é o mínimo esperado do coordenador, por isso card vencido não gera ponto.</div></div>`; }
+  else if (PAB === 'pontos') { const h = (PTS_HIST[ini] || []).slice(0, Math.max(pts, 0)); const st = { aberta: (i) => `<button class="btn s o" onclick="contestar('${ini}',${i})">Contestar · restam 31 h</button>`, enviada: () => '<span class="pill p-b">Enviada à diretora</span>', recusada: () => '<span class="pill p-n">Contestação recusada</span>', fim: () => '<span class="pill p-n">Prazo de 48 h encerrado</span>' };
+    c = `<div class="pts" style="gap:6px">${marcos.map((m, i) => `<div><i class="${i < pts ? 'on ' + (pts >= 5 ? 'hi' : '') : ''}" style="height:16px"></i><div class="small muted" style="margin-top:6px">${m}</div></div>`).join('')}</div>
+    <div class="info" style="margin:16px 0">1 ponto por card vermelho sem justificativa válida em 24 h (funil, fidelização ou prontuário). Perder uma venda não gera ponto; deixar de registrar, sim. Avisos no 1º, 3º e 5º ponto. 3 pontos: conversa com o coordenador. 5 pontos: conversa com a diretora. 6 pontos: saída do núcleo comercial, não da Insper Jr. Os pontos zeram a cada semestre.</div>
+    ${h.length ? `<div class="tblw"><table class="tbl"><thead><tr><th>Card</th><th>Etapa</th><th>Origem</th><th>Data</th><th>Contestação (48 h)</th></tr></thead><tbody>
+    ${h.map((x, i) => `<tr><td class="b6">${esc(x[0])}</td><td class="muted">${x[1]}</td><td class="muted">${x[2]}</td><td class="muted">${x[3]}</td><td>${(st[x[4]] || st.fim)(i)}</td></tr>`).join('')}
+    </tbody></table></div>` : '<div class="lock">Nenhum ponto no semestre.</div>'}`; }
+  if (PAB === 'feedback') c = `<div class="row sp" style="margin-bottom:14px"><span class="small muted">Registrado pelo coordenador uma vez por mês. O BDR lê, mas não edita.</span><button class="btn d" onclick="toast('1:1 de outubro registrado.','ok')">+ Registrar 1:1 de outubro</button></div>
+    ${[['Setembro de 2026', 'Entendimentos bem conduzidos e propostas enviadas no prazo.', 'Follow-up depois da proposta: dois cards ficaram amarelos em negociação.', 'Registrar cada follow-up no card no mesmo dia.'], ['Agosto de 2026', 'Boa leitura das dores do cliente nas reuniões.', 'Conhecer melhor o escopo de Direito.', 'Assistir à aula de escopo de Direito e ler a cartilha.']].map(([m, f, d, cb]) => `<div class="item" style="cursor:default;padding:18px 20px"><div class="row sp"><b style="font-size:15px">${m}</b><span class="small muted">${P(coordDe(p.equipe)).nome}</span></div>
+    <div class="grid g3" style="gap:14px;margin-top:12px;font-size:14px;line-height:1.55"><div><div class="small b6" style="color:var(--greend)">PONTOS FORTES</div>${f}</div><div><div class="small b6" style="color:var(--amber)">A DESENVOLVER</div>${d}</div><div><div class="small b6" style="color:var(--blue)">COMBINADOS</div>${cb}</div></div></div>`).join('')}`;
+  if (PAB === 'capacitacao') c = capHtml(ini);
+  return `<div class="crumb"><a onclick="go('inicio')">Início</a> › ${p.equipe} › <span style="color:var(--ink)">${p.nome}</span></div>
+  <div class="card row sp"><div class="row" style="gap:16px;flex-wrap:nowrap">${av(ini, 'style="width:64px;height:64px;font-size:20px"')}<div><h1 style="font-size:26px">${p.nome}</h1><div class="muted" style="font-size:14px;margin-top:4px">${p.papel} · ${p.equipe} · no comercial desde ${p.entrada || '—'}</div></div></div>
+    <div class="row"><div style="background:#F7F7F9;border-radius:12px;padding:10px 14px"><div class="small muted">Ranking de vendas</div><b style="font-size:18px">${rank ? rank + 'º lugar' : '—'}</b></div>${co ? '' : `<div style="background:#F7F7F9;border-radius:12px;padding:10px 14px"><div class="small muted">Capacitação</div><b style="font-size:18px">${(CAP[ini] || {}).lib ? 'Liberado' : 'Em formação'}</b></div>`}<div style="background:var(--ambers);border:1px solid var(--amberb);border-radius:12px;padding:10px 14px"><div class="small" style="color:var(--amber)">${co ? 'Pontos · meta mensal' : 'Pontos no semestre'}</div><b style="font-size:18px;color:var(--amber)">${pts} de 6</b></div></div></div>
+  <div class="card" style="padding-top:8px"><div class="tabs" style="margin-bottom:20px">${abas.map(([k, l]) => `<button class="${PAB === k ? 'on' : ''}" onclick="setPab('${k}')">${l}</button>`).join('')}</div>${c}</div>`;
+};
+
+
+// ================= AGENDAR REUNIÃO (estilo Google Agenda) =================
+const TIPOS_REU = [['e1', 'Entendimento'], ['e2', 'Apresentação de proposta'], ['e4', 'Negociação'], ['e3', 'Fidelização']];
+let REU = null;
+const SEMANA = ['2026-10-13', '2026-10-14', '2026-10-15', '2026-10-16', '2026-10-17'];
+function emailDe(nome, empresa) { return (nome.split(' ')[0] + '@' + empresa.split('(')[0].trim().toLowerCase().normalize('NFD').replace(/[^a-z]/g, '').slice(0, 14) + '.com.br').toLowerCase(); }
+function abrirReuniao(id, dia) {
+  const d = id ? DB.deals.find((x) => x.id === id) : null;
+  const tipo = d ? (d.etapa >= 5 ? 'e4' : d.etapa >= 3 ? 'e2' : 'e1') : 'e1';
+  REU = { id: id || '', lead: d ? d.empresa : '', tipo, titulo: '', data: SEMANA[dia == null ? 2 : dia], ini: '10:00', fim: '11:00', local: '', desc: '', meet: true, meetLink: 'meet.google.com/' + Math.random().toString(36).slice(2, 5) + '-' + Math.random().toString(36).slice(2, 6) + '-' + Math.random().toString(36).slice(2, 5),
+    guests: d ? [{ email: emailDe('roberto', d.empresa), nome: 'Contato do lead' }] : [], notificar: '10 minutos antes' };
+  modal(reuHtml(), 'reu');
+}
+function syncReu() {
+  const g = (s) => { const el = document.querySelector('.mb ' + s); return el ? el.value : ''; };
+  REU.titulo = g('#rTit'); REU.data = g('#rData') || REU.data; REU.ini = g('#rIni') || REU.ini; REU.fim = g('#rFim') || REU.fim; REU.local = g('#rLoc'); REU.desc = g('#rDesc'); REU.lead = g('#rLead'); REU.notificar = g('#rNot') || REU.notificar;
+}
+function reuRe() { syncReu(); document.querySelector('.mb').innerHTML = reuHtml(); }
+function reuTipo(t) { syncReu(); REU.tipo = t; reuRe(); }
+function reuMeet() { syncReu(); REU.meet = !REU.meet; reuRe(); }
+function reuAdd(email, nome) {
+  syncReu();
+  const inp = document.querySelector('.mb #rGuest');
+  const e = (email || (inp ? inp.value : '')).trim();
+  if (!e) return;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { toast('Digite um e-mail válido para adicionar o convidado.', 'er'); return; }
+  if (!REU.guests.find((x) => x.email === e)) REU.guests.push({ email: e, nome: nome || '' });
+  reuRe(); setTimeout(() => { const i = document.querySelector('.mb #rGuest'); if (i) i.focus(); }, 30);
+}
+function reuDel(i) { syncReu(); REU.guests.splice(i, 1); reuRe(); }
+function reuHtml() {
+  const r = REU;
+  const leads = DB.deals.filter((d) => !d.ganho).map((d) => d.empresa).concat(DB.fidel.map((f) => f.cliente));
+  const tipoNome = TIPOS_REU.find((t) => t[0] === r.tipo)[1];
+  const sug = [['vendedor', 'ana.lima@insperjr.com.br', 'Ana Lima (vendedora)'], ['coord', 'marcella.canozo@insperjr.com.br', 'Marcella Canozo (coordenação)'], ['gerente', 'gerencia.business@insperjr.com.br', 'Gerente da frente']].filter((s) => !r.guests.find((g) => g.email === s[1]));
+  const linha = (ic, html) => `<div class="grow"><span class="gic">${ic}</span><div style="flex:1;min-width:0">${html}</div></div>`;
+  return `<input id="rTit" class="gtitle" placeholder="Adicionar título" value="${esc(r.titulo)}" aria-label="Título">
+  <div class="row" style="gap:6px">${TIPOS_REU.map(([k, l]) => `<button class="gtab ${r.tipo === k ? 'on' : ''}" onclick="reuTipo('${k}')">${l}</button>`).join('')}</div>
+  ${linha(icon('agenda', '#5F6368', 20), `<div class="row" style="gap:8px"><input id="rData" type="date" class="gin" value="${r.data}"><input id="rIni" type="time" class="gin" value="${r.ini}"><span class="muted">–</span><input id="rFim" type="time" class="gin" value="${r.fim}"></div><div class="small muted" style="margin-top:4px">Horário de Brasília · Não se repete</div>`)}
+  ${linha(icon('funil', '#5F6368', 20), `<label class="small muted">Lead vinculado (a data passa a contar o prazo da etapa)</label><input id="rLead" class="gin" list="leadsList" style="width:100%" value="${esc(r.lead)}" placeholder="Escolha o lead"><datalist id="leadsList">${leads.map((l) => `<option value="${esc(l)}">`).join('')}</datalist>`)}
+  ${linha(`<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F6368" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0 M16 4.5a3.5 3.5 0 0 1 0 7 M18 14.5a6 6 0 0 1 3.5 5.5"/></svg>`, `
+    <div class="row" style="gap:8px;flex-wrap:nowrap"><input id="rGuest" class="gin" style="flex:1" placeholder="Adicionar convidados (e-mail)" onkeydown="if(event.key==='Enter'||event.key===','){event.preventDefault();reuAdd()}"><button class="btn s" onclick="reuAdd()">Adicionar</button></div>
+    ${sug.length ? `<div class="row" style="gap:6px;margin-top:8px">${sug.map((s) => `<button class="gsug" onclick="reuAdd('${s[1]}','${s[2]}')">+ ${s[2]}</button>`).join('')}</div>` : ''}
+    ${r.guests.length ? `<div class="stack" style="gap:4px;margin-top:10px">${r.guests.map((g, i) => `<div class="gguest"><span class="av" style="background:${['#1A73E8', '#DC2626', '#188038', '#E37400'][i % 4]};width:30px;height:30px">${esc(g.email[0].toUpperCase())}</span><div style="flex:1;min-width:0"><div style="font-size:14px">${esc(g.email)}</div>${g.nome ? `<div class="small muted">${esc(g.nome)}</div>` : ''}</div><button class="gx" aria-label="Remover convidado" onclick="reuDel(${i})">×</button></div>`).join('')}</div>
+    <div class="small muted" style="margin-top:6px">${r.guests.length} convidado${r.guests.length > 1 ? 's' : ''} · o convite sai por e-mail com o link da reunião</div>` : ''}`)}
+  ${linha(`<svg viewBox="0 0 24 24" width="22" height="22"><rect x="2" y="6" width="13" height="12" rx="2.5" fill="#00AC47"/><path d="M15 10l6-3.5v11L15 14z" fill="#FFBA00"/></svg>`, r.meet ? `<div class="row sp" style="flex-wrap:nowrap"><div><button class="btn s" style="background:#1A73E8;border-color:#1A73E8;color:#fff" onclick="toast('Link da reunião copiado.','ok')">Entrar com Google Meet</button><div class="small muted" style="margin-top:6px">${r.meetLink}</div></div><button class="gx" aria-label="Remover Meet" onclick="reuMeet()">×</button></div>` : `<button class="glink" onclick="reuMeet()">Adicionar videoconferência do Google Meet</button>`)}
+  ${linha(`<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F6368" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>`, `<input id="rLoc" class="gin" style="width:100%" placeholder="Adicionar local" value="${esc(r.local)}">`)}
+  ${linha(`<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#5F6368" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16 M4 12h16 M4 18h10"/></svg>`, `<textarea id="rDesc" class="gin" rows="2" style="width:100%" placeholder="Adicionar descrição ou um anexo (proposta, pauta)">${esc(r.desc)}</textarea><button class="glink small" onclick="toast('Proposta comercial anexada ao convite.','ok')">+ Anexar a proposta do lead</button>`)}
+  ${linha(icon('agenda', '#5F6368', 20), `<div style="font-size:14px">Calendário comercial · Marcella Canozo <span class="dot" style="background:#DC2626;margin-left:4px"></span></div><div class="row small muted" style="gap:6px;margin-top:2px">Ocupado · Visibilidade padrão · Notificar <select id="rNot" class="gin" style="padding:2px 6px;font-size:12px"><option ${r.notificar === '10 minutos antes' ? 'selected' : ''}>10 minutos antes</option><option ${r.notificar === '30 minutos antes' ? 'selected' : ''}>30 minutos antes</option><option ${r.notificar === '1 dia antes' ? 'selected' : ''}>1 dia antes</option></select></div>`)}
+  <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn p" onclick="confirmarReuniao()">Salvar</button></div>`;
+}
+function confirmarReuniao() {
+  syncReu(); const r = REU;
+  const tipoNome = TIPOS_REU.find((t) => t[0] === r.tipo)[1];
+  const lead = r.lead || 'Reunião interna';
+  const dia = SEMANA.indexOf(r.data);
+  const deal = DB.deals.find((x) => x.empresa === r.lead);
+  const ev = { dia, data: r.data, hora: r.ini, fim: r.fim, empresa: lead, tipo: tipoNome, cls: r.tipo, ini: deal ? deal.ini : 'MC', titulo: r.titulo || (tipoNome + ' · ' + lead), guests: r.guests.slice(), meet: r.meet, meetLink: r.meetLink, local: r.local, desc: r.desc };
+  DB.eventos.push(ev);
+  if (deal) deal.atividades.unshift({ t: ev.titulo, s: `${r.data.split('-').reverse().slice(0, 2).join('/')}, ${r.ini}–${r.fim}${r.meet ? ' · Google Meet' : ''} · ${r.guests.length} convidado(s)` });
+  fecharModal(); render();
+  toast(`Reunião salva no calendário comercial${r.meet ? ' com Google Meet' : ''}.${r.guests.length ? ` Convite enviado para ${r.guests.length} convidado${r.guests.length === 1 ? '' : 's'}.` : ''}${dia < 0 ? ' Ela está fora desta semana do calendário.' : ''}`, 'ok');
+}
+function verEvento(i) {
+  const e = DB.eventos[i];
+  const guests = e.guests || [{ email: emailDe('contato', e.empresa), nome: 'Contato do lead' }, { email: 'marcella.canozo@insperjr.com.br', nome: 'Organizadora' }];
+  modal(`<div class="row" style="gap:12px;align-items:flex-start;flex-wrap:nowrap"><span style="width:16px;height:16px;border-radius:4px;margin-top:8px;background:${{ e1: '#3B82F6', e2: '#8B5CF6', e3: '#22C55E', e4: '#F59E0B' }[e.cls]}"></span><div><h2>${esc(e.titulo || e.tipo + ' · ' + e.empresa)}</h2><div class="muted" style="margin-top:4px;font-size:14px">${['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'][e.dia] || ''}, ${13 + (e.dia < 0 ? 0 : e.dia)} de outubro · ${e.hora}${e.fim ? '–' + e.fim : ''}</div></div></div>
+    ${e.meet !== false ? `<div><button class="btn s" style="background:#1A73E8;border-color:#1A73E8;color:#fff" onclick="toast('Abrindo o Google Meet…','in')">Entrar com Google Meet</button><div class="small muted" style="margin-top:6px">${e.meetLink || 'meet.google.com/abc-defg-hij'}</div></div>` : ''}
+    <div><div class="small b6 muted" style="margin-bottom:6px">${guests.length} convidados</div>${guests.map((g, k) => `<div class="gguest"><span class="av" style="background:${['#1A73E8', '#DC2626', '#188038', '#E37400'][k % 4]};width:30px;height:30px">${esc(g.email[0].toUpperCase())}</span><div><div style="font-size:14px">${esc(g.email)}</div>${g.nome ? `<div class="small muted">${esc(g.nome)}</div>` : ''}</div></div>`).join('')}</div>
+    ${e.local ? `<div class="small"><b>Local:</b> ${esc(e.local)}</div>` : ''}${e.desc ? `<div class="info">${esc(e.desc)}</div>` : ''}
+    <div class="small muted">Lead: <b style="color:var(--ink)">${esc(e.empresa)}</b> · ${P(e.ini).nome} · Calendário comercial</div>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Fechar</button></div>`);
+}
+
+// ================= CAIXA DE ENTRADA DA PASSIVA =================
+let ATR = 'MC';
+function abrirAtribuir(id) {
+  const d = DB.deals.find((x) => x.id === id); ATR = 'MC';
+  const ops = [['MC', 'Para mim', 'Marcella Canozo · coordenação Equipe 2']].concat(BDRS.map((b) => [b, P(b).nome, 'BDR · ' + P(b).equipe]));
+  const html = () => `<h2>Assumir lead da passiva</h2><p class="muted" style="margin:0;font-size:14px">${esc(d.empresa)} chegou pelo site. Escolha quem fica com ele: o card vai para Qualificados e o prazo de 24 h para o primeiro contato começa a contar.</p>
+    <div style="max-height:320px;overflow:auto">${ops.map(([k, n, s]) => `<label class="opt ${ATR === k ? 'on' : ''}"><input type="radio" name="atr" ${ATR === k ? 'checked' : ''} onchange="ATR='${k}';abrirAtribRe()">${av(k)}<span><b style="font-weight:600">${n}</b><br><span class="small muted">${s}</span></span></label>`).join('')}</div>
+    <div class="acts"><button class="btn" onclick="fecharModal()">Cancelar</button><button class="btn p" onclick="confirmarAtribuir('${id}')">Assumir lead</button></div>`;
+  window.abrirAtribRe = () => { document.querySelector('.mb').innerHTML = html(); };
+  modal(html());
+}
+function confirmarAtribuir(id) {
+  const d = DB.deals.find((x) => x.id === id);
+  d.ini = ATR; d.etapa = 1; d.st = 'nw'; d.prazo = 'agora · 1º contato em 24 h';
+  d.historico.unshift({ t: `Responsável: caixa de entrada → ${P(ATR).nome}`, q: 'agora · Marcella Canozo', c: '#22C55E' });
+  fecharModal(); render();
+  toast(`${d.empresa} agora é ${ATR === 'MC' ? 'seu' : 'de ' + P(ATR).nome}. Foi para Qualificados.`, 'ok');
+}
+
+// ================= PRONTUÁRIO DO CLIENTE (fidelização) =================
+VIEWS.cliente = (fid) => {
+  const f = DB.fidel.find((x) => x.id === fid) || DB.fidel[0];
+  const valor = { Business: 'R$ 22.000 · 25 dias úteis', Tech: 'R$ 18.000 · 20 dias úteis', Direito: 'R$ 12.000 · 15 dias úteis', Processos: 'R$ 18.500 · 22 dias úteis' }[f.frente];
+  const contatos = [
+    [1, 'Contato de 15 dias', 'Feedback geral sobre o projeto', 'O cliente elogiou a clareza das reuniões semanais. Pediu o material final em versão editável, já enviado.'],
+    [2, 'Contato de 45 dias', 'Conversa conduzida pelo vendedor, guiada pela pesquisa de impacto, e pedido de depoimento', 'Já aplicou o modelo de fluxo de caixa no fechamento de setembro. Depoimento: “O time da Insper Jr. entendeu nossa operação de verdade.”'],
+    [3, 'Contato de 90 dias', 'Segundo entendimento: novos desafios da empresa e, se fizer sentido, indicação a empresas parceiras da Insper Jr.', 'Quer estruturar o RH e revisar contratos com fornecedores. Possível oportunidade para Business e Direito.']
+  ];
+  const estado = (n) => f.col > n ? 'feito' : f.col === n ? 'atual' : 'futuro';
+  const sec = (t, sub, body) => `<div class="pz"><div class="pzh"><span>${t}</span><span class="small muted">${sub}</span></div>${body}</div>`;
+  return `<div class="crumb"><a onclick="go('fidelizacao')">Fidelização</a> › <span style="color:var(--ink)">${esc(f.cliente)}</span></div>
+  <div class="card" style="display:flex;flex-direction:column;gap:20px">
+    <div class="row sp" style="align-items:flex-start">
+      <div><div class="row"><h1 style="font-size:28px">${esc(f.cliente)}</h1>${frTag(f.frente)}<span class="pill p-v">Projeto ${f.projeto}</span>${f.news ? '<span class="pill p-n">Newsletter autorizada</span>' : ''}${f.nps ? `<span class="pill p-g">NPS ${f.nps}</span>` : ''}</div>
+      <div style="margin-top:12px">${etiquetasHtml(f)}</div>
+      <div class="row" style="margin-top:12px;font-size:14px;color:#52525B">${av(f.ini)}${P(f.ini).nome} · vendedor responsável pelo prontuário</div></div>
+      <div class="row"><span class="pill ${f.st === 'vm' ? 'p-r' : f.st === 'am' ? 'p-a' : 'p-g'}" style="padding:8px 12px;font-size:13px">${FCOLS[f.col].nome} · ${f.prazo}</span>
+      ${f.col < 4 ? `<button class="btn d" onclick="registrarF('${f.id}')">${f.col === 0 ? 'Registrar entregue × prometido' : 'Registrar contato'}</button>` : `<button class="btn g" onclick="decisaoF('${f.id}',true);go('fidelizacao')">Nova oportunidade</button><button class="btn" onclick="decisaoF('${f.id}',false);go('fidelizacao')">Não fidelizado</button>`}</div>
+    </div>
+    <div class="steps">${FCOLS.map((c, i) => `<div class="${i < f.col ? 'done' : i === f.col ? 'cur' : ''}">${c.nome}</div>`).join('')}</div>
+  </div>
+  <div class="note">${icon('info')}O prontuário existe só para clientes que fecharam. É escrito pelo vendedor a partir do modelo, com as transcrições e a proposta anexadas, e deve ser atualizado em até 24 horas depois de cada contato. Se o vendedor sair, a diretora redistribui o cliente e o histórico fica.</div>
+  <div class="side">
+    <div class="stack" style="gap:16px">
+      <div class="card" style="padding:20px 22px"><h2 style="font-size:15px;margin-bottom:8px">Cabeçalho <span class="small muted" style="font-weight:400">· preenchido automaticamente</span></h2>
+        ${[['Cliente', f.cliente], ['Contato principal', 'Roberto ' + f.cliente.split(' ')[0] + ' · sócio'], ['Projeto', f.projeto + ' · ' + f.frente], ['Valor e dias úteis', valor], ['Vendedor', P(f.ini).nome], ['Venda fechada em', 'jun/2026'], ['Apresentação final · Envio do TEP', f.apres], ['Newsletter', f.col === 0 ? 'Pedir na apresentação final' : f.news ? 'Autorizada' : 'Não autorizada']].map(([k, v]) => `<div class="kv"><span>${k}</span><span>${esc(v)}</span></div>`).join('')}</div>
+      <div class="card" style="padding:20px 22px"><h2 style="font-size:15px;margin-bottom:10px">Anexos obrigatórios</h2>
+        <div class="item"><div class="row sp"><span class="t">Proposta comercial ${f.projeto}.pdf</span><span class="pill p-g">anexada</span></div></div>
+        <div class="item"><div class="row sp"><span class="t">Transcrição · Entendimento</span><span class="pill p-g">anexada</span></div></div>
+        <div class="item"><div class="row sp"><span class="t">Transcrição · Apresentação da proposta</span><span class="pill p-g">anexada</span></div></div>
+        <div class="item"><div class="row sp"><span class="t">Transcrição · Apresentação final</span><span class="pill ${f.col > 0 ? 'p-g' : 'p-r'}">${f.col > 0 ? 'anexada' : 'pendente'}</span></div></div></div>
+    </div>
+    <div class="card"><h2>Prontuário do cliente</h2><p class="hint">Tudo o que foi prometido, entregue e conversado, do fechamento até a decisão</p>
+      ${sec('1. Venda', 'escrito no ganho', `<div class="pq"><b>O que foi prometido ao cliente</b><p>Diagnóstico da operação, modelo de ${f.frente === 'Direito' ? 'contratos padronizados' : 'fluxo de caixa e DRE gerencial'} e treinamento da equipe. Entrega em até 10 semanas, com reunião semanal de acompanhamento.</p></div>
+        <div class="pq"><b>Quem decide e o que é sucesso para ele</b><p>O sócio-diretor. Sucesso é fechar o mês sabendo para onde vai o caixa, sem depender do contador.</p></div>
+        <div class="pq"><b>Oportunidades futuras citadas na negociação</b><p>Estruturação de RH no ano que vem; dúvidas sobre contratos com fornecedores.</p></div>`)}
+      ${sec('2. Projeto', 'contato parcial e apresentação final', `<div class="pq"><b>Contato parcial · durante o projeto</b><p>Feito na metade do caminho entre o início do projeto e a banca, na data calculada pelo Atlas quando o projeto entrou “Em andamento”. Antes, o vendedor alinhou com o coordenador do projeto. O cliente disse que as reuniões estavam claras e pediu mais exemplos práticos na entrega.</p></div>` + (f.col > 0 ? `<div class="pq"><b>Entregue × prometido</b><p>Tudo o que foi prometido foi entregue. O treinamento virou duas sessões, a pedido do cliente.</p></div><div class="row"><span class="pill p-g">NPS da apresentação: ${f.nps || 9}</span><span class="pill p-n">Newsletter ${f.news ? 'autorizada' : 'não autorizada'}</span><span class="pill p-n">Apresentação em ${f.apres}</span></div>` : `<div class="lock" style="padding:16px">O projeto foi para Envio do TEP em ${f.apres}, data da apresentação final. Registre o que foi entregue × o que foi prometido, o NPS e a autorização da newsletter.<br><button class="btn s d" style="margin-top:10px" onclick="registrarF('${f.id}')">Registrar agora</button></div>`))}
+      ${sec('3. Pós-venda', 'contatos humanos, prontuário em 24 h', contatos.map(([n, t, s, txt]) => { const e = estado(n); return `<div class="pc ${e}"><span class="pcd"></span><div style="flex:1;min-width:0"><div class="row sp"><b style="font-size:14px">${t}</b>${e === 'feito' ? '<span class="pill p-g">registrado</span>' : e === 'atual' ? `<span class="pill ${f.st === 'vm' ? 'p-r' : 'p-a'}">${f.prazo}</span>` : '<span class="pill p-n">agendado</span>'}</div><div class="small muted">${s}</div>${e === 'feito' ? `<p style="margin:8px 0 0;font-size:14px;line-height:1.55">${txt}</p>` : e === 'atual' ? `<button class="btn s" style="margin-top:8px" onclick="registrarF('${f.id}')">Registrar contato</button>` : ''}</div></div>`; }).join(''))}
+      ${sec('4. Decisão', 'depois dos 90 dias', f.col === 4 ? `<p style="margin:0 0 10px;font-size:14px">Surgiu nova necessidade?</p><div class="row"><button class="btn g" onclick="decisaoF('${f.id}',true);go('fidelizacao')">Sim · nova oportunidade (recompra)</button><button class="btn" onclick="decisaoF('${f.id}',false);go('fidelizacao')">Não · newsletter e novo contato em 6 meses</button></div>` : '<p class="small muted" style="margin:0">Liberada depois do contato de 90 dias. Se houver nova necessidade que a Insper Jr. atende, vira um card com origem “recompra” no funil; se não, o cliente segue recebendo a newsletter e recebe um novo contato em 6 meses.</p>')}
+    </div>
+  </div>`;
+};
+
+// ================= ESCOPOS (etiquetas por frente) =================
+// Fontes: Cartilha Comercial Tech, Cartilha de Vendas de Processos, escopos 2026 de Business; Direito provisório até a cartilha ficar pronta.
+const FRENTES = {
+  Direito: { cor: '#DC2626', bg: '#FEE2E2', fg: '#991B1B', escopos: ['Contratos', 'Societário', 'Tributário', 'Pesquisa legislativa'] },
+  Business: { cor: '#2563EB', bg: '#DBEAFE', fg: '#1E3A8A', escopos: ['Planejamento financeiro', 'Pesquisa de mercado', 'Estratégia de marketing', 'Mapeamento de operação'] },
+  Tech: { cor: '#16A34A', bg: '#DCFCE7', fg: '#14532D', escopos: ['Desenvolvimento web', 'Chatbot com IA', 'Automação'] },
+  Processos: { cor: '#7C3AED', bg: '#EDE9FE', fg: '#4C1D95', escopos: ['Gestão de estoque', 'Otimização de processos industriais'] }
+};
+const frenteDe = (esc0) => Object.keys(FRENTES).find((f) => FRENTES[f].escopos.includes(esc0));
+const lbl = (e, big) => { const f = FRENTES[frenteDe(e)] || FRENTES.Business; return `<span class="lbl${big ? ' big' : ''}" style="background:${f.cor}">${esc(e)}</span>`; };
+const barra = (x) => { const f = FRENTES[frenteDe(x)] || FRENTES.Business; return `<span class="lbar" style="background:${f.cor}" title="${esc(x)}"></span>`; };
+const frTag = (fr) => { const f = FRENTES[fr]; return f ? `<span class="tag" style="border-color:${f.cor}55;color:${f.fg};background:${f.bg}">${fr}</span>` : `<span class="tag">${fr}</span>`; };
+const ESC_PADRAO = { Business: 'Planejamento financeiro', Tech: 'Desenvolvimento web', Direito: 'Contratos', Processos: 'Gestão de estoque' };
+const ESC_LEAD = { 'Lumen Odontologia': ['Estratégia de marketing'], 'Studio Pena': ['Societário', 'Contratos'], 'Casa Brava Arquitetura': ['Contratos'], 'Rota Sul Transportes': ['Otimização de processos industriais'], 'Vinícola Serra Alta': ['Pesquisa de mercado', 'Estratégia de marketing'], 'Clínica Horizonte': ['Chatbot com IA', 'Automação'], 'Ponto Fit Academias': ['Estratégia de marketing'], 'Mecânica Irmãos Prado': ['Otimização de processos industriais'], 'Pet Feliz': ['Pesquisa de mercado'], 'Escola Pequeno Saber': ['Contratos'], 'Doce Lar Imóveis': ['Desenvolvimento web'], 'Mirante Contabilidade': ['Tributário'], 'Andrade Metais (financeiro)': ['Planejamento financeiro', 'Tributário'] };
+DB.deals.forEach((d) => { d.escopos = d.etapa >= 2 || d.canal === 'reativados' ? (ESC_LEAD[d.empresa] || [ESC_PADRAO[d.frente]]) : (ESC_LEAD[d.empresa] && d.etapa >= 1 ? ESC_LEAD[d.empresa] : []); });
+DB.fidel.forEach((f) => { f.escopos = ESC_LEAD[f.cliente] || [ESC_PADRAO[f.frente]]; });
+
+let ETQ = false;
+function toggleEtq() { ETQ = !ETQ; render(); if (ETQ) setTimeout(() => { const i = document.getElementById('etqBusca'); if (i) i.focus(); }, 30); }
+function filtrarEtq(q) {
+  q = q.toLowerCase();
+  document.querySelectorAll('.etq-op').forEach((el) => { el.style.display = el.dataset.n.toLowerCase().includes(q) ? '' : 'none'; });
+  document.querySelectorAll('.etq-gr').forEach((g) => { g.style.display = [...g.querySelectorAll('.etq-op')].some((o) => o.style.display !== 'none') ? '' : 'none'; });
+}
+function toggleEscopo(id, e) {
+  const d = DB.deals.find((x) => x.id === id) || DB.fidel.find((x) => x.id === id);
+  d.escopos = d.escopos || [];
+  if (d.escopos.includes(e)) d.escopos = d.escopos.filter((x) => x !== e); else d.escopos.push(e);
+  const fs = [...new Set(d.escopos.map(frenteDe))];
+  if (fs.length && d.frente !== undefined && !fs.includes(d.frente)) d.frente = fs[0];
+  const q = (document.getElementById('etqBusca') || {}).value || '';
+  render(); const i = document.getElementById('etqBusca'); if (i) { i.value = q; filtrarEtq(q); i.focus(); }
+}
+function etiquetasHtml(d) {
+  const sel = d.escopos || [];
+  return `<div class="etq-wrap"><div class="row" style="gap:6px">${sel.map((e) => lbl(e, true)).join('')}<button class="glink small" style="padding:4px 0" onclick="toggleEtq()">${icon('plus', '#1A73E8', 15)} ${sel.length ? 'Editar etiquetas' : 'Adicionar etiquetas de escopo'}</button></div>
+    ${ETQ ? `<div class="etq-pop" onclick="event.stopPropagation()"><div class="etq-search"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#3C4043" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input id="etqBusca" placeholder="Buscar etiquetas" oninput="filtrarEtq(this.value)"></div>
+      <div class="etq-list">${Object.entries(FRENTES).map(([fr, f]) => `<div class="etq-gr"><div class="etq-h"><span class="dot" style="background:${f.cor}"></span>${fr}</div>${f.escopos.map((e) => `<button class="etq-op" data-n="${esc(e + ' ' + fr)}" onclick="toggleEscopo('${d.id}','${esc(e)}')">${lbl(e)}${sel.includes(e) ? `<span class="etq-ck">${icon('check', '#1A73E8', 16)}</span>` : ''}</button>`).join('')}</div>`).join('')}</div>
+      <div class="etq-foot"><span class="small muted">Escopos das cartilhas de vendas · Direito provisório</span><button class="btn s" onclick="toggleEtq()">Concluir</button></div></div>` : ''}</div>`;
+}
+
+// ================= VALOR NEGOCIADO =================
+function salvarValor(id) {
+  const d = DB.deals.find((x) => x.id === id);
+  const n = (s) => Number(String(s || '').replace(/\D/g, '')) || 0;
+  const prop = n($('#vProp').value), neg = n($('#vNeg').value);
+  if (!neg) { toast('Digite o valor negociado.', 'er'); return; }
+  d.valor = prop || d.valor; d.valorNeg = neg; d.pagto = $('#vPag').value; d.diasNeg = $('#vDias').value;
+  d.negHist = d.negHist || [];
+  d.negHist.unshift({ v: neg, q: 'agora · ' + P(d.ini).nome, obs: $('#vObs').value || '' });
+  d.historico.unshift({ t: 'Valor negociado: ' + fmt(neg), q: 'agora · ' + P(d.ini).nome, c: '#2563EB' });
+  render(); toast(`Valor negociado de ${fmt(neg)} salvo. Ele aparece no card e no Placar.`, 'ok');
+}
+function valoresHtml(d) {
+  const prop = d.valor || 0, neg = d.valorNeg || 0;
+  const desc = prop && neg ? Math.round((1 - neg / prop) * 100) : 0;
+  return `<p class="small muted" style="margin:0 0 14px">Registre aqui cada rodada da negociação. O último valor negociado aparece no card, no ganho e no ranking de propostas em negociação.</p>
+  <div class="grid g3" style="gap:12px;margin-bottom:16px">
+    <div class="vbox"><div class="small muted">Valor da proposta</div><b>${fmt(prop).replace('Sem valor', '—')}</b></div>
+    <div class="vbox" style="background:var(--blues);border-color:#BFDBFE"><div class="small" style="color:#1E40AF">Valor negociado</div><b style="color:#1E3A8A">${neg ? fmt(neg) : '—'}</b></div>
+    <div class="vbox"><div class="small muted">Desconto</div><b style="color:${desc > 15 ? 'var(--redd)' : 'var(--ink)'}">${neg && prop ? desc + '%' : '—'}</b>${desc > 15 ? '<div class="small" style="color:var(--redd)">acima de 15%: alinhar com a coordenação</div>' : ''}</div>
+  </div>
+  <div class="grid g2" style="gap:12px">
+    <label class="f">Valor da proposta (R$)<input class="in" id="vProp" value="${prop || ''}" placeholder="Ex.: 22000"></label>
+    <label class="f">Valor negociado (R$)<input class="in" id="vNeg" value="${neg || ''}" placeholder="Ex.: 19800"></label>
+    <label class="f">Dias úteis<input class="in" id="vDias" value="${esc(d.diasNeg || d.dias || '25')}"></label>
+    <label class="f">Condição de pagamento<select class="in" id="vPag">${['À vista', '2x sem juros', '3x sem juros', '50% na assinatura + 50% na entrega'].map((o) => `<option ${d.pagto === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label>
+  </div>
+  <label class="f" style="margin-top:12px">O que mudou nesta rodada<input class="in" id="vObs" placeholder="Ex.: tiramos o treinamento e reduzimos 3 dias úteis"></label>
+  <div class="row" style="margin-top:14px"><button class="btn p" onclick="salvarValor('${d.id}')">Salvar valor negociado</button></div>
+  ${(d.negHist || []).length ? `<div style="margin-top:18px"><div class="small b6 muted" style="margin-bottom:6px">Rodadas de negociação</div>${d.negHist.map((h) => `<div class="kv"><span>${h.q}${h.obs ? ' · ' + esc(h.obs) : ''}</span><span class="b6">${fmt(h.v)}</span></div>`).join('')}</div>` : ''}`;
+}
+
+// ================= NOVOS BLOCOS DO PAINEL =================
+const VENDIDO_FRENTE = { Business: { 'Planejamento financeiro': 52400, 'Pesquisa de mercado': 31500, 'Estratégia de marketing': 24800, 'Mapeamento de operação': 9800 }, Tech: { 'Desenvolvimento web': 14000, 'Chatbot com IA': 6500, 'Automação': 3200 }, Direito: { 'Contratos': 7200, 'Societário': 3000, 'Tributário': 0, 'Pesquisa legislativa': 2400 }, Processos: { 'Gestão de estoque': 0, 'Otimização de processos industriais': 6300 } };
+function painelFrentes() {
+  const neg = {}; Object.keys(FRENTES).forEach((f) => { neg[f] = 0; });
+  DB.deals.filter((d) => !d.ganho && d.etapa >= 3).forEach((d) => { const fs = [...new Set((d.escopos || []).map(frenteDe))]; const alvo = fs.length ? fs : [d.frente]; alvo.forEach((f) => { if (neg[f] != null) neg[f] += (d.valorNeg || d.valor) / alvo.length; }); });
+  const tot = (f) => Object.values(VENDIDO_FRENTE[f]).reduce((s, v) => s + v, 0);
+  const total = Object.keys(FRENTES).reduce((s, f) => s + tot(f), 0);
+  const mx = Math.max(...Object.keys(FRENTES).map(tot));
+  return `<div style="display:flex;height:12px;border-radius:99px;overflow:hidden;margin-bottom:6px">${Object.entries(FRENTES).map(([f, c]) => `<span style="width:${tot(f) / total * 100}%;background:${c.cor}" title="${f}"></span>`).join('')}</div>
+    <div class="row small" style="gap:14px;margin-bottom:16px">${Object.entries(FRENTES).map(([f, c]) => `<span class="row" style="gap:6px"><span class="dot" style="background:${c.cor}"></span>${f} ${Math.round(tot(f) / total * 100)}%</span>`).join('')}</div>
+    ${Object.entries(FRENTES).map(([f, c]) => `<details class="fr" ${f === 'Direito' || f === 'Processos' ? 'open' : ''}><summary><span class="row" style="gap:8px"><span class="dot" style="background:${c.cor}"></span><b>${f}</b></span><span class="row" style="gap:14px"><span class="small muted">negociação ${fmt(Math.round(neg[f])).replace('Sem valor', 'R$ 0')}</span><b>${fmt(tot(f)).replace('Sem valor', 'R$ 0')}</b></span></summary>
+      ${Object.entries(VENDIDO_FRENTE[f]).map(([e, v]) => `<div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 84px;gap:10px;align-items:center;padding:6px 0 6px 18px;font-size:13px"><span>${e}</span><div class="bar" style="height:6px"><i style="width:${v / mx * 100}%;background:${c.cor}"></i></div><span style="text-align:right" class="${v ? '' : 'muted'}">${v ? fmt(v) : 'sem venda'}</span></div>`).join('')}</details>`).join('')}
+    <div class="note a" style="margin-top:12px">${icon('info')}Direito e Processos somam ${Math.round((tot('Direito') + tot('Processos')) / total * 100)}% do vendido. Tributário e Gestão de estoque ainda não venderam no semestre.</div>`;
+}
+function painelPreco() {
+  const reais = DB.deals.filter((d) => d.valorNeg && d.valor);
+  const base = [['Business', 22000, 8], ['Tech', 18500, 5], ['Direito', 9500, 12], ['Processos', 18000, 6]];
+  const bdr = [['Ana Lima', 7], ['Carla Mendes', 14], ['Luiza Faria', 4], ['Bruno Sato', 18], ['Diego Rocha', 9]];
+  return `<div class="grid g3" style="gap:12px;margin-bottom:18px">
+      <div class="vbox"><div class="small muted">Desconto médio</div><b>9%</b><div class="small muted">meta: até 10%</div></div>
+      <div class="vbox"><div class="small muted">Ticket médio</div><b>R$ 17.400</b><div class="small muted">valor negociado</div></div>
+      <div class="vbox"><div class="small muted">Negociações registradas</div><b>${23 + reais.length}</b><div class="small muted">rodadas no semestre</div></div></div>
+    <div class="tblw"><table class="tbl"><thead><tr><th>Frente</th><th>Ticket médio</th><th>Desconto médio</th></tr></thead><tbody>${base.map(([f, t, dsc]) => `<tr><td><span class="row" style="gap:8px"><span class="dot" style="background:${FRENTES[f].cor}"></span>${f}</span></td><td>${fmt(t)}</td><td class="b6" style="color:${dsc > 10 ? 'var(--redd)' : 'var(--ink)'}">${dsc}%</td></tr>`).join('')}</tbody></table></div>
+    <div class="small muted" style="margin:16px 0 8px">Desconto médio por BDR</div>
+    ${bdr.map(([n, dsc]) => `<div style="display:grid;grid-template-columns:120px minmax(0,1fr) 40px;gap:10px;align-items:center;margin-bottom:7px;font-size:13px"><span>${n}</span><div class="bar" style="height:7px"><i style="width:${dsc / 20 * 100}%;background:${dsc > 15 ? '#DC2626' : dsc > 10 ? '#F59E0B' : '#16A34A'}"></i></div><b style="text-align:right">${dsc}%</b></div>`).join('')}
+    <div class="small muted" style="margin:16px 0 8px">Condição de pagamento</div>
+    <div class="chips"><span class="chip">À vista <b>41%</b></span><span class="chip">50% + 50% <b>33%</b></span><span class="chip">2x <b>15%</b></span><span class="chip">3x <b>11%</b></span></div>
+    <div class="info" style="margin-top:14px">Dias úteis vendidos × realizados entram aqui quando “Meus projetos” passar a informar os dias de cada projeto.</div>`;
+}
+function painelCapacitacao() {
+  const st = (k) => k.lib ? ['Liberado', 'p-g', 'desde ' + k.lib] : (k.proc >= MIN_PROVA.processo && k.esc >= MIN_PROVA.escopos && k.prop) ? ['Acompanhado', 'p-a', 'conduz entendimentos'] : ['Refaz prova', 'p-r', 'abaixo do mínimo'];
+  const lib = BDRS.filter((b) => CAP[b].lib).length;
+  return `<div class="grid g3" style="gap:12px;margin-bottom:18px">
+      <div class="vbox" style="background:var(--greens);border-color:var(--greenb)"><div class="small" style="color:var(--greend)">Liberados para vender sozinhos</div><b style="color:var(--green)">${lib} de ${BDRS.length}</b><div class="small" style="color:var(--greend)">semestre 2026.2</div></div>
+      <div class="vbox"><div class="small muted">Nota mínima das provas</div><b>${String(MIN_PROVA.processo).replace('.', ',')} · ${String(MIN_PROVA.escopos).replace('.', ',')}</b><div class="small muted">processo · escopos (média dos coordenadores)</div></div>
+      <div class="vbox"><div class="small muted">Meta de liberação</div><b>Todos</b><div class="small muted">até a entrega intermediária do trainee</div></div></div>
+    <div class="tblw"><table class="tbl"><thead><tr><th>BDR</th><th>Provas</th><th>Entendimentos</th><th>Situação</th></tr></thead><tbody>${BDRS.map((i) => { const k = CAP[i]; const s = st(k); const ok = [k.proc >= MIN_PROVA.processo, k.esc >= MIN_PROVA.escopos, !!k.prop].filter(Boolean).length; return `<tr class="click" onclick="PAB='capacitacao';go('pessoa','${i}')"><td><span class="who">${av(i)}${P(i).nome}</span></td><td class="b6" style="color:${ok < 3 ? 'var(--redd)' : 'var(--ink)'}">${ok}/3</td><td>${k.ent.filter((e) => e[0] === 5).length}/3</td><td><span class="pill ${s[1]}">${s[0]}</span> <span class="small muted">${s[2]}</span></td></tr>`; }).join('')}</tbody></table></div>
+    <div class="small muted" style="margin:16px 0 8px">Item do checklist mais esquecido nos entendimentos</div>
+    <div class="chips"><span class="chip">Quem decide <b>faltou em 1 de 19</b></span><span class="chip">Prova com menor nota: escopos <b>7,8</b></span></div>`;
+}
+function painelCampanhas() {
+  const c = [['Google Ads · consultoria financeira pme', 'Business', 'Midas', 3200, 21, 6, 3], ['Google Ads · abrir empresa', 'Direito', 'Midas', 1400, 9, 2, 1], ['Google Ads · planejamento estratégico', 'Business', 'Midas', 1800, 11, 3, 1], ['LinkedIn Ads · automação para PMEs', 'Tech', 'LinkedIn', 900, 4, 1, 0], ['LinkedIn Ads · melhoria de processos', 'Processos', 'LinkedIn', 700, 3, 1, 0]];
+  const tl = c.reduce((s, x) => s + x[4], 0), tc = c.reduce((s, x) => s + x[3], 0), tv = c.reduce((s, x) => s + x[6], 0);
+  return `<div class="grid g3" style="gap:12px;margin-bottom:18px">
+      <div class="vbox"><div class="small muted">Investido no semestre</div><b>${fmt(tc)}</b></div>
+      <div class="vbox"><div class="small muted">Custo por entendimento</div><b>${fmt(Math.round(tc / c.reduce((s, x) => s + x[5], 0)))}</b></div>
+      <div class="vbox"><div class="small muted">Custo por venda</div><b>${fmt(Math.round(tc / tv))}</b></div></div>
+    <div class="tblw"><table class="tbl"><thead><tr><th>Campanha</th><th>Leads</th><th>Entendimentos</th><th>Vendas</th><th>Custo/entendimento</th></tr></thead><tbody>${c.map(([n, f, o, custo, l, p, v]) => `<tr><td><span class="row" style="gap:8px;flex-wrap:nowrap"><span class="dot" style="background:${FRENTES[f].cor}"></span><span><span style="font-weight:500">${n}</span><br><span class="small muted">${o} · ${fmt(custo)}</span></span></span></td><td>${l}</td><td>${p}</td><td class="b6">${v}</td><td>${fmt(Math.round(custo / Math.max(1, p)))}</td></tr>`).join('')}</tbody></table></div>
+    <div class="info" style="margin-top:14px">Para este painel funcionar, cada lead da passiva precisa chegar com a campanha e a frente de origem. Isso faz parte da proposta de Geração de Demanda e Conversão (acompanhamento quinzenal da passiva com a agência).</div>`;
+}
+// ================= INÍCIO DA APLICAÇÃO =================
+render();
+setTimeout(() => toast('Protótipo navegável do CRM comercial. Os dados são fictícios.', 'in'), 400);
+</script>
+</body>
+</html>
